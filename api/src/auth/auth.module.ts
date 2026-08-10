@@ -1,10 +1,10 @@
 import {
-    CometAuthGuard,
     createAuthGuardProviders,
     createAuthResolver,
     createBasicAuthService,
     createJwtAuthService,
     createSitePreviewAuthService,
+    DextinityAuthGuard,
 } from "@dextinity/cms-api";
 import { DynamicModule, Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
@@ -30,7 +30,7 @@ export class AuthModule {
                 StaticUsersUserService,
                 {
                     provide: APP_GUARD,
-                    useClass: CometAuthGuard,
+                    useClass: DextinityAuthGuard,
                 },
                 ...createAuthGuardProviders(
                     ...[

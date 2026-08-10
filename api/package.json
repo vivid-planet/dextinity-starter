@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "api-generator": "rimraf --glob 'src/**/generated' && comet-api-generator generate",
-        "api-generator:watch": "rimraf --glob 'src/**/generated' && comet-api-generator generate --watch",
+        "api-generator": "rimraf --glob 'src/**/generated' && dextinity-api-generator generate",
+        "api-generator:watch": "rimraf --glob 'src/**/generated' && dextinity-api-generator generate --watch",
         "prebuild": "rimraf dist && npm run api-generator",
         "build": "nest build",
         "check-node-version": "check-node-version --node $(cat ../.nvmrc)",
