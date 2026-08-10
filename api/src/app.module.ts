@@ -10,7 +10,7 @@ import {
     RedirectsModule,
     UserPermissionsModule,
     WarningsModule,
-} from "@comet/cms-api";
+} from "@dextinity/cms-api";
 import { ApolloDriver, ApolloDriverConfig, ValidationError } from "@nestjs/apollo";
 import { DynamicModule, Module } from "@nestjs/common";
 import { ModuleRef } from "@nestjs/core";
@@ -147,7 +147,7 @@ export class AppModule {
     }
 }
 
-declare module "@comet/cms-api" {
+declare module "@dextinity/cms-api" {
     // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     interface ContentScope extends BaseContentScope {}
 }

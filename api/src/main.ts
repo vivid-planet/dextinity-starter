@@ -2,7 +2,7 @@ if (process.env.TRACING_ENABLED === "1") {
     import("./tracing");
 }
 
-import { CdnGuard, ExceptionFilter, ValidationExceptionFactory } from "@comet/cms-api";
+import { CdnGuard, ExceptionFilter, ValidationExceptionFactory } from "@dextinity/cms-api";
 import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";

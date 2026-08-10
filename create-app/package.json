@@ -40,7 +40,7 @@
         "rimraf": "^6.1.3"
     },
     "devDependencies": {
-        "@comet/eslint-config": "9.2.2",
+        "@dextinity/eslint-config": "10.0.0-beta.0",
         "@tsconfig/node24": "^24.0.4",
         "@types/node": "^24.13.3",
         "knip": "^6.24.0",

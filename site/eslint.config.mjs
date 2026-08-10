@@ -1,4 +1,4 @@
-import eslintConfigNextJs from "@comet/eslint-config/nextjs.js";
+import eslintConfigNextJs from "@dextinity/eslint-config/nextjs.js";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 const docsLink = "https://docs.comet-dxp.com/docs/faqs/environment-variables-in-site";

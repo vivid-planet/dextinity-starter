@@ -21,7 +21,7 @@ const nextConfig = {
         ignoreBuildErrors: process.env.NODE_ENV === "production",
     },
     experimental: {
-        optimizePackageImports: ["@comet/site-nextjs"],
+        optimizePackageImports: ["@dextinity/site-nextjs"],
     },
     poweredByHeader: false,
     // https://nextjs.org/docs/advanced-features/security-headers (Content-Security-Policy and CORS are set in middleware/cspHeaders.ts)
@@ -86,7 +86,7 @@ const nextConfig = {
                 include: [`${dirname(fileURLToPath(import.meta.url))}/src`],
                 use: [
                     {
-                        loader: "@comet/site-nextjs/webpackPersistedQueriesLoader",
+                        loader: "@dextinity/site-nextjs/webpackPersistedQueriesLoader",
                         options: {
                             persistedQueriesPath: ".next/persisted-queries.json",
                         },

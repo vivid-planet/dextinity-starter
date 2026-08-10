@@ -1,7 +1,7 @@
 import "@fontsource-variable/roboto-flex/full.css";
 
 import { ApolloProvider } from "@apollo/client";
-import { ErrorDialogHandler, MasterLayout, MuiThemeProvider, RouterBrowserRouter, SnackbarProvider } from "@comet/admin";
+import { ErrorDialogHandler, MasterLayout, MuiThemeProvider, RouterBrowserRouter, SnackbarProvider } from "@dextinity/admin";
 import {
     CometConfigProvider,
     ContentScopeProvider,
@@ -9,7 +9,7 @@ import {
     CurrentUserProvider,
     MasterMenuRoutes,
     SitePreview,
-} from "@comet/cms-admin";
+} from "@dextinity/cms-admin";
 import { css, Global } from "@emotion/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -130,7 +130,7 @@ export function App() {
     );
 }
 
-declare module "@comet/cms-admin" {
+declare module "@dextinity/cms-admin" {
     // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     interface ContentScope extends BaseContentScope {}
 

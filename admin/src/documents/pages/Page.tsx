@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
-import { messages } from "@comet/admin";
-import { File, FileNotMenu } from "@comet/admin-icons";
-import { createDocumentDependencyMethods, createDocumentRootBlocksMethods, type DependencyInterface, type DocumentInterface } from "@comet/cms-admin";
+import { messages } from "@dextinity/admin";
+import { File, FileNotMenu } from "@dextinity/admin-icons";
+import { createDocumentDependencyMethods, createDocumentRootBlocksMethods, type DependencyInterface, type DocumentInterface } from "@dextinity/cms-admin";
 import type { GQLPage, GQLPageInput } from "@src/graphql.generated";
 import { categoryToUrlParam } from "@src/pageTree/pageTreeCategories";
 import { FormattedMessage } from "react-intl";

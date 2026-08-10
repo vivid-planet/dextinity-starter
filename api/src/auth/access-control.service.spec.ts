@@ -1,4 +1,4 @@
-import { type User, UserPermissions } from "@comet/cms-api";
+import { type User, UserPermissions } from "@dextinity/cms-api";
 import { Test, type TestingModule } from "@nestjs/testing";
 import type { Config } from "@src/config/config";
 import { CONFIG } from "@src/config/config.module";

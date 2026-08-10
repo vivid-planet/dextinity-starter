@@ -5,7 +5,7 @@ import {
     createBasicAuthService,
     createJwtAuthService,
     createSitePreviewAuthService,
-} from "@comet/cms-api";
+} from "@dextinity/cms-api";
 import { DynamicModule, Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtModule } from "@nestjs/jwt";
