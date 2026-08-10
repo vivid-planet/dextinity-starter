@@ -4,7 +4,7 @@ import nextBundleAnalyzer from "@next/bundle-analyzer";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import cometConfig from "./src/comet-config.json" with { type: "json" };
+import dextinityConfig from "./src/dextinity-config.json" with { type: "json" };
 
 const withBundleAnalyzer = nextBundleAnalyzer({
     // eslint-disable-next-line no-restricted-syntax -- ANALYZE is a build-time-only dev tool flag, not environment-specific
@@ -15,7 +15,7 @@ const withBundleAnalyzer = nextBundleAnalyzer({
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-    images: cometConfig.images,
+    images: dextinityConfig.images,
     typescript: {
         // eslint-disable-next-line no-restricted-syntax -- NODE_ENV is set by Next.js itself, not environment-specific
         ignoreBuildErrors: process.env.NODE_ENV === "production",

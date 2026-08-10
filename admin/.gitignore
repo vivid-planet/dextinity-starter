@@ -16,7 +16,7 @@ fragmentTypes.json
 
 **/*.generated.ts
 /block-meta.json
-src/comet-config.json
+src/dextinity-config.json
 src/site-configs.d.ts
 
 .swc/

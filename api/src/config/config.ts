@@ -1,4 +1,4 @@
-import cometConfig from "@src/comet-config.json";
+import dextinityConfig from "@src/dextinity-config.json";
 import { plainToClass } from "class-transformer";
 import { validateSync } from "class-validator";
 
@@ -11,7 +11,7 @@ export function createConfig(processEnv: NodeJS.ProcessEnv) {
         throw new Error(errors.toString());
     }
     return {
-        ...cometConfig,
+        ...dextinityConfig,
         debug: envVars.NODE_ENV !== "production",
         serverHost: envVars.SERVER_HOST ?? "localhost",
         apiUrl: envVars.API_URL,
@@ -29,15 +29,15 @@ export function createConfig(processEnv: NodeJS.ProcessEnv) {
             allPermissionsDomains: envVars.ACL_ALL_PERMISSIONS_DOMAINS,
         },
         imgproxy: {
-            ...cometConfig.imgproxy,
+            ...dextinityConfig.imgproxy,
             salt: envVars.IMGPROXY_SALT,
             url: envVars.IMGPROXY_URL,
             key: envVars.IMGPROXY_KEY,
         },
         dam: {
-            ...cometConfig.dam,
+            ...dextinityConfig.dam,
             secret: envVars.DAM_SECRET,
-            allowedImageSizes: [...cometConfig.images.imageSizes, ...cometConfig.images.deviceSizes],
+            allowedImageSizes: [...dextinityConfig.images.imageSizes, ...dextinityConfig.images.deviceSizes],
         },
         blob: {
             storage: {

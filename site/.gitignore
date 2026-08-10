@@ -44,7 +44,7 @@ schema.gql
 schema.json
 block-meta.json
 src/**/*.generated.ts
-src/comet-config.json
+src/dextinity-config.json
 src/site-configs.d.ts
 src/**/*.scss.d.ts
 
