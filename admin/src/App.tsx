@@ -3,10 +3,10 @@ import "@fontsource-variable/roboto-flex/full.css";
 import { ApolloProvider } from "@apollo/client";
 import { ErrorDialogHandler, MasterLayout, MuiThemeProvider, RouterBrowserRouter, SnackbarProvider } from "@dextinity/admin";
 import {
-    CometConfigProvider,
     ContentScopeProvider,
     createDamFileDependency,
     CurrentUserProvider,
+    DextinityConfigProvider,
     MasterMenuRoutes,
     SitePreview,
 } from "@dextinity/cms-admin";
@@ -48,7 +48,7 @@ export function App() {
     const theme = useMemo(() => createTheme(muiLocale), [muiLocale]);
 
     return (
-        <CometConfigProvider
+        <DextinityConfigProvider
             {...config}
             graphQLApiUrl={`${config.apiUrl}/graphql`}
             pageTree={{
@@ -126,7 +126,7 @@ export function App() {
                     </MuiThemeProvider>
                 </IntlProvider>
             </ApolloProvider>
-        </CometConfigProvider>
+        </DextinityConfigProvider>
     );
 }
 
