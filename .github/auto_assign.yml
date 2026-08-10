@@ -7,6 +7,3 @@ reviewers:
 
 skipKeywords:
   - Merge main into next
-
-skipUsers:
-  - renovate[bot]

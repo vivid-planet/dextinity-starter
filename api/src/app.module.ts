@@ -138,7 +138,7 @@ export class AppModule {
                 ...(!config.debug
                     ? [
                           AccessLogModule.forRoot({
-                              shouldLogRequest: ({ user, req }) => user !== SYSTEM_USER_NAME && !req.route.path.startsWith("/api/healthcheck/"),
+                              shouldLogRequest: ({ req }) => !req.route.path.startsWith("/api/healthcheck/"),
                           }),
                       ]
                     : []),
