@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "api-generator": "rimraf --glob 'src/**/generated' && comet-api-generator generate",
-        "api-generator:watch": "rimraf --glob 'src/**/generated' && comet-api-generator generate --watch",
+        "api-generator": "rimraf --glob 'src/**/generated' && dextinity-api-generator generate",
+        "api-generator:watch": "rimraf --glob 'src/**/generated' && dextinity-api-generator generate --watch",
         "prebuild": "rimraf dist && npm run api-generator",
         "build": "nest build",
         "check-node-version": "check-node-version --node $(cat ../.nvmrc)",
@@ -43,7 +43,7 @@
     "dependencies": {
         "@apollo/server": "^5.5.1",
         "@as-integrations/express5": "^1.1.2",
-        "@comet/cms-api": "9.2.2",
+        "@dextinity/cms-api": "10.0.0-beta.0",
         "@faker-js/faker": "10.5.0",
         "@mikro-orm/cli": "^6.6.16",
         "@mikro-orm/core": "^6.6.16",
@@ -77,9 +77,9 @@
         "uuid": "^14.0.1"
     },
     "devDependencies": {
-        "@comet/api-generator": "9.2.2",
-        "@comet/cli": "9.2.2",
-        "@comet/eslint-config": "9.2.2",
+        "@dextinity/api-generator": "10.0.0-beta.0",
+        "@dextinity/cli": "10.0.0-beta.0",
+        "@dextinity/eslint-config": "10.0.0-beta.0",
         "@nestjs/cli": "^11.0.24",
         "@nestjs/schematics": "^11.1.0",
         "@nestjs/testing": "^11.1.28",

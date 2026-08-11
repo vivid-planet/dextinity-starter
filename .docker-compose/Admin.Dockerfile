@@ -5,7 +5,7 @@ USER 1001
 COPY --chown=1001:0 ./ ./
 COPY --from=api ./block-meta.json ./block-meta.json
 COPY --from=api ./schema.gql ./schema.gql
-COPY --from=api ./src/comet-config.json ./src/comet-config.json
+COPY --from=api ./src/dextinity-config.json ./src/dextinity-config.json
 
 RUN ./intl-update.sh && \
     npm ci && \

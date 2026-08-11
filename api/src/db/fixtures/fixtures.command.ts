@@ -1,4 +1,4 @@
-import { DependenciesService } from "@comet/cms-api";
+import { DependenciesService } from "@dextinity/cms-api";
 import { CreateRequestContext, MikroORM } from "@mikro-orm/core";
 import { Inject, Logger } from "@nestjs/common";
 import { Config } from "@src/config/config";

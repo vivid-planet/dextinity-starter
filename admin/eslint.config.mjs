@@ -1,4 +1,4 @@
-import eslintConfigReact from "@comet/eslint-config/react.js";
+import eslintConfigReact from "@dextinity/eslint-config/react.js";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 const config = defineConfig([

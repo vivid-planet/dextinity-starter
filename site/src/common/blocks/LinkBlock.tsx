@@ -8,7 +8,7 @@ import {
     type PropsWithData,
     type SupportedBlocks,
     withPreview,
-} from "@comet/site-nextjs";
+} from "@dextinity/site-nextjs";
 import type { LinkBlockData } from "@src/blocks.generated";
 import type { AnchorHTMLAttributes, PropsWithChildren } from "react";
 

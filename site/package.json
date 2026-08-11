@@ -7,7 +7,7 @@
         "css:types": "typed-scss-modules src --nameFormat none --exportType default --aliasPrefixes.@src src",
         "css:types:watch": "npm run css:types -- --watch",
         "dev": "npm run check-node-version && npm run intl:compile && run-s gql:types generate-block-types && tsc --project tsconfig.server.json && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- node --inspect=localhost:9230 --max-old-space-size=512 dist/server.js",
-        "generate-block-types": "comet generate-block-types",
+        "generate-block-types": "dextinity generate-block-types",
         "generate-block-types:watch": "chokidar -s \"block-meta.json\" -c \"npm run generate-block-types\"",
         "gql:types": "graphql-codegen",
         "gql:watch": "graphql-codegen --watch",
@@ -29,7 +29,7 @@
         "setup:ci": "./intl-update.sh"
     },
     "dependencies": {
-        "@comet/site-nextjs": "9.2.2",
+        "@dextinity/site-nextjs": "10.0.0-beta.0",
         "@fontsource/roboto": "^5.2.10",
         "@next/bundle-analyzer": "^16.2.12",
         "@opentelemetry/api": "^1.9.1",
@@ -52,8 +52,8 @@
         "usehooks-ts": "^3.1.1"
     },
     "devDependencies": {
-        "@comet/cli": "9.2.2",
-        "@comet/eslint-config": "9.2.2",
+        "@dextinity/cli": "10.0.0-beta.0",
+        "@dextinity/eslint-config": "10.0.0-beta.0",
         "@formatjs/cli": "^6.16.14",
         "@graphql-codegen/add": "^7.1.0",
         "@graphql-codegen/cli": "^7.2.0",

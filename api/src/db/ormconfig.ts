@@ -1,4 +1,4 @@
-import { createMigrationsList, createOrmConfig } from "@comet/cms-api";
+import { createMigrationsList, createOrmConfig } from "@dextinity/cms-api";
 import { DataloaderType, EntityCaseNamingStrategy, TextType, Type } from "@mikro-orm/core";
 import { defineConfig } from "@mikro-orm/postgresql";
 import path from "path";
