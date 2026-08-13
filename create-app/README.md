@@ -17,7 +17,7 @@ The following arguments can be passed to customize the project setup:
 
 - `project-name` (required): Specifies the name of the project. It will be used as the directory name for the project.
 - `--no-install`: Disables the automatic installation of dependencies.
-- `--repository <repository>`: Repository to clone from. Defaults to `https://github.com/vivid-planet/comet-starter.git`.
+- `--repository <repository>`: Repository to clone from. Defaults to `https://github.com/vivid-planet/dextinity-starter.git`.
 - `--branch <branch>`: Branch to checkout. Defaults to `main`.
 - `--verbose` or `-v`: Enables extra console logs for verbose output.
 - `--version` or `-V`: Outputs the version number.
@@ -34,7 +34,7 @@ npx @dextinity/create-app my-project -v
 Create a new Comet app with a different repository and branch:
 
 ```bash
-npx @dextinity/create-app my-project -r https://github.com/my-company/comet-starter.git -b next
+npx @dextinity/create-app my-project -r https://github.com/my-company/dextinity-starter.git -b next
 ```
 
 ### Commands
