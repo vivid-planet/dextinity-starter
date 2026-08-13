@@ -1,11 +1,11 @@
 # @dextinity/create-app
 
-This is a command-line interface to create a new Comet application.
+This is a command-line interface to create a new Dextinity application.
 It sets up a project with the necessary configuration and files to get started quickly.
 
 ## Usage
 
-To create a new Comet app, run the following command:
+To create a new Dextinity app, run the following command:
 
 ```bash
 npx @dextinity/create-app <project-name>
@@ -25,13 +25,13 @@ The following arguments can be passed to customize the project setup:
 
 #### Example usage with arguments
 
-Create a new Comet app with the name "my-project" and enable verbose logging:
+Create a new Dextinity app with the name "my-project" and enable verbose logging:
 
 ```bash
 npx @dextinity/create-app my-project -v
 ```
 
-Create a new Comet app with a different repository and branch:
+Create a new Dextinity app with a different repository and branch:
 
 ```bash
 npx @dextinity/create-app my-project -r https://github.com/my-company/dextinity-starter.git -b next
