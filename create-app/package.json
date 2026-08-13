@@ -1,6 +1,6 @@
 {
     "name": "@dextinity/create-app",
-    "version": "1.218.0",
+    "version": "1.219.0",
     "description": "Command-line interface to create a new Dextinity application",
     "homepage": "https://github.com/vivid-planet/dextinity-starter/tree/main/create-app#readme",
     "bugs": {
