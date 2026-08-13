@@ -1,7 +1,7 @@
 {
-    "name": "@comet/create-app",
+    "name": "@dextinity/create-app",
     "version": "1.218.0",
-    "description": "Command-line interface to create a new Comet application",
+    "description": "Command-line interface to create a new Dextinity application",
     "homepage": "https://github.com/vivid-planet/dextinity-starter/tree/main/create-app#readme",
     "bugs": {
         "url": "https://github.com/vivid-planet/dextinity-starter/issues"

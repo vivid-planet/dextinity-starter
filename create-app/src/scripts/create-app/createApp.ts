@@ -20,7 +20,7 @@ export interface CreateAppCommandOptions {
 }
 
 export async function createApp(commandOptions: CreateAppCommandOptions) {
-    console.log(`Creating a new Comet app in ${kleur.blue(`${process.cwd()}\n`)}`);
+    console.log(`Creating a new Dextinity app in ${kleur.blue(`${process.cwd()}\n`)}`);
     createWorkingDirectoryCopy(commandOptions);
     cleanupReadme(commandOptions.verbose);
     cleanupWorkingDirectory(commandOptions.verbose);
@@ -64,5 +64,5 @@ export async function createApp(commandOptions: CreateAppCommandOptions) {
     console.log(`Shutdown all services.\n`);
     console.log(kleur.cyan(`npm run --prefix api fixtures`));
     console.log(`Imports fixtures.\n`);
-    console.log(kleur.green(`\n☄️ Successfully created Comet app: ${commandOptions.projectName}`));
+    console.log(kleur.green(`\n☄️ Successfully created Dextinity app: ${commandOptions.projectName}`));
 }
