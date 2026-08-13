@@ -265,7 +265,7 @@ services:
       ./intl-update.sh &&
       cp ../api/schema.gql schema.gql &&
       cp ../api/block-meta.json block-meta.json &&
-      cp ../api/src/comet-config.json src/comet-config.json &&
+      cp ../api/src/dextinity-config.json src/dextinity-config.json &&
       cp ../site-configs/site-configs.d.ts src/site-configs.d.ts &&
       npm run build &&
       rm -rf ./node_modules

@@ -1,5 +1,5 @@
-import { MainContent, Stack, Toolbar } from "@comet/admin";
-import { ContentScopeIndicator, DashboardHeader, useUserPermissionCheck } from "@comet/cms-admin";
+import { MainContent, Stack, Toolbar } from "@dextinity/admin";
+import { ContentScopeIndicator, DashboardHeader, useUserPermissionCheck } from "@dextinity/cms-admin";
 import { Grid } from "@mui/material";
 import { useIntl } from "react-intl";
 

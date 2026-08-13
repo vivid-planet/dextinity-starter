@@ -4,7 +4,7 @@ import nextBundleAnalyzer from "@next/bundle-analyzer";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import cometConfig from "./src/comet-config.json" with { type: "json" };
+import dextinityConfig from "./src/dextinity-config.json" with { type: "json" };
 
 const withBundleAnalyzer = nextBundleAnalyzer({
     // eslint-disable-next-line no-restricted-syntax -- ANALYZE is a build-time-only dev tool flag, not environment-specific
@@ -15,13 +15,13 @@ const withBundleAnalyzer = nextBundleAnalyzer({
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-    images: cometConfig.images,
+    images: dextinityConfig.images,
     typescript: {
         // eslint-disable-next-line no-restricted-syntax -- NODE_ENV is set by Next.js itself, not environment-specific
         ignoreBuildErrors: process.env.NODE_ENV === "production",
     },
     experimental: {
-        optimizePackageImports: ["@comet/site-nextjs"],
+        optimizePackageImports: ["@dextinity/site-nextjs"],
     },
     poweredByHeader: false,
     // https://nextjs.org/docs/advanced-features/security-headers (Content-Security-Policy and CORS are set in middleware/cspHeaders.ts)
@@ -86,7 +86,7 @@ const nextConfig = {
                 include: [`${dirname(fileURLToPath(import.meta.url))}/src`],
                 use: [
                     {
-                        loader: "@comet/site-nextjs/webpackPersistedQueriesLoader",
+                        loader: "@dextinity/site-nextjs/webpackPersistedQueriesLoader",
                         options: {
                             persistedQueriesPath: ".next/persisted-queries.json",
                         },

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
-import { Loading, MainContent, RouterPrompt, RouterTab, RouterTabs, Toolbar, ToolbarFillSpace, ToolbarItem, useStackApi } from "@comet/admin";
-import { ArrowLeft } from "@comet/admin-icons";
-import { BlockAdminComponentRoot, ContentScopeIndicator, createUsePage, PageName } from "@comet/cms-admin";
+import { Loading, MainContent, RouterPrompt, RouterTab, RouterTabs, Toolbar, ToolbarFillSpace, ToolbarItem, useStackApi } from "@dextinity/admin";
+import { ArrowLeft } from "@dextinity/admin-icons";
+import { BlockAdminComponentRoot, ContentScopeIndicator, createUsePage, PageName } from "@dextinity/cms-admin";
 import { IconButton } from "@mui/material";
 import { LinkBlock } from "@src/common/blocks/LinkBlock";
 import { useIntl } from "react-intl";

@@ -6,7 +6,7 @@ import {
     RootBlockDataScalar,
     RootBlockEntity,
     RootBlockType,
-} from "@comet/cms-api";
+} from "@dextinity/cms-api";
 import { BaseEntity, Embedded, Entity, OptionalProps, PrimaryKey, Property } from "@mikro-orm/postgresql";
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { FooterContentBlock } from "@src/footers/blocks/footer-content.block";

@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Setup Node.js 24.x
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -25,8 +25,8 @@ jobs:
       - name: Inject Site Configurations
         run: |
           sed -i 's/dev\.comet\-dxp\.com/digitalocean.comet-dxp.com/g' site-configs/main.ts
-          APP_ENV=dev npx -y @comet/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/comet-starter-cms.tpl.yaml -o .digitalocean/comet-starter-cms.yaml --base64
-          APP_ENV=dev npx -y @comet/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/comet-starter-site-main.tpl.yaml -o .digitalocean/comet-starter-site-main.yaml --base64
+          APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/comet-starter-cms.tpl.yaml -o .digitalocean/comet-starter-cms.yaml --base64
+          APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/comet-starter-site-main.tpl.yaml -o .digitalocean/comet-starter-site-main.yaml --base64
 
       - name: Update DigitalOcean comet-starter-imgproxy Deployment
         uses: digitalocean/app_action/deploy@v2

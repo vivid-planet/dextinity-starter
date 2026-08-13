@@ -4,7 +4,7 @@
     "dependencies": {
         "express": "^5.2.1",
         "express-static-gzip": "^3.0.1",
-        "helmet": "^8.2.0",
+        "helmet": "^8.3.0",
         "http-proxy-middleware": "^4.2.0"
     },
     "engines": {
