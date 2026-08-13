@@ -2,13 +2,13 @@
     "name": "@comet/create-app",
     "version": "1.217.0",
     "description": "Command-line interface to create a new Comet application",
-    "homepage": "https://github.com/vivid-planet/comet-starter/tree/main/create-app#readme",
+    "homepage": "https://github.com/vivid-planet/dextinity-starter/tree/main/create-app#readme",
     "bugs": {
-        "url": "https://github.com/vivid-planet/comet-starter/issues"
+        "url": "https://github.com/vivid-planet/dextinity-starter/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/vivid-planet/comet-starter",
+        "url": "https://github.com/vivid-planet/dextinity-starter",
         "directory": "create-app"
     },
     "license": "BSD-2-Clause",
