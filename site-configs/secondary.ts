@@ -5,10 +5,10 @@ const port = parseInt(process.env.SITE_PORT || "3000", 10);
 
 const envToDomainMap: Record<Environment, string> = {
     local: `secondary.${host}:${port}`,
-    dev: "dev-secondary.comet-dxp.com",
-    test: "test-secondary.comet-dxp.com",
-    staging: "staging-secondary.comet-dxp.com",
-    prod: "secondary.comet-dxp.com",
+    dev: "dev-secondary.dextinity.com",
+    test: "test-secondary.dextinity.com",
+    staging: "staging-secondary.dextinity.com",
+    prod: "secondary.dextinity.com",
 };
 
 export default ((env) => {

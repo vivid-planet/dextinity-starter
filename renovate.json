@@ -1,12 +1,12 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["github>vivid-planet/comet//renovate/default"],
+    "extends": ["github>vivid-planet/dextinity//renovate/default"],
     "packageRules": [
         {
-            "groupName": "comet",
+            "groupName": "dextinity",
             "prPriority": 6,
-            "matchPackageNames": ["/@comet/*/"],
-            "labels": ["comet", "dependencies"],
+            "matchPackageNames": ["/@dextinity/*/"],
+            "labels": ["dextinity", "dependencies"],
             "allowedVersions": "!/canary/"
         }
     ]
