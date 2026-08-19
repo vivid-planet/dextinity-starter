@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Debug Admin",
+            "configurations": ["Start Admin Service", "Launch Chrome"]
+        }
+    ],
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug API",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "--prefix", "api", "start:debug"],
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "type": "node",
+            "name": "Start Admin Service",
+            "request": "launch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "--prefix", "admin", "start"],
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "type": "chrome",
+            "name": "Launch Chrome",
+            "request": "launch",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}/admin"
+        },
+        {
+            "type": "firefox",
+            "name": "Launch Firefox",
+            "request": "launch",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}/admin",
+            "pathMappings": [
+                {
+                    "url": "http://localhost:8000",
+                    "path": "${workspaceFolder}/admin"
+                }
+            ]
+        }
+    ]
+}
