@@ -1,4 +1,4 @@
-name: Publish @comet/create-app
+name: Publish @dextinity/create-app
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   publish:
-    name: Publish @comet/create-app
+    name: Publish @dextinity/create-app
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
@@ -54,7 +54,7 @@ jobs:
       - name: Commit package.json
         uses: EndBug/add-and-commit@v10
         with:
-          message: "@comet/create-app: Publish ${{ env.NEW_VERSION }}"
+          message: "@dextinity/create-app: Publish ${{ env.NEW_VERSION }}"
 
       - name: Publish release
         run: npm publish
