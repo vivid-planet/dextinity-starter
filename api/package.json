@@ -43,7 +43,7 @@
     "dependencies": {
         "@apollo/server": "^5.5.1",
         "@as-integrations/express5": "^1.1.2",
-        "@dextinity/cms-api": "10.0.0",
+        "@dextinity/cms-api": "10.0.1",
         "@faker-js/faker": "10.5.0",
         "@mikro-orm/cli": "^6.6.16",
         "@mikro-orm/core": "^6.6.16",
@@ -77,9 +77,9 @@
         "uuid": "^14.0.1"
     },
     "devDependencies": {
-        "@dextinity/api-generator": "10.0.0",
-        "@dextinity/cli": "10.0.0",
-        "@dextinity/eslint-config": "10.0.0",
+        "@dextinity/api-generator": "10.0.1",
+        "@dextinity/cli": "10.0.1",
+        "@dextinity/eslint-config": "10.0.1",
         "@nestjs/cli": "^11.0.24",
         "@nestjs/schematics": "^11.1.0",
         "@nestjs/testing": "^11.1.28",
