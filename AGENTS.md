@@ -69,7 +69,7 @@ npm --prefix admin run lint:fix      # Auto-fix Admin
 npm --prefix site run lint:fix       # Auto-fix Site (includes stylelint)
 ```
 
-These commands auto-fix import sorting, remove unused imports, and apply Prettier formatting. The root `lint:fix` also formats config files outside the packages.
+These commands auto-fix import sorting, remove unused imports, and apply Prettier formatting. The root `lint:fix` also formats files outside the packages (repository-root config files, `site-configs/`, `.github/`, `.digitalocean/`, ...).
 
 ### Testing (API only currently)
 
@@ -152,6 +152,8 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Prettier
 - stylelint for Site SCSS/CSS
 - knip for unused exports detection
+
+Each package's `lint:eslint` covers `src/`, all JSON files, and the package-root `.ts`/`.mts`/`.js`/`.mjs`/`.cjs` files (`next.config.mjs`, `vite.config.mts`, `eslint.config.mjs`, ...). Because those config files are not part of the TypeScript project, each `eslint.config.mjs` disables the project service for them and allows importing devDependencies.
 
 ### Environment Files
 

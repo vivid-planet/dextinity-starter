@@ -4,7 +4,17 @@ import { defineConfig, globalIgnores } from "eslint/config";
 const docsLink = "https://cms-docs.dextinity.com/docs/faqs/environment-variables-in-site";
 
 const config = defineConfig([
-    globalIgnores(["**/**/*.generated.ts", "dist/**", "lang/**", "lang-compiled/**", "lang-extracted/**", ".next/**", "public/**", "block-meta.json", "package-lock.json"]),
+    globalIgnores([
+        "**/**/*.generated.ts",
+        "dist/**",
+        "lang/**",
+        "lang-compiled/**",
+        "lang-extracted/**",
+        ".next/**",
+        "public/**",
+        "block-meta.json",
+        "package-lock.json",
+    ]),
     ...eslintConfigNextJs,
     {
         rules: {
@@ -19,7 +29,9 @@ const config = defineConfig([
         },
     },
     {
-        files: ["next.config.*"],
+        // Config files in the package root are dev-only tooling and not part of the TypeScript project,
+        // so they can't be parsed by the project service and may import devDependencies.
+        files: ["*.mjs", "*.cjs", "*.mts", "*.config.ts", "*.config.js"],
         languageOptions: {
             parserOptions: {
                 projectService: false,
@@ -28,11 +40,16 @@ const config = defineConfig([
             },
         },
         rules: {
+            "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+        },
+    },
+    {
+        files: ["next.config.*"],
+        rules: {
             "no-restricted-syntax": [
                 "error",
                 {
-                    selector:
-                        "MemberExpression[object.type='MemberExpression'][object.object.name='process'][object.property.name='env']",
+                    selector: "MemberExpression[object.type='MemberExpression'][object.object.name='process'][object.property.name='env']",
                     message: `Usage of process.env in next.config is not allowed. Use site configs or runtime configuration instead. See ${docsLink}`,
                 },
             ],
