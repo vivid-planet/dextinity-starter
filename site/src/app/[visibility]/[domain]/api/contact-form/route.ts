@@ -3,25 +3,6 @@ import { getSiteConfigForDomain } from "@src/util/siteConfig";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-/**
- * Example for a BFF (backend for frontend) route.
- *
- * It receives the values of a contact form, validates them and sends them as a mail. The mail is sent in the BFF and not in the API,
- * because the inquiries are of no interest to the CMS. This also keeps the API free of the site's business logic.
- *
- * The corresponding form isn't part of the starter. A client component would submit to this route as follows:
- *
- * ```tsx
- * const response = await fetch("/api/contact-form", {
- *     method: "POST",
- *     headers: { "content-type": "application/json" },
- *     body: JSON.stringify(values),
- * });
- * ```
- *
- * The domain is added to the path by the domain rewrite middleware (see src/middleware/domainRewrite.ts).
- */
-
 const contactFormSchema = z.object({
     name: z.string().min(1),
     company: z.string().optional(),
@@ -32,6 +13,7 @@ const contactFormSchema = z.object({
     privacyConsent: z.literal(true),
 });
 
+// The [visibility] and [domain] segments are added by the domain rewrite middleware, so a form submits to /api/contact-form.
 export async function POST(request: NextRequest, context: RouteContext<"/[visibility]/[domain]/api/contact-form">) {
     const { domain } = await context.params;
     const siteConfig = getSiteConfigForDomain(domain);

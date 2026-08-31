@@ -17,7 +17,6 @@ function getTransport() {
             host,
             port,
             secure: port === 465, // all other ports use STARTTLS
-            // The local mail catcher (see docker-compose.yml) doesn't require authentication
             auth: user ? { user, pass: process.env.MAIL_PASSWORD } : undefined,
         });
     }
@@ -25,12 +24,6 @@ function getTransport() {
     return transport;
 }
 
-/**
- * Sends a mail via SMTP. Must only be used in server-side code, e.g., in a route handler.
- *
- * In local development, mails aren't delivered to the recipient but caught by Mailpit (see docker-compose.yml).
- * They can be viewed in its web interface at http://localhost:8025.
- */
 export async function sendMail(options: SendMailOptions) {
     const from = options.from ?? process.env.MAIL_FROM;
 
