@@ -45,6 +45,13 @@ services:
       COLLECTOR_OTLP_ENABLED: "true"
       COLLECTOR_OTLP_HTTP_HOST_PORT: 0.0.0.0:4318
 
+  mailpit:
+    image: mirror.gcr.io/axllent/mailpit:v1.31
+    pull_policy: weekly
+    ports:
+      - "127.0.0.1:${MAILPIT_SMTP_PORT}:1025"
+      - "127.0.0.1:${MAILPIT_UI_PORT}:8025"
+
 #  valkey:
 #    image: mirror.gcr.io/valkey/valkey:9
 #    pull_policy: weekly

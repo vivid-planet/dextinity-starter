@@ -124,6 +124,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - PostgreSQL (port 5432)
 - imgproxy (port 6080) - image optimization
 - Jaeger (port 16686) - distributed tracing
+- Mailpit (SMTP port 1025, web interface port 8025) - catches all mails sent in development
 
 ### Local Ports
 
@@ -164,6 +165,10 @@ The `site-configs/` directory manages site configurations, compiled into environ
 ### Post-Change Workflow
 
 After making code changes, always run `npm --prefix <package> run lint:fix` for each affected package. This auto-fixes import ordering, removes unused imports, and applies Prettier formatting. Run this before committing or presenting changes as complete.
+
+### BFF Routes
+
+Server-side logic that doesn't belong into the CMS API is implemented as Next.js route handlers in `site/src/app/[visibility]/[domain]/`. See `api/contact-form/route.ts` for an example: it validates the submitted values with zod and sends them as a mail. Mails are sent with nodemailer directly from the site (see `site/src/util/sendMail.ts`), in development they are caught by Mailpit.
 
 ### API Module Structure
 
