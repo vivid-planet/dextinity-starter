@@ -1,4 +1,3 @@
-import { getRequiredEnv } from "@src/util/getRequiredEnv";
 import { sendMail } from "@src/util/sendMail";
 import { getSiteConfigForDomain } from "@src/util/siteConfig";
 import { type NextRequest, NextResponse } from "next/server";
@@ -53,9 +52,15 @@ export async function POST(request: NextRequest, context: RouteContext<"/[visibi
 
     const { name, company, email, phone, subject, message } = validationResult.data;
 
+    const recipient = process.env.CONTACT_FORM_TO_EMAIL;
+
+    if (!recipient) {
+        throw new Error("process.env.CONTACT_FORM_TO_EMAIL must be set.");
+    }
+
     try {
         await sendMail({
-            to: getRequiredEnv("CONTACT_FORM_TO_EMAIL"),
+            to: recipient,
             replyTo: { name, address: email },
             subject: `${siteConfig.name}: ${subject}`,
             text: [

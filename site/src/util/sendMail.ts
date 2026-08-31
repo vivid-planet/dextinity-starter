@@ -1,19 +1,24 @@
-import { getRequiredEnv } from "@src/util/getRequiredEnv";
 import { createTransport, type SendMailOptions, type Transporter } from "nodemailer";
 
 let transport: Transporter | undefined;
 
 function getTransport() {
+    const host = process.env.MAIL_HOST;
+
+    if (!host) {
+        throw new Error("process.env.MAIL_HOST must be set.");
+    }
+
     if (!transport) {
         const port = Number(process.env.MAIL_PORT ?? 587);
         const user = process.env.MAIL_USER;
 
         transport = createTransport({
-            host: getRequiredEnv("MAIL_HOST"),
+            host,
             port,
             secure: port === 465, // all other ports use STARTTLS
             // The local mail catcher (see docker-compose.yml) doesn't require authentication
-            auth: user ? { user, pass: getRequiredEnv("MAIL_PASSWORD") } : undefined,
+            auth: user ? { user, pass: process.env.MAIL_PASSWORD } : undefined,
         });
     }
 
@@ -26,6 +31,12 @@ function getTransport() {
  * In local development, mails aren't delivered to the recipient but caught by Mailpit (see docker-compose.yml).
  * They can be viewed in its web interface at http://localhost:8025.
  */
-export async function sendMail({ from = getRequiredEnv("MAIL_FROM"), ...options }: SendMailOptions) {
-    return getTransport().sendMail({ from, ...options });
+export async function sendMail(options: SendMailOptions) {
+    const from = options.from ?? process.env.MAIL_FROM;
+
+    if (!from) {
+        throw new Error("process.env.MAIL_FROM must be set.");
+    }
+
+    return getTransport().sendMail({ ...options, from });
 }
