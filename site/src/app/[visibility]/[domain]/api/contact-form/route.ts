@@ -1,5 +1,4 @@
 import { sendMail } from "@src/util/sendMail";
-import { getSiteConfigForDomain } from "@src/util/siteConfig";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -14,10 +13,7 @@ const contactFormSchema = z.object({
 });
 
 // The [visibility] and [domain] segments are added by the domain rewrite middleware, so a form submits to /api/contact-form.
-export async function POST(request: NextRequest, context: RouteContext<"/[visibility]/[domain]/api/contact-form">) {
-    const { domain } = await context.params;
-    const siteConfig = getSiteConfigForDomain(domain);
-
+export async function POST(request: NextRequest) {
     let body: unknown;
 
     try {
@@ -44,16 +40,8 @@ export async function POST(request: NextRequest, context: RouteContext<"/[visibi
         await sendMail({
             to: recipient,
             replyTo: { name, address: email },
-            subject: `${siteConfig.name}: ${subject}`,
-            text: [
-                `Name: ${name}`,
-                `Company: ${company ?? "-"}`,
-                `Email: ${email}`,
-                `Phone: ${phone ?? "-"}`,
-                `Subject: ${subject}`,
-                "",
-                message,
-            ].join("\n"),
+            subject,
+            text: [`Name: ${name}`, `Company: ${company ?? "-"}`, `Email: ${email}`, `Phone: ${phone ?? "-"}`, "", message].join("\n"),
         });
     } catch (error) {
         console.error("Sending the contact form mail failed", error);
