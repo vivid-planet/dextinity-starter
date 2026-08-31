@@ -3,14 +3,14 @@ import { createTransport, type SendMailOptions, type Transporter } from "nodemai
 let transport: Transporter | undefined;
 
 function getTransport() {
-    const host = process.env.MAIL_HOST;
-
-    if (!host) {
-        throw new Error("process.env.MAIL_HOST must be set.");
-    }
-
     if (!transport) {
-        const port = Number(process.env.MAIL_PORT ?? 587);
+        const host = process.env.MAIL_HOST;
+
+        if (!host) {
+            throw new Error("process.env.MAIL_HOST must be set.");
+        }
+
+        const port = parseInt(process.env.MAIL_PORT || "587", 10);
         const user = process.env.MAIL_USER;
 
         transport = createTransport({
