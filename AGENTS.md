@@ -168,7 +168,7 @@ After making code changes, always run `npm --prefix <package> run lint:fix` for 
 
 ### BFF Routes
 
-Server-side logic that doesn't belong into the CMS API is implemented as Next.js route handlers in `site/src/app/[visibility]/[domain]/`. See `api/contact-form/route.ts` for an example: it validates the submitted values with zod and sends them as a mail. Mails are sent with nodemailer directly from the site (see `site/src/util/sendMail.ts`), in development they are caught by Mailpit.
+Server-side logic that doesn't belong into the CMS API is implemented as Next.js route handlers in `site/src/app/[visibility]/[domain]/`. See `api/contact-form/route.ts` for an example: it validates the submitted values with zod and sends them as a mail with nodemailer, directly from the site instead of the API. In development, mails are caught by Mailpit.
 
 ### API Module Structure
 
