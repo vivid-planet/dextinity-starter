@@ -3,13 +3,8 @@ import { createTransport } from "nodemailer";
 import { z } from "zod";
 
 const queryValidationSchema = z.object({
-    name: z.string(),
-    company: z.string().optional(),
     email: z.email(),
-    phone: z.string().optional(),
-    subject: z.string(),
     message: z.string(),
-    privacyConsent: z.boolean(),
 });
 
 // The [visibility] and [domain] segments are added by the domain rewrite middleware, so a form submits to /api/contact-form.
@@ -29,7 +24,7 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    const { name, company, email, phone, subject, message } = validationResult.data;
+    const { email, message } = validationResult.data;
 
     try {
         const port = parseInt(process.env.MAIL_PORT || "587", 10);
@@ -45,9 +40,9 @@ export async function POST(request: NextRequest) {
         await transport.sendMail({
             from: process.env.MAIL_FROM,
             to: process.env.CONTACT_FORM_TO_EMAIL,
-            replyTo: { name, address: email },
-            subject,
-            text: [`Name: ${name}`, `Company: ${company ?? "-"}`, `Email: ${email}`, `Phone: ${phone ?? "-"}`, "", message].join("\n"),
+            replyTo: email,
+            subject: "Contact form",
+            text: message,
         });
 
         return NextResponse.json(
