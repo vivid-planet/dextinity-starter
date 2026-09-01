@@ -44,7 +44,7 @@
         "@apollo/server": "^5.5.1",
         "@as-integrations/express5": "^1.1.2",
         "@dextinity/cms-api": "10.2.0",
-        "@faker-js/faker": "10.5.0",
+        "@faker-js/faker": "10.6.0",
         "@mikro-orm/cli": "^6.6.16",
         "@mikro-orm/core": "^6.6.16",
         "@mikro-orm/migrations": "^6.6.16",
