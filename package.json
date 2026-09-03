@@ -40,17 +40,17 @@
         "setup:download-oauth2-proxy": "dotenv -- sh -c 'npx @dextinity/cli download-oauth2-proxy -v $OAUTH2_PROXY_VERSION'"
     },
     "devDependencies": {
-        "@dextinity/agent-features": "10.0.0",
-        "@dextinity/cli": "10.0.0",
+        "@dextinity/agent-features": "10.2.0",
+        "@dextinity/cli": "10.2.0",
         "dev-oidc-provider": "^2.0.0",
         "dev-process-manager": "^4.0.0",
         "dotenv-cli": "^11.0.0",
         "husky": "^9.1.7",
-        "knip": "^6.24.0",
-        "lint-staged": "^17.2.0",
-        "npm-run-all2": "^9.0.2",
+        "knip": "^6.33.0",
+        "lint-staged": "^17.4.1",
+        "npm-run-all2": "^9.0.3",
         "open-cli": "^9.0.0",
-        "prettier": "^3.9.4",
+        "prettier": "^3.9.6",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3"
     },
