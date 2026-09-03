@@ -52,7 +52,7 @@ jobs:
         working-directory: create-app/
 
       - name: Commit package.json
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v11
         with:
           message: "@dextinity/create-app: Publish ${{ env.NEW_VERSION }}"
 
