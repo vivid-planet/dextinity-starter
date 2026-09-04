@@ -15,6 +15,9 @@ fi
 nvm install
 nvm use
 
+# npm config for local development, not used in CI
+cp .npmrc.tpl .npmrc
+
 echo -e "\033[34m\nInstalling dependencies for root package\033[0m"
 npm install
 

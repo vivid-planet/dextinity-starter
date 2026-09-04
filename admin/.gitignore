@@ -22,4 +22,3 @@ src/site-configs.d.ts
 .swc/
 
 generated/
-.npmrc
