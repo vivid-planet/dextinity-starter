@@ -1,6 +1,7 @@
 .idea
 
 node_modules
+.npmrc
 .npm
 .babelCache
 

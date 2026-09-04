@@ -21,6 +21,10 @@ const files = [
                   file: ".env.site-configs",
                   targetDir: ["admin", "api", "site"],
               },
+              {
+                  file: ".npmrc",
+                  targetDir: ["admin", "site", "api", "create-app"],
+              },
           ]),
     {
         file: "api/schema.gql",
@@ -37,10 +41,6 @@ const files = [
     {
         file: "site-configs/site-configs.d.ts",
         targetDir: ["admin/src", "api/src", "site/src"],
-    },
-    {
-        file: ".npmrc",
-        targetDir: ["admin", "site", "api", "create-app"],
     },
 ];
 

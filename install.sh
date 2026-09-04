@@ -19,6 +19,7 @@ echo -e "\033[34m\nInstalling dependencies for root package\033[0m"
 npm install
 
 echo -e "\033[34m\nSetup project files\033[0m"
+cp .npmrc.tpl .npmrc
 npm run setup-project-files
 
 # Lang install
