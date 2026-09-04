@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Redis } from "ioredis";
 import { LRUCache } from "lru-cache";
 import type { CacheHandler as NextCacheHandler, CacheHandlerValue } from "next/dist/server/lib/incremental-cache";
@@ -42,7 +41,10 @@ let isFallbackInUse = false;
 function parseBodyForGqlError(body: string) {
     try {
         const decodedBody = Buffer.from(body, "base64").toString("utf-8");
-        if (!decodedBody.startsWith("{")) return null; // Not a JSON response, ignore
+        // Not a JSON response, ignore
+        if (!decodedBody.startsWith("{")) {
+            return null;
+        }
         return JSON.parse(decodedBody);
     } catch (error) {
         console.error("CacheHandler.parseBodyForGqlError error", error);
@@ -117,7 +119,9 @@ export default class CacheHandler {
     }
 
     async revalidateTag(tags: string | string[]): Promise<void> {
-        if (tags.length === 0) return;
+        if (tags.length === 0) {
+            return;
+        }
         console.warn("CacheHandler.revalidateTag", tags);
     }
 }
