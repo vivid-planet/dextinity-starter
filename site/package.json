@@ -77,7 +77,7 @@
         "stylelint": "^17.14.1",
         "stylelint-config-standard-scss": "^17.0.0",
         "typed-scss-modules": "^8.1.1",
-        "typescript": "^5.9.3"
+        "typescript": "^7.0.2"
     },
     "engines": {
         "node": "24"
