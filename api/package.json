@@ -88,7 +88,7 @@
         "@types/cookie-parser": "^1.4.10",
         "@types/express": "^5.0.6",
         "@types/inquirer": "^8.2.13",
-        "@types/node": "^24.13.3",
+        "@types/node": "^24.13.4",
         "check-node-version": "^4.2.1",
         "dotenv-cli": "^11.0.0",
         "eslint": "^9.39.5",
