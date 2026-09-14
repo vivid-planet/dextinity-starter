@@ -71,7 +71,7 @@
         "@dextinity/admin-generator": "10.5.1",
         "@dextinity/cli": "10.5.1",
         "@dextinity/eslint-config": "10.5.1",
-        "@formatjs/cli": "^6.16.25",
+        "@formatjs/cli": "^6.16.26",
         "@graphql-codegen/add": "^7.1.0",
         "@graphql-codegen/cli": "^7.4.1",
         "@graphql-codegen/fragment-matcher": "^7.1.0",
