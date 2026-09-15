@@ -13,6 +13,8 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
     if (process.env.TRACING_ENABLED === "1") {
+        // Loaded lazily via require so tracing is only initialized when enabled.
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         require("./tracing");
     }
     createServer(async (req, res) => {
