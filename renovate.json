@@ -9,6 +9,43 @@
             "labels": ["dextinity", "dependencies"],
             "allowedVersions": "!/canary/",
             "minimumReleaseAge": null
+        },
+        {
+            "description": "Disable major upgrades for packages that Dextinity declares as peer dependencies. Their major is dictated by the installed @dextinity version, so it must only be raised together with Dextinity itself.",
+            "enabled": false,
+            "matchUpdateTypes": ["major"],
+            "matchPackageNames": [
+                "@apollo/client",
+                "@emotion/**",
+                "@mikro-orm/**",
+                "@mui/material",
+                "@mui/x-*",
+                "@nestjs/**",
+                "@next/bundle-analyzer",
+                "@types/express",
+                "@types/react",
+                "@types/react-dom",
+                "@types/react-router",
+                "@types/react-router-dom",
+                "class-transformer",
+                "class-validator",
+                "express",
+                "final-form",
+                "graphql",
+                "history",
+                "nest-commander",
+                "next",
+                "react",
+                "react-dnd",
+                "react-dnd-html5-backend",
+                "react-dom",
+                "react-final-form",
+                "react-intl",
+                "react-router",
+                "react-router-dom",
+                "reflect-metadata",
+                "rxjs"
+            ]
         }
     ]
 }
