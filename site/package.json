@@ -29,7 +29,7 @@
         "setup:ci": "./intl-update.sh"
     },
     "dependencies": {
-        "@dextinity/site-nextjs": "10.5.1",
+        "@dextinity/site-nextjs": "10.6.0",
         "@fontsource/roboto": "^5.3.0",
         "@next/bundle-analyzer": "^16.3.5",
         "@opentelemetry/api": "^1.9.1",
@@ -52,8 +52,8 @@
         "usehooks-ts": "^3.1.1"
     },
     "devDependencies": {
-        "@dextinity/cli": "10.5.1",
-        "@dextinity/eslint-config": "10.5.1",
+        "@dextinity/cli": "10.6.0",
+        "@dextinity/eslint-config": "10.6.0",
         "@formatjs/cli": "^6.16.26",
         "@graphql-codegen/add": "^7.1.0",
         "@graphql-codegen/cli": "^7.4.1",
