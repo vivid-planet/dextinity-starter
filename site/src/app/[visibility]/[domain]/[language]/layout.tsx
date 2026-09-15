@@ -3,6 +3,7 @@ import { Footer } from "@src/layout/footer/Footer";
 import { footerFragment } from "@src/layout/footer/Footer.fragment";
 import { Header } from "@src/layout/header/Header";
 import { headerFragment } from "@src/layout/header/Header.fragment";
+import { OrganizationJsonLd } from "@src/organization/OrganizationJsonLd";
 import { createGraphQLFetch } from "@src/util/graphQLClient";
 import { IntlProvider } from "@src/util/IntlProvider";
 import { loadMessages } from "@src/util/loadMessages";
@@ -67,6 +68,7 @@ export default async function Layout({ children, params }: LayoutProps<"/[visibi
                     </noscript>
                 )}
                 <IntlProvider locale={language} messages={messages}>
+                    <OrganizationJsonLd siteConfig={siteConfig} />
                     <Header header={header} />
                     {children}
                     {footer && <Footer footer={footer} />}
