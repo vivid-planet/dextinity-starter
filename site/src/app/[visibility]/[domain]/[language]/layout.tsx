@@ -4,6 +4,7 @@ import { footerFragment } from "@src/layout/footer/Footer.fragment";
 import { Header } from "@src/layout/header/Header";
 import { headerFragment } from "@src/layout/header/Header.fragment";
 import { OrganizationJsonLd } from "@src/organization/OrganizationJsonLd";
+import animateBoxInOnScrollStyles from "@src/util/animations/AnimateBoxInOnScroll.module.scss";
 import { createGraphQLFetch } from "@src/util/graphQLClient";
 import { IntlProvider } from "@src/util/IntlProvider";
 import { loadMessages } from "@src/util/loadMessages";
@@ -56,6 +57,11 @@ export default async function Layout({ children, params }: LayoutProps<"/[visibi
     const messages = await loadMessages(language);
     return (
         <html lang={language}>
+            <head>
+                <noscript>
+                    <style>{`.${animateBoxInOnScrollStyles.scrollContainer} { opacity: 1; transform: none; transition: none; }`}</style>
+                </noscript>
+            </head>
             <body>
                 {siteConfig.gtmId && (
                     <noscript>
