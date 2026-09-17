@@ -3,7 +3,7 @@
     "private": true,
     "dependencies": {
         "express": "^5.2.1",
-        "express-static-gzip": "^3.0.1",
+        "express-static-gzip": "^3.0.2",
         "helmet": "^8.3.0",
         "http-proxy-middleware": "^4.2.0"
     },
@@ -11,6 +11,6 @@
         "node": "24"
     },
     "devDependencies": {
-        "@types/node": "^24.13.3"
+        "@types/node": "^24.13.4"
     }
 }
