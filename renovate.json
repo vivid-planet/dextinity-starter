@@ -11,7 +11,7 @@
             "minimumReleaseAge": null
         },
         {
-            "description": "Disable major upgrades for packages that Dextinity declares as peer dependencies. Their major is dictated by the installed @dextinity version, so it must only be raised together with Dextinity itself.",
+            "description": "Disable major upgrades Dextinity's peer dependencies. They must only be raised together with Dextinity itself.",
             "enabled": false,
             "matchUpdateTypes": ["major"],
             "matchPackageNames": [
