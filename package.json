@@ -43,7 +43,7 @@
         "@dextinity/agent-features": "10.7.0",
         "@dextinity/cli": "10.7.0",
         "dev-oidc-provider": "^2.1.2",
-        "dev-process-manager": "^4.0.0",
+        "dev-process-manager": "^4.1.0",
         "dotenv-cli": "^11.0.0",
         "husky": "^9.1.7",
         "knip": "^6.35.1",
