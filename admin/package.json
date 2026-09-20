@@ -63,7 +63,7 @@
         "react-dnd-multi-backend": "^9.0.0",
         "react-dom": "^19.3.0",
         "react-final-form": "^6.5.9",
-        "react-intl": "^7.1.14",
+        "react-intl": "^12.1.0",
         "react-router": "^5.3.4",
         "react-router-dom": "^5.3.4"
     },
