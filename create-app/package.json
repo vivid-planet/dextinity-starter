@@ -45,7 +45,7 @@
         "@types/node": "^24.13.4",
         "knip": "^6.35.1",
         "npm-run-all2": "^9.0.3",
-        "prettier": "^3.9.6",
+        "prettier": "^3.9.8",
         "typescript": "^5.9.3"
     },
     "engines": {
