@@ -25,6 +25,7 @@
         "lint:site": "npm --prefix site run lint",
         "test:ci": "run-p test:ci:*",
         "test:ci:api": "npm --prefix api run test:ci",
+        "test:ci:site": "npm --prefix site run test:ci",
         "build": "run-p build:*",
         "build:api": "npm --prefix api run build",
         "build:admin": "npm --prefix admin run build",
