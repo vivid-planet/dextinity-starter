@@ -1,14 +1,14 @@
-# @comet/create-app
+# @dextinity/create-app
 
-This is a command-line interface to create a new Comet application.
+This is a command-line interface to create a new Dextinity application.
 It sets up a project with the necessary configuration and files to get started quickly.
 
 ## Usage
 
-To create a new Comet app, run the following command:
+To create a new Dextinity app, run the following command:
 
 ```bash
-npx @comet/create-app <project-name>
+npx @dextinity/create-app <project-name>
 ```
 
 ### Arguments
@@ -25,16 +25,16 @@ The following arguments can be passed to customize the project setup:
 
 #### Example usage with arguments
 
-Create a new Comet app with the name "my-project" and enable verbose logging:
+Create a new Dextinity app with the name "my-project" and enable verbose logging:
 
 ```bash
-npx @comet/create-app my-project -v
+npx @dextinity/create-app my-project -v
 ```
 
-Create a new Comet app with a different repository and branch:
+Create a new Dextinity app with a different repository and branch:
 
 ```bash
-npx @comet/create-app my-project -r https://github.com/my-company/comet-starter.git -b next
+npx @dextinity/create-app my-project -r https://github.com/my-company/dextinity-starter.git -b next
 ```
 
 ### Commands
@@ -46,7 +46,7 @@ The following commands can be used to customize the project setup:
 Example usage:
 
 ```bash
-npx @comet/create-app remove-site
+npx @dextinity/create-app remove-site
 ```
 
 ## For developers
@@ -64,4 +64,4 @@ To test the script locally, run the following commands:
     node ./bin/index.js
     ```
 
-Testing a close to production usage of the CLI can be done by calling `npm link` in the create-app/ directory. Then `npx @comet/create-app` can be used.
+Testing a close to production usage of the CLI can be done by calling `npm link` in the create-app/ directory. Then `npx @dextinity/create-app` can be used.

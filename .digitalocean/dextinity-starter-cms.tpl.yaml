@@ -2,7 +2,7 @@ alerts:
   - rule: DEPLOYMENT_FAILED
   - rule: DOMAIN_FAILED
 domains:
-  - domain: admin.digitalocean.comet-dxp.com
+  - domain: admin.digitalocean.dextinity.com
     type: PRIMARY
 features:
   - buildpack-stack=ubuntu-22
@@ -23,7 +23,7 @@ ingress:
       match:
         path:
           prefix: /public-api
-name: comet-starter-cms
+name: dextinity-starter-cms
 region: fra
 services:
   - build_command: |-
@@ -56,13 +56,13 @@ services:
         value: starter
       - key: API_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/public-api/api
+        value: https://admin.digitalocean.dextinity.com/public-api/api
       - key: API_PORT
         scope: RUN_AND_BUILD_TIME
         value: "4000"
       - key: CORS_ALLOWED_ORIGIN
         scope: RUN_AND_BUILD_TIME
-        value: comet-starter-site-tyqqf\.ondigitalocean\.app
+        value: digitalocean\.dextinity\.com
       - key: IMGPROXY_SALT
         scope: RUN_AND_BUILD_TIME
         type: SECRET
@@ -92,7 +92,7 @@ services:
         value: https://fra1.digitaloceanspaces.com
       - key: S3_BUCKET
         scope: RUN_AND_BUILD_TIME
-        value: comet-starter
+        value: dextinity-starter
       - key: S3_ACCESS_KEY_ID
         scope: RUN_AND_BUILD_TIME
         type: SECRET
@@ -144,16 +144,16 @@ services:
         value: ${API_BASIC_AUTH_SYSTEM_USER_PASSWORD}
       - key: IDP_CLIENT_ID
         scope: RUN_AND_BUILD_TIME
-        value: 59e44de5-0431-4413-b50b-7e52740a6d7b
+        value: "390128796298185798"
       - key: IDP_JWKS_URI
         scope: RUN_AND_BUILD_TIME
-        value: https://auth-sso.vivid-planet.cloud/.well-known/jwks.json
+        value: https://login.vivid-planet.cloud/oauth/v2/keys
       - key: IDP_END_SESSION_ENDPOINT
         scope: RUN_AND_BUILD_TIME
-        value: https://auth-sso.vivid-planet.cloud/oauth2/sessions/logout
+        value: https://login.vivid-planet.cloud/oidc/v1/end_session
       - key: POST_LOGOUT_REDIRECT_URI
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/oauth2/sign_out?rd=%2F
+        value: https://admin.digitalocean.dextinity.com/oauth2/sign_out?rd=%2F
       - key: ACL_ALL_PERMISSIONS_DOMAINS
         scope: RUN_AND_BUILD_TIME
         value: "vivid-planet.com"
@@ -164,7 +164,7 @@ services:
     github:
       branch: main
       deploy_on_push: false
-      repo: vivid-planet/comet-starter
+      repo: vivid-planet/dextinity-starter
     http_port: 4000
     instance_count: 1
     instance_size_slug: apps-s-1vcpu-0.5gb
@@ -174,7 +174,7 @@ services:
   - envs:
       - key: OAUTH2_PROXY_CLIENT_ID
         scope: RUN_AND_BUILD_TIME
-        value: 59e44de5-0431-4413-b50b-7e52740a6d7b
+        value: "390128796298185798"
       - key: OAUTH2_PROXY_CLIENT_SECRET
         scope: RUN_AND_BUILD_TIME
         type: SECRET
@@ -189,7 +189,7 @@ services:
         value: S256
       - key: OAUTH2_PROXY_OIDC_ISSUER_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://auth-sso.vivid-planet.cloud
+        value: https://login.vivid-planet.cloud
       - key: OAUTH2_PROXY_PROVIDER
         scope: RUN_AND_BUILD_TIME
         value: oidc
@@ -244,7 +244,7 @@ services:
         value: "true"
       - key: OAUTH2_PROXY_WHITELIST_DOMAIN
         scope: RUN_AND_BUILD_TIME
-        value: auth-sso.vivid-planet.cloud
+        value: login.vivid-planet.cloud
       - key: OAUTH2_PROXY_HTTP_ADDRESS
         scope: RUN_AND_BUILD_TIME
         value: 0.0.0.0:4180 # allow non-localhost access
@@ -276,23 +276,23 @@ services:
         value: production
       - key: API_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/api
+        value: https://admin.digitalocean.dextinity.com/api
       - key: ADMIN_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/
+        value: https://admin.digitalocean.dextinity.com/
       - key: PUBLIC_SITE_CONFIGS
         scope: RUN_AND_BUILD_TIME
         value: "{{ site://configs/public/dev }}"
       - key: PREVIEW_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://preview.digitalocean.comet-dxp.com
+        value: https://preview.digitalocean.dextinity.com
       - key: SERVER_HOST
         scope: RUN_AND_BUILD_TIME
         value: "0.0.0.0"
     github:
       branch: main
       deploy_on_push: false
-      repo: vivid-planet/comet-starter
+      repo: vivid-planet/dextinity-starter
     http_port: 3000
     instance_count: 1
     instance_size_slug: apps-s-1vcpu-0.5gb
