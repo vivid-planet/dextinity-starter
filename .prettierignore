@@ -3,3 +3,6 @@ chart/*/templates/*
 
 .github/pull_request_template.md
 package-lock.json
+
+# Standalone subproject with its own formatting setup
+preview-controller
