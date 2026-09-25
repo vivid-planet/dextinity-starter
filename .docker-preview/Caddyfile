@@ -1,0 +1,32 @@
+# Reverse proxy for the Docker preview environment, see docker-compose.preview.yml.
+#
+# Everything is served through a single port, so that multiple preview environments
+# can run on the same host without port conflicts. Requests are routed by host name:
+#
+#   admin.{$PREVIEW_DOMAIN}     -> auth-proxy (which serves admin and api)
+#   idp.{$PREVIEW_DOMAIN}       -> idp
+#   everything else             -> site ({$PREVIEW_DOMAIN} and secondary.{$PREVIEW_DOMAIN})
+#
+# The host matcher ignores the port, so the same config works for any PREVIEW_PORT.
+
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+:80 {
+	@admin host admin.{$PREVIEW_DOMAIN}
+	handle @admin {
+		reverse_proxy auth-proxy:4180
+	}
+
+	@idp host idp.{$PREVIEW_DOMAIN}
+	handle @idp {
+		reverse_proxy idp:8080
+	}
+
+	handle {
+		reverse_proxy site:3000
+	}
+}

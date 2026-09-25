@@ -1,0 +1,240 @@
+# Preview environment: runs the complete application (api, admin, site and everything
+# they need) in Docker, using production-like builds instead of dev servers.
+#
+# A plain checkout is enough - dependencies are installed and everything is built inside
+# the images, nothing has to be prepared on the host:
+#
+#   docker compose -f docker-compose.preview.yml up --build -d
+#   open http://localhost:8080
+#
+# Several instances can run in parallel - give each one its own project name and port:
+#
+#   PREVIEW_PORT=8081 docker compose -f docker-compose.preview.yml -p pr-123 up --build -d
+#
+# Configuration (all optional):
+#   PREVIEW_PORT           host port the environment is published on (default 8080)
+#   PREVIEW_DOMAIN         base domain, must resolve including its subdomains (default localhost)
+#   PREVIEW_HOST           public host incl. port (default <PREVIEW_DOMAIN>:<PREVIEW_PORT>),
+#                          set to the bare domain when running behind another reverse proxy
+#   PREVIEW_SCHEME         http or https (default http), set to https when TLS is terminated upstream
+#   PREVIEW_LOAD_FIXTURES  fill the empty database with demo content on first start (default 1)
+#
+# The images know nothing about the preview host, everything is injected here.
+# PRIVATE_SITE_CONFIGS / PUBLIC_SITE_CONFIGS come from .env.site-configs.preview, which is
+# rendered for PREVIEW_HOST by `./.docker-preview/create-site-configs-env.sh` - run that first,
+# and again whenever PREVIEW_HOST or site-configs/ changes. Everything else (secrets,
+# imgproxy keys, acl defaults, ...) is taken from .env, which docker compose loads itself.
+#
+# See .docker-preview/README.md for details.
+
+name: dextinity-preview
+
+x-preview-urls:
+  site: &site-url ${PREVIEW_SCHEME:-http}://${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}
+  admin: &admin-url ${PREVIEW_SCHEME:-http}://admin.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}
+  api: &api-url ${PREVIEW_SCHEME:-http}://admin.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}/api
+  idp: &idp-url ${PREVIEW_SCHEME:-http}://idp.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}
+  logout: &logout-url ${PREVIEW_SCHEME:-http}://admin.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}/oauth2/sign_out?rd=%2F
+
+services:
+  # Single entry point for the whole environment, see .docker-preview/Caddyfile.
+  proxy:
+    image: mirror.gcr.io/library/caddy:2-alpine
+    pull_policy: weekly
+    restart: unless-stopped
+    ports:
+      - "${PREVIEW_PORT:-8080}:80"
+    environment:
+      PREVIEW_DOMAIN: ${PREVIEW_DOMAIN:-localhost}
+    volumes:
+      - ./.docker-preview/Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - site
+      - admin
+      - auth-proxy
+      - idp
+
+  postgres:
+    image: mirror.gcr.io/library/postgres:16
+    pull_policy: weekly
+    restart: unless-stopped
+    # Preview data is disposable, so durability can be traded for speed.
+    command: ["postgres", "-c", "fsync=off", "-c", "synchronous_commit=off", "-c", "full_page_writes=off"]
+    environment:
+      POSTGRES_USER: ${POSTGRESQL_USER}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRESQL_DB}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRESQL_USER} -d ${POSTGRESQL_DB}"]
+      interval: 5s
+      start_interval: 1s
+      start_period: 30s
+      timeout: 5s
+      retries: 5
+
+  imgproxy:
+    image: mirror.gcr.io/darthsim/imgproxy:v4
+    pull_policy: weekly
+    restart: unless-stopped
+    environment:
+      IMGPROXY_KEY: ${IMGPROXY_KEY}
+      IMGPROXY_SALT: ${IMGPROXY_SALT}
+      IMGPROXY_MAX_SRC_RESOLUTION: 70
+      IMGPROXY_LOCAL_FILESYSTEM_ROOT: /uploads
+    volumes:
+      - uploads:/uploads:ro
+
+  # Development OIDC provider with the static users from api/src/auth/static-users.ts.
+  idp:
+    build:
+      context: .
+      dockerfile: .docker-preview/Idp.Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      IDP_PORT: 8080
+      IDP_SSO_URL: *idp-url
+      IDP_CLIENT_ID: ${IDP_CLIENT_ID}
+      IDP_CLIENT_SECRET: ${IDP_CLIENT_SECRET}
+      AUTHPROXY_URL: *admin-url
+      POST_LOGOUT_REDIRECT_URI: *logout-url
+      NODE_OPTIONS: --max-old-space-size=192
+
+  # Authenticates the admin and forwards to admin (/) and api (/api/).
+  auth-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.13.0
+    pull_policy: weekly
+    restart: unless-stopped
+    environment:
+      OAUTH2_PROXY_HTTP_ADDRESS: 0.0.0.0:4180
+      OAUTH2_PROXY_REVERSE_PROXY: "true"
+      OAUTH2_PROXY_PROVIDER: oidc
+      OAUTH2_PROXY_CLIENT_ID: ${IDP_CLIENT_ID}
+      OAUTH2_PROXY_CLIENT_SECRET: ${IDP_CLIENT_SECRET}
+      OAUTH2_PROXY_COOKIE_SECRET: ${PREVIEW_COOKIE_SECRET:-preview-cookie-secret-0123456789}
+      OAUTH2_PROXY_COOKIE_SECURE: ${PREVIEW_COOKIE_SECURE:-false}
+      OAUTH2_PROXY_COOKIE_REFRESH: 55m
+      OAUTH2_PROXY_REDIRECT_URL: ${PREVIEW_SCHEME:-http}://admin.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}/oauth2/callback
+      # The idp is reachable under two addresses: the public one the browser is sent to,
+      # and the internal one used for the server-to-server calls. Discovery is skipped
+      # because the discovery document would only contain the public address.
+      OAUTH2_PROXY_SKIP_OIDC_DISCOVERY: "true"
+      OAUTH2_PROXY_OIDC_ISSUER_URL: *idp-url
+      OAUTH2_PROXY_LOGIN_URL: ${PREVIEW_SCHEME:-http}://idp.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}/auth
+      OAUTH2_PROXY_REDEEM_URL: http://idp:8080/token
+      OAUTH2_PROXY_OIDC_JWKS_URL: http://idp:8080/jwks
+      OAUTH2_PROXY_PROFILE_URL: http://idp:8080/me
+      OAUTH2_PROXY_WHITELIST_DOMAIN: idp.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}
+      OAUTH2_PROXY_UPSTREAMS: http://admin:3000,http://api:4000/api/
+      OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+      OAUTH2_PROXY_SCOPE: openid offline_access email profile
+      OAUTH2_PROXY_PASS_AUTHORIZATION_HEADER: "true"
+      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
+      OAUTH2_PROXY_SKIP_AUTH_PREFLIGHT: "true"
+      OAUTH2_PROXY_SKIP_AUTH_ROUTES: ^(/api)?/healthcheck/
+      OAUTH2_PROXY_API_ROUTES: /api
+    depends_on:
+      - idp
+
+  api:
+    build:
+      context: .
+      dockerfile: .docker-preview/Api.Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      SERVER_HOST: 0.0.0.0
+      API_PORT: 4000
+      API_URL: *api-url
+      # The admin is the only browser client that calls the api cross-origin.
+      CORS_ALLOWED_ORIGIN: ^${PREVIEW_SCHEME:-http}://admin\.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}$$
+      POSTGRESQL_HOST: postgres
+      POSTGRESQL_PORT: 5432
+      POSTGRESQL_DB: ${POSTGRESQL_DB}
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      BASIC_AUTH_SYSTEM_USER_PASSWORD: ${BASIC_AUTH_SYSTEM_USER_PASSWORD}
+      SITE_PREVIEW_SECRET: ${SITE_PREVIEW_SECRET}
+      DAM_SECRET: ${DAM_SECRET}
+      IMGPROXY_URL: http://imgproxy:8080
+      IMGPROXY_KEY: ${IMGPROXY_KEY}
+      IMGPROXY_SALT: ${IMGPROXY_SALT}
+      BLOB_STORAGE_DRIVER: file
+      FILE_STORAGE_PATH: uploads
+      BLOB_STORAGE_DIRECTORY_PREFIX: ${BLOB_STORAGE_DIRECTORY_PREFIX}
+      IDP_CLIENT_ID: ${IDP_CLIENT_ID}
+      # Only used to fetch the signing keys, so the internal address is enough.
+      IDP_JWKS_URI: http://idp:8080/jwks
+      IDP_END_SESSION_ENDPOINT: ${PREVIEW_SCHEME:-http}://idp.${PREVIEW_HOST:-${PREVIEW_DOMAIN:-localhost}:${PREVIEW_PORT:-8080}}/session/end
+      POST_LOGOUT_REDIRECT_URI: *logout-url
+      ACL_ALL_PERMISSIONS_EMAILS: ${ACL_ALL_PERMISSIONS_EMAILS}
+      ACL_ALL_PERMISSIONS_DOMAINS: ${ACL_ALL_PERMISSIONS_DOMAINS}
+      TRACING_ENABLED: "0"
+      PREVIEW_LOAD_FIXTURES: ${PREVIEW_LOAD_FIXTURES:-1}
+      NODE_OPTIONS: --max-old-space-size=512
+    volumes:
+      - uploads:/app/api/uploads
+    env_file:
+      - .env.site-configs.preview
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/api/healthcheck/ready').then(r => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 30s
+      start_interval: 2s
+      start_period: 300s
+      timeout: 5s
+      retries: 3
+
+  admin:
+    build:
+      context: .
+      dockerfile: .docker-preview/Admin.Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      SERVER_HOST: 0.0.0.0
+      ADMIN_PORT: 3000
+      API_URL: *api-url
+      ADMIN_URL: *admin-url
+      PREVIEW_URL: *site-url
+      API_URL_INTERNAL: http://api:4000/api
+      NODE_OPTIONS: --max-old-space-size=192
+    env_file:
+      - .env.site-configs.preview
+
+  site:
+    build:
+      context: .
+      dockerfile: .docker-preview/Site.Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      SERVER_HOST: 0.0.0.0
+      SITE_PORT: 3000
+      ADMIN_URL: *admin-url
+      API_URL_INTERNAL: http://api:4000/api
+      API_BASIC_AUTH_SYSTEM_USER_PASSWORD: ${BASIC_AUTH_SYSTEM_USER_PASSWORD}
+      SITE_PREVIEW_SECRET: ${SITE_PREVIEW_SECRET}
+      TRACING_ENABLED: "0"
+      VALKEY_ENABLED: "false"
+      NODE_OPTIONS: --max-old-space-size=512
+    env_file:
+      - .env.site-configs.preview
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/healthcheck/ready').then(r => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 30s
+      start_interval: 2s
+      start_period: 120s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  postgres:
+  uploads:
