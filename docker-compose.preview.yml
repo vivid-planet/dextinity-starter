@@ -130,7 +130,7 @@ services:
       LOAD_FIXTURES: ${PREVIEW_LOAD_FIXTURES:-true}
     volumes:
       # WORKDIR of the image, FILE_STORAGE_PATH is relative to it
-      - uploads:/opt/app-root/src/uploads
+      - uploads:/app/uploads
       - site-configs:/site-configs:ro
     healthcheck:
       test:
@@ -161,7 +161,7 @@ services:
 
   # Single entry point for admin and api - takes care of the login
   authproxy:
-    image: quay.io/oauth2-proxy/oauth2-proxy:${OAUTH2_PROXY_VERSION:-v7.13.0}
+    image: ${OAUTH2_PROXY_IMAGE:-mirror.gcr.io/dkarnutsch/oauth2-proxy:latest}
     restart: on-failure
     depends_on:
       - idp

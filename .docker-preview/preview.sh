@@ -39,7 +39,8 @@ free_port() {
 
 # Keep the ports of an already running instance, so that restarting doesn't change its urls
 published_port() {
-    docker compose -f "$COMPOSE_FILE" port "$1" "$2" 2>/dev/null | sed -n 's/.*:\([0-9]\+\)$/\1/p'
+    # "|| true": nothing published yet is the normal case, and must not end the script (set -e)
+    docker compose -f "$COMPOSE_FILE" port "$1" "$2" 2>/dev/null | sed -n 's/.*:\([0-9]\+\)$/\1/p' || true
 }
 running_site_port="$(published_port site 3000)"
 running_admin_port="$(published_port authproxy 4180)"
@@ -58,7 +59,7 @@ docker compose -f "$COMPOSE_FILE" up --build --detach
 if command -v curl >/dev/null; then
     echo -n "Waiting for the site"
     for _ in $(seq 1 150); do
-        if curl -fsS -o /dev/null "http://${PREVIEW_HOST}:${PREVIEW_SITE_PORT}/healthcheck/live"; then
+        if curl -fs -o /dev/null "http://${PREVIEW_HOST}:${PREVIEW_SITE_PORT}/healthcheck/live"; then
             break
         fi
         echo -n "."

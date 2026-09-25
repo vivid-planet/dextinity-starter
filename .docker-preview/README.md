@@ -12,9 +12,8 @@ For the "real" deployment to a server with traefik and letsencrypt see `.docker-
 
 ## Requirements
 
-Docker (with compose) and network access during the build: npm registry,
-`registry.access.redhat.com` (base images), `mirror.gcr.io`, `quay.io` and github.com
-(the translations are cloned by `intl-update.sh`).
+Docker (with compose) and network access during the build: the npm registry, `mirror.gcr.io`
+(all images) and github.com (the translations are cloned by `intl-update.sh`).
 
 ## Usage
 
@@ -57,6 +56,7 @@ reachable inside the compose network.
 | `PREVIEW_COOKIE_SECRET`       | a fixed dev value   | Cookie secret of the auth proxy                              |
 | `PREVIEW_COOKIE_SECURE`       | `false`             | Set to `true` when the preview is served over https          |
 | `PREVIEW_CORS_ALLOWED_ORIGIN` | `.*`                | `CORS_ALLOWED_ORIGIN` of the api                             |
+| `OAUTH2_PROXY_IMAGE`          | see compose file    | Auth proxy image, same one as in `.docker-compose/`          |
 
 The remaining values (database password, imgproxy key, dam secret, ...) default to the
 development values from `.env` and can be overridden with environment variables of the same name.
@@ -64,7 +64,8 @@ development values from `.env` and can be overridden with environment variables 
 ## How it works
 
 - **One Dockerfile per application** (`Api.Dockerfile`, `Admin.Dockerfile`, `Site.Dockerfile`),
-  derived from the ones in `.docker-compose/`. The build context is the repository root, so the
+  derived from the ones in `.docker-compose/`. They use `mirror.gcr.io/library/node:24` as base
+  image, like the other images of `docker-compose.yml`, and all four share that layer. The build context is the repository root, so the
   files that `setup-project-files.js` symlinks during a local installation (`schema.gql`,
   `block-meta.json`, `dextinity-config.json`, `site-configs.d.ts`) can be copied from their
   original location. Dependencies are installed before the sources are copied, so that a source
