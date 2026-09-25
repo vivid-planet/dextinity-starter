@@ -37,3 +37,14 @@ In use by `@dextinity/create-app` to create new Dextinity projects. Find more in
 
     // start repl
     npm run --prefix api repl
+
+### Preview Environment
+
+Runs the complete application (api, admin, site and all services) in Docker - prod-like build, no
+hot reloading, nothing to install except Docker. Useful for preview environments, e.g. one per
+pull request.
+
+    .docker-preview/preview.sh          // start, prints the urls
+    .docker-preview/preview.sh down     // stop and delete its data
+
+See [.docker-preview/README.md](.docker-preview/README.md).

@@ -89,6 +89,15 @@ npm --prefix api run repl                         # Interactive REPL
 npm --prefix api run mikro-orm migration:create   # Create new migration
 ```
 
+### Preview Environment (Docker)
+
+```bash
+.docker-preview/preview.sh       # Run the whole application (api, admin, site + services) in Docker
+.docker-preview/preview.sh down  # Stop it and delete its data
+```
+
+Prod-like build, no hot reloading, no host dependencies except Docker. See `.docker-preview/README.md`.
+
 ### Code Generation
 
 ```bash
@@ -121,9 +130,19 @@ The `site-configs/` directory manages site configurations, compiled into environ
 
 ### Docker Services
 
+`docker-compose.yml` (used by `npm run dev`, the applications themselves run natively):
+
 - PostgreSQL (port 5432)
 - imgproxy (port 6080) - image optimization
 - Jaeger (port 16686) - distributed tracing
+
+`docker-compose.preview.yml` (everything in Docker, for preview environments):
+
+- postgres, imgproxy, idp (dev-oidc-provider), authproxy (oauth2-proxy), api, admin, site
+- Published ports are configurable (`PREVIEW_SITE_PORT`, `PREVIEW_ADMIN_PORT`, `PREVIEW_IDP_PORT`),
+  so multiple instances can run in parallel. Dockerfiles in `.docker-preview/`.
+
+`.docker-compose/` contains the separate Traefik/Let's Encrypt deployment for a real server.
 
 ### Local Ports
 

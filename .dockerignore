@@ -1,0 +1,47 @@
+# Build context for .docker-preview/*.Dockerfile is the repository root.
+
+node_modules
+**/node_modules
+.git
+.github
+.husky
+.vscode
+.idea
+.docker-compose
+.digitalocean
+create-app
+
+# build output
+**/dist
+**/build
+**/.next
+**/.swc
+**/coverage
+**/lang
+**/lang-compiled
+**/lang-extracted
+**/*.tsbuildinfo
+**/*.log
+
+# local state
+api/uploads
+
+# env files (the preview stack gets its configuration from docker-compose.preview.yml)
+**/.env
+**/.env.local
+**/.env.secrets
+**/.env.site-configs
+
+# symlinks created by setup-project-files.js - the Dockerfiles copy the originals instead
+api/.npmrc
+api/src/site-configs.d.ts
+admin/.npmrc
+admin/schema.gql
+admin/block-meta.json
+admin/src/dextinity-config.json
+admin/src/site-configs.d.ts
+site/.npmrc
+site/schema.gql
+site/block-meta.json
+site/src/dextinity-config.json
+site/src/site-configs.d.ts
