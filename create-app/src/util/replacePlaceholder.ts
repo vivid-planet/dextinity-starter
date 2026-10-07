@@ -18,6 +18,9 @@ export function replacePlaceholder(projectName: string, verbose: boolean): void 
             if (!fs.lstatSync(file).isFile()) {
                 return;
             }
+            if (file.endsWith("AGENTS.md")) {
+                return;
+            }
             const contents = fs.readFileSync(file, "utf8").toString();
 
             if (placeholder.test(contents)) {
