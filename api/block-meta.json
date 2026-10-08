@@ -2170,6 +2170,7 @@
     },
     {
         "name": "RedirectsLink",
+        "description": "The target a redirect points to, for instance a page of the page tree or an external URL.",
         "fields": [
             {
                 "name": "attachedBlocks",
@@ -2256,6 +2257,7 @@
     },
     {
         "name": "RichText",
+        "description": "Formatted text, edited in the Draft.js based rich text editor.",
         "fields": [
             {
                 "name": "draftContent",
@@ -2273,6 +2275,7 @@
     },
     {
         "name": "Seo",
+        "description": "The metadata of a page for search engines and social networks: title, description, preview image, sitemap settings and canonical URL.",
         "fields": [
             {
                 "name": "htmlTitle",
