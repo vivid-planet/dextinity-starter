@@ -137,6 +137,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Prettier: 150 print width, 4 tab width
 - Strict TypeScript enabled
 - Pre-commit hooks via husky/lint-staged
+- AI code review via Greptile on opened, non-draft PRs (configured in `.greptile/config.json`, incl. ignored files and auto-approval rules)
 
 ## Configuration
 
