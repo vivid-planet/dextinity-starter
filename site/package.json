@@ -58,7 +58,7 @@
     "devDependencies": {
         "@dextinity/cli": "10.9.0",
         "@dextinity/eslint-config": "10.9.0",
-        "@formatjs/cli": "^6.16.32",
+        "@formatjs/cli": "^6.16.33",
         "@graphql-codegen/add": "^7.1.1",
         "@graphql-codegen/cli": "^7.4.3",
         "@graphql-codegen/named-operations-object": "^4.0.1",
