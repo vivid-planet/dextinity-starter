@@ -10,7 +10,7 @@ ingress:
       match:
         path:
           prefix: /
-name: comet-starter-imgproxy
+name: dextinity-starter-imgproxy
 region: fra
 services:
   - envs:
@@ -30,7 +30,7 @@ services:
         value: fra1
       - key: IMGPROXY_S3_ENDPOINT
         scope: RUN_AND_BUILD_TIME
-        value: https://comet-starter.fra1.digitaloceanspaces.com
+        value: https://dextinity-starter.fra1.digitaloceanspaces.com
       - key: AWS_ACCESS_KEY_ID
         scope: RUN_AND_BUILD_TIME
         type: SECRET

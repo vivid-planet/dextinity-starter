@@ -47,6 +47,7 @@ export const ContentGroupBlock = createCompositeBlock(
                     fullWidth: true,
                     defaultValue: "default",
                     options: backgroundColorOptions,
+                    required: true,
                 }),
                 hiddenInSubroute: true,
             },

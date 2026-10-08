@@ -1,0 +1,13 @@
+{
+    "autoReview": ["open"],
+    "triggerOnDrafts": false,
+    "autoApprove": {
+        "enabled": true,
+        "riskCeiling": "medium",
+        "filters": {
+            "includeAuthors": ["VPS-Obi", "VPS-thodax", "nsams", "fraxachun", "VPS-Ricky", "vps-manuel-blum"]
+        }
+    },
+    "excludeAuthors": ["vivid-planet-bot", "github-actions[bot]", "renovate[bot]"],
+    "ignorePatterns": "**/package-lock.json\n**/schema.gql\n**/block-meta.json"
+}

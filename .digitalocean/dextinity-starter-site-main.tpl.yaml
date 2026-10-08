@@ -2,20 +2,20 @@ alerts:
   - rule: DEPLOYMENT_FAILED
   - rule: DOMAIN_FAILED
 domains:
-  - domain: digitalocean.comet-dxp.com
+  - domain: digitalocean.dextinity.com
     type: PRIMARY
-  - domain: preview.digitalocean.comet-dxp.com
+  - domain: preview.digitalocean.dextinity.com
     type: ALIAS
 features:
   - buildpack-stack=ubuntu-22
 ingress:
   rules:
     - component:
-        name: comet-starter-site-main
+        name: dextinity-starter-site-main
       match:
         path:
           prefix: /
-name: comet-starter-site-main
+name: dextinity-starter-site-main
 region: fra
 services:
   - build_command: |-
@@ -36,13 +36,13 @@ services:
         value: "0.0.0.0"
       - key: ADMIN_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/
+        value: https://admin.digitalocean.dextinity.com/
       - key: NEXT_PUBLIC_API_URL
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/public-api/api
+        value: https://admin.digitalocean.dextinity.com/public-api/api
       - key: API_URL_INTERNAL
         scope: RUN_AND_BUILD_TIME
-        value: https://admin.digitalocean.comet-dxp.com/public-api/api
+        value: https://admin.digitalocean.dextinity.com/public-api/api
       - key: SITE_PREVIEW_SECRET
         scope: RUN_AND_BUILD_TIME
         type: SECRET
@@ -57,10 +57,10 @@ services:
     github:
       branch: main
       deploy_on_push: false
-      repo: vivid-planet/comet-starter
+      repo: vivid-planet/dextinity-starter
     http_port: 3000
     instance_count: 1
     instance_size_slug: apps-s-1vcpu-0.5gb
-    name: comet-starter-site-main
+    name: dextinity-starter-site-main
     run_command: npm run serve
     source_dir: site

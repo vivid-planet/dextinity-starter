@@ -26,6 +26,13 @@ export default ((env) => {
                 languages: ["en", "de"],
             },
             gtmId: "GTM-XXXX",
+            organization: {
+                name: "Vivid Planet Software GmbH",
+                url: "https://www.vivid-planet.com",
+                logo: "/assets/dextinity-logo.svg",
+                sameAs: ["https://github.com/vivid-planet"],
+                description: "Vivid Planet Software GmbH develops Dextinity CMS, the open-source content management system.",
+            },
         },
     };
 }) satisfies GetSiteConfig;

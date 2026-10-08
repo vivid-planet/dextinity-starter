@@ -25,6 +25,9 @@ export default ((env) => {
                 languages: ["en", "de"],
             },
             gtmId: "GTM-YYYY",
+            organization: {
+                name: "Starter Secondary",
+            },
         },
     };
 }) satisfies GetSiteConfig;

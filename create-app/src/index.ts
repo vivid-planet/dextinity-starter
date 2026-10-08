@@ -4,7 +4,7 @@ import kleur from "kleur";
 import { name, version } from "../package.json";
 import { createApp } from "./scripts/create-app/createApp";
 import { removeSite } from "./scripts/remove-site/removeSite";
-import { cwdIsCometProject } from "./util/cwdIsCometProject";
+import { cwdIsDextinityProject } from "./util/cwdIsDextinityProject";
 import { isValidNodeVersion } from "./util/isValidNodeVersion";
 import { isValidProjectName } from "./util/isValidProjectName";
 
@@ -15,7 +15,7 @@ if (!isValidNodeVersion()) {
 
 void (async () => {
     const program = new Command();
-    program.name(name).description("CLI to create a Comet app").version(version);
+    program.name(name).description("CLI to create a Dextinity app").version(version);
     program
         .argument("<projectName>", "Sets the name of the project.")
         .option("--verbose, -v", "Enables extra console logs for verbose output.")
@@ -39,8 +39,8 @@ void (async () => {
 
     program.addCommand(
         new Command("remove-site").option("-v, --verbose", "Enables extra console logs for verbose output.").action((options) => {
-            if (!cwdIsCometProject()) {
-                program.error(`This command must be run from the root of a Comet project.`);
+            if (!cwdIsDextinityProject()) {
+                program.error(`This command must be run from the root of a Dextinity project.`);
             }
 
             console.log("Removing site from project...");
