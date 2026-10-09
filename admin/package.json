@@ -49,7 +49,7 @@
         "@mui/material": "^7.3.11",
         "@mui/x-data-grid": "^8.29.3",
         "@mui/x-data-grid-pro": "^8.29.3",
-        "@mui/x-date-pickers": "^8.29.3",
+        "@mui/x-date-pickers": "^8.29.4",
         "change-case": "^5.4.4",
         "date-fns": "^4.4.0",
         "final-form": "^4.20.10",
