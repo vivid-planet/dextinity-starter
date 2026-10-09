@@ -8,7 +8,7 @@ if (!VALKEY_HOST) {
     throw new Error("VALKEY_HOST is required");
 }
 
-const VALKEY_PORT = parseInt(process.env.VALKEY_PORT || "6079", 10);
+const VALKEY_PORT = parseInt(process.env.VALKEY_PORT || "6379", 10);
 
 const VALKEY_PASSWORD = process.env.VALKEY_PASSWORD;
 if (!VALKEY_PASSWORD) {
