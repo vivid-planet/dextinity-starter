@@ -1,4 +1,4 @@
-import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField } from "@comet/cms-admin";
+import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField } from "@dextinity/cms-admin";
 import type { StandaloneRichTextBlockData } from "@src/blocks.generated";
 import { RichTextBlock } from "@src/common/blocks/RichTextBlock";
 import { FormattedMessage } from "react-intl";
@@ -21,6 +21,7 @@ export const StandaloneRichTextBlock = createCompositeBlock(
                         { value: "right", label: <FormattedMessage id="standaloneRichText.textAlignment.right" defaultMessage="right" /> },
                         { value: "justify", label: <FormattedMessage id="standaloneRichText.textAlignment.justify" defaultMessage="justify" /> },
                     ],
+                    required: true,
                 }),
             },
         },

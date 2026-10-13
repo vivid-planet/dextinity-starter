@@ -1,4 +1,4 @@
-import { ContentScopeControls, Header, UserHeaderItem } from "@comet/cms-admin";
+import { ContentScopeControls, Header, UserHeaderItem } from "@dextinity/cms-admin";
 
 export function MasterHeader() {
     return (

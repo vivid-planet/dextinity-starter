@@ -1,4 +1,4 @@
-import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField } from "@comet/cms-admin";
+import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField } from "@dextinity/cms-admin";
 import type { CallToActionBlockData } from "@src/blocks.generated";
 import { FormattedMessage } from "react-intl";
 
@@ -23,6 +23,7 @@ export const CallToActionBlock = createCompositeBlock(
                         { value: "outlined", label: <FormattedMessage id="callToActionBlock.variant.outlined" defaultMessage="Outlined" /> },
                         { value: "text", label: <FormattedMessage id="callToActionBlock.variant.text" defaultMessage="Text" /> },
                     ],
+                    required: true,
                 }),
             },
         },

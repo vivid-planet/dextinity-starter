@@ -1,4 +1,4 @@
-import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField, createListBlock } from "@comet/cms-admin";
+import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField, createListBlock } from "@dextinity/cms-admin";
 import type { MediaGalleryBlockData } from "@src/blocks.generated";
 import { MediaGalleryItemBlock } from "@src/common/blocks/MediaGalleryItemBlock";
 import { mediaAspectRatioOptions } from "@src/util/mediaAspectRatios";
@@ -26,6 +26,7 @@ export const MediaGalleryBlock = createCompositeBlock(
                     fullWidth: true,
                     defaultValue: "16x9",
                     options: mediaAspectRatioOptions,
+                    required: true,
                 }),
                 hiddenInSubroute: true,
             },

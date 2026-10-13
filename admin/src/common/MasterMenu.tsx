@@ -1,4 +1,4 @@
-import { Assets, Dashboard, PageTree, Snips, Wrench } from "@comet/admin-icons";
+import { Assets, Dashboard, PageTree, Snips, Wrench } from "@dextinity/admin-icons";
 import {
     ContentScopeIndicator,
     createRedirectsPage,
@@ -9,7 +9,7 @@ import {
     PagesPage,
     UserPermissionsPage,
     WarningsPage,
-} from "@comet/cms-admin";
+} from "@dextinity/cms-admin";
 import { DashboardPage } from "@src/dashboard/DashboardPage";
 import { Link } from "@src/documents/links/Link";
 import { Page } from "@src/documents/pages/Page";

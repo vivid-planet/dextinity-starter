@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
-import { Button, Loading, MainContent, RouterPrompt, Toolbar, ToolbarActions, ToolbarFillSpace, ToolbarItem, useStackApi } from "@comet/admin";
-import { ArrowLeft, Preview } from "@comet/admin-icons";
+import { Button, Loading, MainContent, RouterPrompt, Toolbar, ToolbarActions, ToolbarFillSpace, ToolbarItem, useStackApi } from "@dextinity/admin";
+import { ArrowLeft, Preview } from "@dextinity/admin-icons";
 import {
     BlockAdminComponentRoot,
     BlockAdminTabLabel,
@@ -13,7 +13,7 @@ import {
     useBlockPreview,
     useContentScope,
     useSiteConfig,
-} from "@comet/cms-admin";
+} from "@dextinity/cms-admin";
 import { IconButton, Stack } from "@mui/material";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useRouteMatch } from "react-router";

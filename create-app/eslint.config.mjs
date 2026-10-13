@@ -1,4 +1,4 @@
-import eslintConfigNestJs from "@comet/eslint-config/nestjs.js";
+import eslintConfigNestJs from "@dextinity/eslint-config/nestjs.js";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 const config = defineConfig([
@@ -6,7 +6,7 @@ const config = defineConfig([
     ...eslintConfigNestJs,
     {
         rules: {
-            "@comet/no-other-module-relative-import": "off",
+            "@dextinity/no-other-module-relative-import": "off",
             "package-json/require-exports": "off", // TODO reenable after migrating to ESM
         },
     },

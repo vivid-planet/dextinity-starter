@@ -14,7 +14,7 @@ services:
       - "--entryPoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
       #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory" # used for cert debugging
-      - "--certificatesresolvers.myresolver.acme.email=postmaster@docker.comet-dxp.com"
+      - "--certificatesresolvers.myresolver.acme.email=postmaster@docker.dextinity.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
@@ -32,7 +32,7 @@ services:
     environment:
       IMGPROXY_USE_S3: "true"
       IMGPROXY_S3_REGION: fra1
-      IMGPROXY_S3_ENDPOINT: https://comet-starter.fra1.digitaloceanspaces.com
+      IMGPROXY_S3_ENDPOINT: https://dextinity-starter.fra1.digitaloceanspaces.com
     env_file: "imgproxy.secrets.env"
 
   oauthproxy:
@@ -41,10 +41,10 @@ services:
     ports:
       - 4180:4180
     environment:
-      OAUTH2_PROXY_CLIENT_ID: "59e44de5-0431-4413-b50b-7e52740a6d7b"
+      OAUTH2_PROXY_CLIENT_ID: "390128796298185798"
       # Provider
       OAUTH2_PROXY_CODE_CHALLENGE_METHOD: "S256"
-      OAUTH2_PROXY_OIDC_ISSUER_URL: "https://auth-sso.vivid-planet.cloud"
+      OAUTH2_PROXY_OIDC_ISSUER_URL: "https://login.vivid-planet.cloud"
       OAUTH2_PROXY_PROVIDER: "oidc"
       OAUTH2_PROXY_SCOPE: "openid profile email offline_access"
       # Cookie
@@ -65,7 +65,7 @@ services:
       OAUTH2_PROXY_SKIP_AUTH_ROUTES: "^(/api)?/healthcheck/"
       OAUTH2_PROXY_SKIP_JWT_BEARER_TOKENS: "true"
       OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
-      OAUTH2_PROXY_WHITELIST_DOMAIN: "auth-sso.vivid-planet.cloud"
+      OAUTH2_PROXY_WHITELIST_DOMAIN: "login.vivid-planet.cloud"
       OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180" # allow access from outside the container
       # Upstrean
       OAUTH2_PROXY_UPSTREAMS: "http://admin:3000,http://api:4000/api/"
@@ -73,7 +73,7 @@ services:
     env_file: "oauthproxy.secrets.env"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.oauthproxy.rule=Host(`admin.docker.comet-dxp.com`)"
+      - "traefik.http.routers.oauthproxy.rule=Host(`admin.docker.dextinity.com`)"
       - "traefik.http.routers.oauthproxy.entrypoints=websecure"
       - "traefik.http.routers.oauthproxy.tls.certresolver=myresolver"
       - "traefik.http.services.oauthproxy.loadbalancer.server.port=4180"
@@ -92,15 +92,15 @@ services:
       POSTGRESQL_PORT: "25060"
       POSTGRESQL_DB: db_starter
       POSTGRESQL_USER: starter
-      API_URL: https://admin.docker.comet-dxp.com/api
+      API_URL: https://admin.docker.dextinity.com/api
       API_PORT: "4000"
-      CORS_ALLOWED_ORIGIN: cometdxp\.com
+      CORS_ALLOWED_ORIGIN: dextinity\.com
       IMGPROXY_URL: http://imgproxy:8080
       BLOB_STORAGE_DRIVER: s3
       BLOB_STORAGE_DIRECTORY_PREFIX: starter
       S3_REGION: fra1
       S3_ENDPOINT: https://fra1.digitaloceanspaces.com
-      S3_BUCKET: comet-starter
+      S3_BUCKET: dextinity-starter
       POSTGRESQL_CA_CERT: |-
         -----BEGIN CERTIFICATE-----
         MIIEQTCCAqmgAwIBAgIUFbJ/dvvfKgsSSRZ1WB3LZ5OiEWQwDQYJKoZIhvcNAQEM
@@ -130,10 +130,10 @@ services:
       PRIVATE_SITE_CONFIGS: "{{ site://configs/private/dev }}"
       POSTGRESQL_USE_SSL: "true"
       USE_AUTHPROXY: "true"
-      IDP_CLIENT_ID: 59e44de5-0431-4413-b50b-7e52740a6d7b
-      IDP_JWKS_URI: https://auth-sso.vivid-planet.cloud/.well-known/jwks.json
-      IDP_END_SESSION_ENDPOINT: https://auth-sso.vivid-planet.cloud/oauth2/sessions/logout
-      POST_LOGOUT_REDIRECT_URI: https://admin.docker.comet-dxp.com/oauth2/sign_out?rd=%2F
+      IDP_CLIENT_ID: "390128796298185798"
+      IDP_JWKS_URI: https://login.vivid-planet.cloud/oauth/v2/keys
+      IDP_END_SESSION_ENDPOINT: https://login.vivid-planet.cloud/oidc/v1/end_session
+      POST_LOGOUT_REDIRECT_URI: https://admin.docker.dextinity.com/oauth2/sign_out?rd=%2F
       ACL_ALL_PERMISSIONS_DOMAINS: "vivid-planet.com"
     env_file: "api.secrets.env"
 
@@ -146,10 +146,10 @@ services:
     restart: "on-failure"
     environment:
       NODE_ENV: production
-      API_URL: https://admin.docker.comet-dxp.com/api
-      ADMIN_URL: https://admin.docker.comet-dxp.com
+      API_URL: https://admin.docker.dextinity.com/api
+      ADMIN_URL: https://admin.docker.dextinity.com
       PUBLIC_SITE_CONFIGS: "{{ site://configs/public/dev }}"
-      PREVIEW_URL: https://preview.docker.comet-dxp.com
+      PREVIEW_URL: https://preview.docker.dextinity.com
 
   site:
     build:
@@ -162,21 +162,21 @@ services:
     environment:
       NODE_ENV: production
       SERVER_HOST: "0.0.0.0"
-      ADMIN_URL: https://admin.docker.comet-dxp.com/
+      ADMIN_URL: https://admin.docker.dextinity.com/
       NEXT_PUBLIC_API_URL: "TODO"
       API_URL_INTERNAL: http://api:4000/api
       PUBLIC_SITE_CONFIGS: "{{ site://configs/public/dev }}"
     env_file: "site.secrets.env"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.site.rule=Host(`docker.comet-dxp.com`) || Host(`preview.docker.comet-dxp.com`)"
+      - "traefik.http.routers.site.rule=Host(`docker.dextinity.com`) || Host(`preview.docker.dextinity.com`)"
       - "traefik.http.routers.site.entrypoints=websecure"
       - "traefik.http.routers.site.tls.certresolver=myresolver"
       - "traefik.http.services.site.loadbalancer.server.port=3000"
-      - "traefik.http.routers.site-http.rule=Host(`docker.comet-dxp.com`)"
+      - "traefik.http.routers.site-http.rule=Host(`docker.dextinity.com`)"
       - "traefik.http.routers.site-http.entrypoints=web"
       - "traefik.http.routers.site-http.middlewares=site-redirect"
       - "traefik.http.middlewares.site-redirect.redirectscheme.scheme=https"
-      # Add for prelogin (see https://doc.traefik.io/traefik/middlewares/http/basicauth/), e.g. comet/dxp
+      # Add for prelogin (see https://doc.traefik.io/traefik/middlewares/http/basicauth/), e.g. dextinity/dxp
       #- "traefik.http.routers.site.middlewares=prelogin"
-      #- "traefik.http.middlewares.prelogin.basicauth.users=comet:$$2y$$05$$KJPz7pyKVP66qQXipRSHZeidw44PBDep06r7P.ve6afvzfl1Td.t2"
+      #- "traefik.http.middlewares.prelogin.basicauth.users=dextinity:$$2y$$05$$KJPz7pyKVP66qQXipRSHZeidw44PBDep06r7P.ve6afvzfl1Td.t2"

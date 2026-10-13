@@ -7,7 +7,7 @@ import {
     VimeoVideoBlock,
     withPreview,
     YouTubeVideoBlock,
-} from "@comet/site-nextjs";
+} from "@dextinity/site-nextjs";
 import type { MediaBlockData } from "@src/blocks.generated";
 import { DamImageBlock } from "@src/common/blocks/DamImageBlock";
 

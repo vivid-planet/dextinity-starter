@@ -1,4 +1,4 @@
-import { AnchorBlock, createBlocksBlock } from "@comet/cms-api";
+import { AnchorBlock, createBlocksBlock } from "@dextinity/cms-api";
 import { AccordionBlock } from "@src/common/blocks/accordion.block";
 import { MediaGalleryBlock } from "@src/common/blocks/media-gallery.block";
 import { PageTreeIndexBlock } from "@src/common/blocks/page-tree-index.block";

@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { FillSpace, MainContent, messages, SaveButton, Stack, StackToolbar, ToolbarActions, ToolbarTitleItem } from "@comet/admin";
-import { Save } from "@comet/admin-icons";
+import { FillSpace, MainContent, messages, SaveButton, Stack, StackToolbar, ToolbarActions, ToolbarTitleItem } from "@dextinity/admin";
+import { Save } from "@dextinity/admin-icons";
 import {
     BlockAdminComponentRoot,
     BlockPreviewWithTabs,
@@ -12,7 +12,7 @@ import {
     useContentScope,
     useSaveConflictQuery,
     useSiteConfig,
-} from "@comet/cms-admin";
+} from "@dextinity/cms-admin";
 import type { FooterContentBlockInput } from "@src/blocks.generated";
 import isEqual from "lodash.isequal";
 import { useEffect, useState } from "react";

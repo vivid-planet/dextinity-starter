@@ -6,7 +6,7 @@ import type { CreateAppCommandOptions } from "./createApp";
 
 export function createWorkingDirectoryCopy({
     projectName,
-    repository = "https://github.com/vivid-planet/comet-starter.git",
+    repository = "https://github.com/vivid-planet/dextinity-starter.git",
     branch = "main",
     verbose,
 }: Pick<CreateAppCommandOptions, "projectName" | "repository" | "branch" | "verbose">): void {

@@ -1,4 +1,4 @@
-import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField } from "@comet/cms-admin";
+import { BlockCategory, createCompositeBlock, createCompositeBlockSelectField } from "@dextinity/cms-admin";
 import type { StandaloneMediaBlockData } from "@src/blocks.generated";
 import { MediaBlock } from "@src/common/blocks/MediaBlock";
 import { mediaAspectRatioOptions } from "@src/util/mediaAspectRatios";
@@ -18,6 +18,7 @@ export const StandaloneMediaBlock = createCompositeBlock(
                     fullWidth: true,
                     defaultValue: "16x9",
                     options: mediaAspectRatioOptions,
+                    required: true,
                 }),
             },
         },

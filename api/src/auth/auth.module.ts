@@ -1,20 +1,19 @@
 import {
-    CometAuthGuard,
     createAuthGuardProviders,
     createAuthResolver,
     createBasicAuthService,
     createJwtAuthService,
     createSitePreviewAuthService,
-} from "@comet/cms-api";
+    DextinityAuthGuard,
+} from "@dextinity/cms-api";
 import { DynamicModule, Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtModule } from "@nestjs/jwt";
 import { Config } from "@src/config/config";
 
 import { AccessControlService } from "./access-control.service";
+import { SYSTEM_USER_NAME } from "./constants";
 import { StaticUsersUserService } from "./static-users.user.service";
-
-export const SYSTEM_USER_NAME = "system-user";
 
 @Module({})
 export class AuthModule {
@@ -30,7 +29,7 @@ export class AuthModule {
                 StaticUsersUserService,
                 {
                     provide: APP_GUARD,
-                    useClass: CometAuthGuard,
+                    useClass: DextinityAuthGuard,
                 },
                 ...createAuthGuardProviders(
                     ...[

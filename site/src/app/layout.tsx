@@ -1,4 +1,4 @@
-import "@comet/site-nextjs/css";
+import "@dextinity/site-nextjs/css";
 import "@fontsource/roboto";
 import "@fontsource/roboto/700.css";
 import "@src/styles/global.scss";

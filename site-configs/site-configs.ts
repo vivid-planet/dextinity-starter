@@ -10,7 +10,7 @@ const isValidEnvironment = (env: string): env is Environment => {
     return ["local", "dev", "test", "staging", "prod"].includes(env);
 }
 
-// Called by `npx @comet/cli inject-site-configs`
+// Called by `npx @dextinity/cli inject-site-configs`
 const getSiteConfigs = async (env: string): Promise<SiteConfig[]> => {
     if(!isValidEnvironment(env)) {
         throw new Error(`Invalid environment: ${env}`);

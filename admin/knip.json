@@ -3,7 +3,7 @@
     "workspaces": {
         ".": {
             "entry": ["./src/loader.ts"],
-            "ignore": ["./codegen.ts", "./schema.gql", "./src/**/generated/**/*.{ts,tsx}", "./src/**/*.cometGen.{ts,tsx}"],
+            "ignore": ["./codegen.ts", "./schema.gql", "./src/**/generated/**/*.{ts,tsx}", "./src/**/*.dextinityGen.{ts,tsx}"],
             "ignoreDependencies": ["@swc/plugin-emotion"],
             "project": ["./src/**/*.{ts,tsx}"]
         },

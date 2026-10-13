@@ -1,4 +1,4 @@
-import { BlobStorageConfig, IsUndefinable } from "@comet/cms-api";
+import { BlobStorageConfig, IsUndefinable } from "@dextinity/cms-api";
 import { PrivateSiteConfig } from "@src/site-configs";
 import { Transform, Type } from "class-transformer";
 import { IsArray, IsBoolean, IsEmail, IsFQDN, IsIn, IsInt, IsOptional, IsString, MinLength, ValidateIf } from "class-validator";

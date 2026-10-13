@@ -10,7 +10,7 @@ import {
     RedirectsModule,
     UserPermissionsModule,
     WarningsModule,
-} from "@comet/cms-api";
+} from "@dextinity/cms-api";
 import { ApolloDriver, ApolloDriverConfig, ValidationError } from "@nestjs/apollo";
 import { DynamicModule, Module } from "@nestjs/common";
 import { ModuleRef } from "@nestjs/core";
@@ -30,7 +30,8 @@ import { ContentScope as BaseContentScope } from "@src/site-configs";
 import { Request } from "express";
 
 import { AccessControlService } from "./auth/access-control.service";
-import { AuthModule, SYSTEM_USER_NAME } from "./auth/auth.module";
+import { AuthModule } from "./auth/auth.module";
+import { SYSTEM_USER_NAME } from "./auth/constants";
 import { StaticUsersUserService } from "./auth/static-users.user.service";
 import { Config } from "./config/config";
 import { ConfigModule } from "./config/config.module";
@@ -147,7 +148,7 @@ export class AppModule {
     }
 }
 
-declare module "@comet/cms-api" {
+declare module "@dextinity/cms-api" {
     // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     interface ContentScope extends BaseContentScope {}
 }

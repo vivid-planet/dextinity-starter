@@ -1,4 +1,4 @@
-import { AnchorBlock, BlockCategory, createBlocksBlock, createCompositeBlock, createCompositeBlockSelectField } from "@comet/cms-admin";
+import { AnchorBlock, BlockCategory, createBlocksBlock, createCompositeBlock, createCompositeBlockSelectField } from "@dextinity/cms-admin";
 import type { ContentGroupBlockData } from "@src/blocks.generated";
 import { AccordionBlock } from "@src/common/blocks/AccordionBlock";
 import { MediaGalleryBlock } from "@src/common/blocks/MediaGalleryBlock";
@@ -47,6 +47,7 @@ export const ContentGroupBlock = createCompositeBlock(
                     fullWidth: true,
                     defaultValue: "default",
                     options: backgroundColorOptions,
+                    required: true,
                 }),
                 hiddenInSubroute: true,
             },

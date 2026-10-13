@@ -14,7 +14,7 @@ When making changes that affect project structure, commands, architecture, ports
 
 ## Project Overview
 
-This is a monorepo containing a Comet DXP project. It contains three main packages:
+This is a monorepo containing a Dextinity project. It contains three main packages:
 
 - **api/** - NestJS GraphQL backend with MikroORM/PostgreSQL
 - **admin/** - React admin interface with Vite and MUI
@@ -105,7 +105,7 @@ npm --prefix api run mikro-orm migration:create   # Create new migration
 ### Code Generation
 
 ```bash
-npm --prefix admin run admin-generator   # Execute admin generator. Generates grid and form react components based on .cometGen.ts(x) files
+npm --prefix admin run admin-generator   # Execute admin generator. Generates grid and form react components based on .dextinityGen.ts(x) files
 npm --prefix api run api-generator       # Execute api generator. Generates resolvers, DTOs, etc. for new entities with the @CrudGenerator decorator
 ```
 
@@ -150,6 +150,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Prettier: 150 print width, 4 tab width
 - Strict TypeScript enabled
 - Pre-commit hooks via husky/lint-staged
+- AI code review via Greptile on opened, non-draft PRs (configured in `.greptile/config.json`, incl. ignored files and auto-approval rules)
 
 ## Configuration
 
@@ -161,7 +162,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 
 ### Linting Stack
 
-- ESLint (flat config, .mjs files) using `@comet/eslint-config` presets
+- ESLint (flat config, .mjs files) using `@dextinity/eslint-config` presets
 - Prettier
 - stylelint for Site SCSS/CSS
 - knip for unused exports detection
@@ -192,11 +193,11 @@ Next.js App Router conventions with pages in `app/`
 
 ## References
 
-This project is derived from the [Comet Starter](https://github.com/vivid-planet/comet-starter) repo and may have diverged over time. When implementing or refactoring features, consult the starter for current best-practice patterns. The repo follows the same `api/`, `admin/`, `site/` structure, so equivalent files can be found at matching paths.
+This project is derived from the [Dextinity Starter](https://github.com/vivid-planet/dextinity-starter) repo and may have diverged over time. When implementing or refactoring features, consult the starter for current best-practice patterns. The repo follows the same `api/`, `admin/`, `site/` structure, so equivalent files can be found at matching paths.
 
 To browse the starter repo, use the GitHub API:
 
-- List a directory: `https://api.github.com/repos/vivid-planet/comet-starter/contents/{path}`
-- Fetch a file: `https://raw.githubusercontent.com/vivid-planet/comet-starter/main/{path}`
+- List a directory: `https://api.github.com/repos/vivid-planet/dextinity-starter/contents/{path}`
+- Fetch a file: `https://raw.githubusercontent.com/vivid-planet/dextinity-starter/main/{path}`
 
-Comet DXP documentation is available at https://docs.comet-dxp.com/docs/ - search for relevant pages with `site:docs.comet-dxp.com {topic}`.
+Dextinity documentation is available at https://cms-docs.dextinity.com/docs/ - search for relevant pages with `site:cms-docs.dextinity.com {topic}`.

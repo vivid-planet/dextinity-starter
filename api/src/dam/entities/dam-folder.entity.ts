@@ -1,4 +1,4 @@
-import { createFolderEntity } from "@comet/cms-api";
+import { createFolderEntity } from "@dextinity/cms-api";
 
 const DamFolder = createFolderEntity();
 
