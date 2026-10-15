@@ -42,6 +42,19 @@ npx dev-pm restart <service>     # Restart a service
 npx dev-pm shutdown              # Stop all services
 ```
 
+#### Running multiple instances in parallel
+
+To run several checkouts at once without host port collisions, assign a free port offset before starting:
+
+```bash
+npm run assign-ports            # find a free +100..+900 offset and write base+offset ports to .env.local
+npm run dev
+```
+
+`assign-ports.mts` reads every `*_PORT` entry from `.env`, finds an offset where all ports are free, and writes the offset ports to `.env.local` (leaving `.env` untouched). It runs via Node's native TypeScript support (`node assign-ports.mts`), so no build or ts-node is needed.
+
+Each script loads `.env.local` itself: the packages and the `dev:*` scripts run through `dotenv -e .env.local -e .env` (or with `.env.secrets`), and the `docker` script in `dev-pm.config.ts` sources `.env` and `.env.local` before `docker compose up`. Docker needs this because dev-pm doesn't pass the env files to its scripts, and Compose prefers real env vars over its `.env` file, so without it the containers would bind the base ports.
+
 ### Building
 
 ```bash
