@@ -13,6 +13,13 @@ export interface SiteConfig extends BaseSiteConfig {
             languages: string[];
         };
         gtmId?: string;
+        organization: {
+            name: string;
+            url?: string;
+            logo?: string;
+            sameAs?: string[];
+            description?: string;
+        };
     };
 }
 

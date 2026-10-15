@@ -24,11 +24,11 @@ jobs:
 
       - name: Inject Site Configurations
         run: |
-          sed -i 's/dev\.comet\-dxp\.com/digitalocean.comet-dxp.com/g' site-configs/main.ts
-          APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/comet-starter-cms.tpl.yaml -o .digitalocean/comet-starter-cms.yaml --base64
-          APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/comet-starter-site-main.tpl.yaml -o .digitalocean/comet-starter-site-main.yaml --base64
+          sed -i 's/dev\.dextinity\.com/digitalocean.dextinity.com/g' site-configs/main.ts
+          APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/dextinity-starter-cms.tpl.yaml -o .digitalocean/dextinity-starter-cms.yaml --base64
+          APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .digitalocean/dextinity-starter-site-main.tpl.yaml -o .digitalocean/dextinity-starter-site-main.yaml --base64
 
-      - name: Update DigitalOcean comet-starter-imgproxy Deployment
+      - name: Update DigitalOcean dextinity-starter-imgproxy Deployment
         uses: digitalocean/app_action/deploy@v2
         env:
           IMGPROXY_KEY: ${{ secrets.IMGPROXY_KEY }}
@@ -39,9 +39,9 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_API_KEY }}
           print_deploy_logs: true
           print_build_logs: true
-          app_spec_location: ".digitalocean/comet-starter-imgproxy.yaml"
+          app_spec_location: ".digitalocean/dextinity-starter-imgproxy.yaml"
 
-      - name: Update DigitalOcean comet-starter-cms Deployment
+      - name: Update DigitalOcean dextinity-starter-cms Deployment
         uses: digitalocean/app_action/deploy@v2
         env:
           POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
@@ -58,9 +58,9 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_API_KEY }}
           print_deploy_logs: true
           print_build_logs: true
-          app_spec_location: ".digitalocean/comet-starter-cms.yaml"
+          app_spec_location: ".digitalocean/dextinity-starter-cms.yaml"
 
-      - name: Update DigitalOcean comet-starter-site-main Deployment
+      - name: Update DigitalOcean dextinity-starter-site-main Deployment
         uses: digitalocean/app_action/deploy@v2
         env:
           SITE_PREVIEW_SECRET: ${{ secrets.SITE_PREVIEW_SECRET }}
@@ -69,4 +69,4 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_API_KEY }}
           print_deploy_logs: true
           print_build_logs: true
-          app_spec_location: ".digitalocean/comet-starter-site-main.yaml"
+          app_spec_location: ".digitalocean/dextinity-starter-site-main.yaml"

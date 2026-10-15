@@ -16,6 +16,11 @@ input BooleanFilter {
   equal: Boolean
 }
 
+type ContentScopeDimension {
+  label: String!
+  name: String!
+}
+
 type ContentScopeWithLabel {
   label: JSONObject!
   scope: JSONObject!
@@ -193,6 +198,11 @@ type Dependency {
   rootColumnName: String!
   rootGraphqlObjectType: String!
   rootId: String!
+
+  """
+  Scope of the root entity for dependents, of the target entity for dependencies. Entities with multiple scopes return their first.
+  """
+  scope: JSONObject
   secondaryInformation: String
   targetGraphqlObjectType: String!
   targetId: String!
@@ -243,6 +253,7 @@ type EntityInfo {
   id: String!
   name: String!
   secondaryInformation: String
+  visible: Boolean!
 }
 
 input FileFilterInput {
@@ -623,6 +634,7 @@ type Query {
   redirectSourceAvailable(scope: RedirectScopeInput!, source: String!): Boolean!
   redirects(active: Boolean, query: String, scope: RedirectScopeInput!, sortColumnName: String, sortDirection: SortDirection! = ASC, type: RedirectGenerationType): [Redirect!]! @deprecated(reason: "Use paginatedRedirects instead. Will be removed in the next version.")
   sitePreviewJwt(includeInvisible: Boolean!, path: String!, scope: JSONObject!): String!
+  userPermissionsAvailableContentScopeDimensions: [ContentScopeDimension!]!
   userPermissionsAvailableContentScopes: [ContentScopeWithLabel!]!
   userPermissionsAvailablePermissions: [String!]!
   userPermissionsContentScopes(skipManual: Boolean, userId: String!): [JSONObject!]!
@@ -814,12 +826,12 @@ enum UserPermissionSource {
 }
 
 type UserPermissionsUser {
-  contentScopesCount: Int!
+  contentScopesCount: Int! @deprecated(reason: "The Scopes column was removed from the users list. Will be removed in the next version.")
   email: String!
   id: String!
   impersonationAllowed: Boolean!
   name: String!
-  permissionsCount: Int!
+  permissionsCount: Int! @deprecated(reason: "The Permissions column was removed from the users list. Will be removed in the next version.")
 }
 
 input UserPermissionsUserFilter {
@@ -866,6 +878,7 @@ input WarningFilter {
   status: WarningStatusEnumFilter
   type: StringFilter
   updatedAt: DateTimeFilter
+  visible: BooleanFilter
 }
 
 enum WarningSeverity {
@@ -893,6 +906,7 @@ enum WarningSortField {
   status
   type
   updatedAt
+  visible
 }
 
 type WarningSourceInfo {

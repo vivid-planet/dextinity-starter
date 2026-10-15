@@ -30,7 +30,8 @@ import { ContentScope as BaseContentScope } from "@src/site-configs";
 import { Request } from "express";
 
 import { AccessControlService } from "./auth/access-control.service";
-import { AuthModule, SYSTEM_USER_NAME } from "./auth/auth.module";
+import { AuthModule } from "./auth/auth.module";
+import { SYSTEM_USER_NAME } from "./auth/constants";
 import { StaticUsersUserService } from "./auth/static-users.user.service";
 import { Config } from "./config/config";
 import { ConfigModule } from "./config/config.module";

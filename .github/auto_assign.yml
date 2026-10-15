@@ -1,9 +1,6 @@
 addAssignees: author
 
-addReviewers: true
-
-reviewers:
-  - VPS-Obi
+addReviewers: false
 
 skipKeywords:
   - Merge main into next
