@@ -146,6 +146,7 @@ services:
     restart: "on-failure"
     environment:
       NODE_ENV: production
+      SERVER_HOST: "admin" # listen on the Compose network so that oauthproxy can reach it
       API_URL: https://admin.docker.dextinity.com/api
       ADMIN_URL: https://admin.docker.dextinity.com
       PUBLIC_SITE_CONFIGS: "{{ site://configs/public/dev }}"
