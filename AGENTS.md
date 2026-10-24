@@ -191,6 +191,32 @@ Component-based with GraphQL mutations/queries co-located
 
 Next.js App Router conventions with pages in `app/`
 
+## Comments
+
+- Default to writing no comments. Only add a comment when the _why_ is non-obvious (hidden constraint, workaround, surprising invariant).
+- Never write comments that restate _what_ the code does — the names should do that.
+- Prefer descriptive identifiers over explanatory comments — comments drift out of sync with the code.
+- Never reference the current task, ticket, or PR in comments — that context belongs in the PR description and rots in code.
+
+## Pull Request Descriptions
+
+- Fill in the pull request template (`.github/pull_request_template.md`) if the repository has one. Don't add sections beyond it, and delete the sections and instruction comments that don't apply.
+- End the description with the task line as plain visible text, not as an HTML comment: `Task: …` (only when there is a task). Only the attribution may follow it.
+- Add the Claude Code attribution once, at the very end. When a session link is available (`https://claude.ai/code/session_…`), use that as the attribution instead of the generic "Generated with Claude Code" line. Before updating an existing description, remove its attribution first so it never appears twice.
+- Describe why the change is needed, not what changed. Never restate the diff: no file-by-file list of changes, no summary of the code the reviewer is about to read.
+- Don't document how you arrived at the change: which files you read, which documentation you checked, which checks you ran to verify it. Only the outcome belongs in the description.
+- Delete the "Example" section when a unit test is the example — the reviewer finds it in the diff, and a bare file path is worthless in the commit message. Fill it in only for an example the diff doesn't lead to, for instance where to find the change in the running Admin or Site, with a sentence on what it shows.
+- Default to deleting "Further information". Add it only for something the reviewer needs in order to decide and can't get from the diff: an alternative you rejected, a related pull request, a link to a task or documentation. Adjacent problems you noticed and left out of scope belong in a follow-up task, not in the description.
+- Keep the length proportional to the change. A one-line fix gets a paragraph, not a report.
+- The description becomes the message of the squashed commit.
+- After opening a pull request, always check its description and rewrite it to follow these rules, also when the pull request was created by a tool or UI that generated the description.
+
+## Pull Request Comments
+
+- When watching or driving a pull request, reply on GitHub only to comments and reviews from bots (e.g. Greptile, Claude Code Review, lint bots). Bot accounts end in `[bot]` or are review/CI tools.
+- Never reply to comments or reviews from humans on GitHub. Report what you did, your proposals, and your questions to the user in the session instead of on the pull request.
+- Only act on a human's feedback when it is a small, concrete change (e.g. a nit, a rename, a missing test). For conceptual feedback (design questions, alternative approaches, questions about why something was done), don't change any code: summarize it for the user and wait for their decision.
+
 ## References
 
 This project is derived from the [Dextinity Starter](https://github.com/vivid-planet/dextinity-starter) repo and may have diverged over time. When implementing or refactoring features, consult the starter for current best-practice patterns. The repo follows the same `api/`, `admin/`, `site/` structure, so equivalent files can be found at matching paths.
