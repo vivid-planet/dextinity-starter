@@ -63,7 +63,7 @@
         "@graphql-codegen/named-operations-object": "^4.0.1",
         "@graphql-codegen/near-operation-file-preset": "^5.2.3",
         "@graphql-codegen/typescript": "^6.1.2",
-        "@graphql-codegen/typescript-operations": "^6.1.10",
+        "@graphql-codegen/typescript-operations": "^6.2.0",
         "@parcel/watcher": "^2.6.0",
         "@types/node": "^24.19.2",
         "@types/react": "^19.3.0",
