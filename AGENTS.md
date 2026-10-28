@@ -202,7 +202,7 @@ Next.js App Router conventions with pages in `app/`
 
 - Fill in the pull request template (`.github/pull_request_template.md`) if the repository has one. Don't add sections beyond it, and delete the sections and instruction comments that don't apply.
 - End the description with the task line as plain visible text, not as an HTML comment: `Task: …` (only when there is a task). Only the attribution may follow it.
-- Add the Claude Code attribution once, at the very end. When a session link is available (`https://claude.ai/code/session_…`), use that as the attribution instead of the generic "Generated with Claude Code" line. Before updating an existing description, remove its attribution first so it never appears twice.
+- Add an attribution for the AI tool you used once, at the very end. For Claude Code, when a session link is available (`https://claude.ai/code/session_…`), use that as the attribution instead of the generic "Generated with Claude Code" line. Before updating an existing description, remove its attribution first so it never appears twice.
 - Describe why the change is needed, not what changed. Never restate the diff: no file-by-file list of changes, no summary of the code the reviewer is about to read.
 - Don't document how you arrived at the change: which files you read, which documentation you checked, which checks you ran to verify it. Only the outcome belongs in the description.
 - Delete the "Example" section when a unit test is the example — the reviewer finds it in the diff, and a bare file path is worthless in the commit message. Fill it in only for an example the diff doesn't lead to, for instance where to find the change in the running Admin or Site, with a sentence on what it shows.
