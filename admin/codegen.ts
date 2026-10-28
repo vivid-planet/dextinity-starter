@@ -44,9 +44,6 @@ const config: CodegenConfig = {
                 baseTypesPath: "graphql.generated.ts",
             },
             config: {
-                avoidOptionals: {
-                    field: true,
-                },
                 enumsAsTypes: true,
                 namingConvention: "keep",
                 scalars: rootBlocks.reduce((scalars, rootBlock) => ({ ...scalars, [rootBlock]: rootBlock }), {

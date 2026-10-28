@@ -7,9 +7,6 @@ const schema = buildSchema(readFileSync("./schema.gql").toString());
 const rootBlocks = Object.keys(schema.getTypeMap()).filter((type) => type.endsWith("BlockData"));
 
 const pluginConfig = {
-    avoidOptionals: {
-        field: true,
-    },
     enumsAsTypes: true,
     namingConvention: "keep",
     scalars: rootBlocks.reduce((scalars, rootBlock) => ({ ...scalars, [rootBlock]: rootBlock }), {
@@ -26,7 +23,12 @@ const config: CodegenConfig = {
     generates: {
         "./src/graphql.generated.ts": {
             plugins: [{ add: { content: `import { ${rootBlocks.sort().join(", ")} } from "./blocks.generated";` } }, "typescript"],
-            config: pluginConfig,
+            config: {
+                ...pluginConfig,
+                avoidOptionals: {
+                    field: true,
+                },
+            },
         },
         "./src/": {
             documents: "./src/**/!(*.generated).{ts,tsx}",
