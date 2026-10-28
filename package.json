@@ -42,8 +42,8 @@
         "setup:download-oauth2-proxy": "dotenv -- sh -c 'npx @dextinity/cli download-oauth2-proxy -v $OAUTH2_PROXY_VERSION'"
     },
     "devDependencies": {
-        "@dextinity/agent-features": "10.10.0",
-        "@dextinity/cli": "10.10.0",
+        "@dextinity/agent-features": "10.11.0",
+        "@dextinity/cli": "10.11.0",
         "dev-oidc-provider": "^2.1.2",
         "dev-process-manager": "^4.1.0",
         "dotenv-cli": "^11.0.0",
