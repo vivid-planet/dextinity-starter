@@ -33,7 +33,7 @@
         "test:watch": "vitest --watch"
     },
     "dependencies": {
-        "@dextinity/site-nextjs": "10.10.0",
+        "@dextinity/site-nextjs": "10.11.0",
         "@fontsource/roboto": "^5.3.0",
         "@next/bundle-analyzer": "^16.4.3",
         "@opentelemetry/api": "^1.10.0",
@@ -55,8 +55,8 @@
         "usehooks-ts": "^3.1.1"
     },
     "devDependencies": {
-        "@dextinity/cli": "10.10.0",
-        "@dextinity/eslint-config": "10.10.0",
+        "@dextinity/cli": "10.11.0",
+        "@dextinity/eslint-config": "10.11.0",
         "@formatjs/cli": "^6.16.35",
         "@graphql-codegen/add": "^7.1.1",
         "@graphql-codegen/cli": "^7.4.6",
