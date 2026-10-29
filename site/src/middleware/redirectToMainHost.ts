@@ -41,7 +41,7 @@ async function fetchDomainRedirects(scope: GQLRedirectScopeInput) {
         do {
             const data = await graphQLFetch<GQLDomainRedirectsQuery, GQLDomainRedirectsQueryVariables>(domainRedirectsQuery, {
                 scope: { domain: scope.domain },
-                filter: { sourceType: { equal: "domain" } },
+                filter: { sourceType: { equal: "domain" }, active: { equal: true } },
                 offset: currentCount,
                 limit,
             });
