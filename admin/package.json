@@ -92,7 +92,7 @@
         "@vitejs/plugin-react-swc": "^4.3.3",
         "check-node-version": "^4.2.1",
         "chokidar-cli": "^3.0.0",
-        "dotenv-cli": "^11.0.0",
+        "dotenv-cli": "^11.1.0",
         "eslint": "^9.39.5",
         "knip": "^6.43.0",
         "npm-run-all2": "^9.0.4",
