@@ -8,6 +8,7 @@
             "includeAuthors": ["VPS-Obi", "VPS-thodax", "nsams", "fraxachun", "VPS-Ricky", "vps-manuel-blum"]
         }
     },
+    "ignoreKeywords": "Merge main\nMerge `main`\nMerge next\nMerge `next`",
     "excludeAuthors": ["vivid-planet-bot", "github-actions[bot]", "renovate[bot]"],
     "ignorePatterns": "**/package-lock.json\n**/schema.gql\n**/block-meta.json"
 }
