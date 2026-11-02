@@ -11,9 +11,9 @@ const cdnOriginCheckSecret = process.env.CDN_ORIGIN_CHECK_SECRET;
 const app = next({ dev, hostname: host, port, webpack: true });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
     if (process.env.TRACING_ENABLED === "1") {
-        require("./tracing");
+        await import("./tracing.ts");
     }
     createServer(async (req, res) => {
         try {

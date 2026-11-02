@@ -65,7 +65,7 @@ const nextConfig = {
         },
     ],
     // eslint-disable-next-line no-restricted-syntax -- VALKEY_ENABLED is a server-start-time flag for cache handler setup
-    cacheHandler: process.env.VALKEY_ENABLED === "true" ? import.meta.resolve("./dist/cache-handler.js").replace("file://", "") : undefined,
+    cacheHandler: process.env.VALKEY_ENABLED === "true" ? import.meta.resolve("./cache-handler.ts").replace("file://", "") : undefined,
     // eslint-disable-next-line no-restricted-syntax -- VALKEY_ENABLED is a server-start-time flag for cache handler setup
     cacheMaxMemorySize: process.env.VALKEY_ENABLED === "true" ? 0 : undefined, // disable default in-memory caching
     rewrites: () => {
