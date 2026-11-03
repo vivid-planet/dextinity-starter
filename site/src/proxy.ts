@@ -26,10 +26,5 @@ export const config = {
     // TODO find a better solution for this (https://nextjs.org/docs/messages/edge-dynamic-code-evaluation)
     unstable_allowDynamic: [
         "/node_modules/graphql/**",
-        /*
-         * cache-manager uses lodash.clonedeep which uses dynamic code evaluation.
-         * See https://github.com/lodash/lodash/issues/5525.
-         */
-        "/node_modules/lodash.clonedeep/**",
     ],
 };
