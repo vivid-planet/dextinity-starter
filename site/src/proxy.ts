@@ -24,7 +24,5 @@ export default chain([
 export const config = {
     matcher: ["/(.*)"],
     // TODO find a better solution for this (https://nextjs.org/docs/messages/edge-dynamic-code-evaluation)
-    unstable_allowDynamic: [
-        "/node_modules/graphql/**",
-    ],
+    unstable_allowDynamic: ["/node_modules/graphql/**"],
 };
