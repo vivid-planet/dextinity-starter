@@ -43,6 +43,10 @@
         "@opentelemetry/sdk-node": "^0.300.0",
         "cache-manager": "^7.2.9",
         "clsx": "^2.1.1",
+        "embla-carousel": "9.0.0-rc04",
+        "embla-carousel-accessibility": "9.0.0-rc04",
+        "embla-carousel-auto-height": "9.0.0-rc04",
+        "embla-carousel-react": "9.0.0-rc04",
         "graphql": "^16.14.2",
         "ioredis": "^6.0.0",
         "lru-cache": "^11.5.3",
@@ -52,7 +56,6 @@
         "react-focus-lock": "^2.13.7",
         "react-intl": "^7.1.14",
         "redraft": "^0.10.2",
-        "swiper": "^14.4.0",
         "usehooks-ts": "^3.1.1"
     },
     "devDependencies": {
