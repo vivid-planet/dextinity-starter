@@ -41,6 +41,7 @@ const getCarouselRoot = (viewport: HTMLElement) => viewport.closest<HTMLElement>
 
 const previousButtonSelector = ':scope > [data-carousel-part="previousButton"]';
 const nextButtonSelector = ':scope > [data-carousel-part="nextButton"]';
+const dotsSelector = ':scope > [data-carousel-part="dots"]';
 const statusSelector = ':scope > [data-carousel-part="status"]';
 
 type CarouselProps = PropsWithChildren<{
@@ -72,6 +73,7 @@ export const Carousel = ({ label, slideCount, className, children }: CarouselPro
             const accessibility = emblaApi.plugins().accessibility;
 
             accessibility?.setupPrevAndNextButtons(previousButtonSelector, nextButtonSelector);
+            accessibility?.setupDotButtons(dotsSelector);
             accessibility?.setupLiveRegion(statusSelector);
         };
 
@@ -139,6 +141,26 @@ export const CarouselNextButton = ({ className, ...restProps }: CarouselButtonPr
     }
 
     return <button type="button" data-carousel-part="nextButton" onClick={goToNext} className={clsx(styles.button, className)} {...restProps} />;
+};
+
+type CarouselDotsProps = {
+    className?: string;
+    dotClassName?: string;
+};
+
+export const CarouselDots = ({ className, dotClassName }: CarouselDotsProps) => {
+    const { snapCount, goTo } = useCarousel();
+
+    return (
+        // Is rendered without dots too, so the content below doesn't move once Embla has measured the slides.
+        <div data-carousel-part="dots" className={clsx(styles.dots, className)}>
+            {snapCount !== null &&
+                snapCount > 1 &&
+                Array.from({ length: snapCount }, (_, index) => (
+                    <button key={index} type="button" onClick={() => goTo(index)} className={clsx(styles.dot, dotClassName)} />
+                ))}
+        </div>
+    );
 };
 
 type CarouselStatusProps<T extends ElementType> = {

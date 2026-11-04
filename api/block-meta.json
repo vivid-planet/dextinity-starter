@@ -1854,7 +1854,8 @@
                                 "media": "StandaloneMedia",
                                 "contentGroup": "ContentGroup",
                                 "mediaGallery": "MediaGallery",
-                                "pageTreeIndex": "PageTreeIndex"
+                                "pageTreeIndex": "PageTreeIndex",
+                                "slider": "Slider"
                             },
                             "nullable": false
                         }
@@ -1901,7 +1902,8 @@
                                 "media": "StandaloneMedia",
                                 "contentGroup": "ContentGroup",
                                 "mediaGallery": "MediaGallery",
-                                "pageTreeIndex": "PageTreeIndex"
+                                "pageTreeIndex": "PageTreeIndex",
+                                "slider": "Slider"
                             },
                             "nullable": false
                         }
@@ -2458,6 +2460,113 @@
                             "name": "url",
                             "kind": "String",
                             "nullable": true
+                        }
+                    ]
+                },
+                "nullable": false
+            }
+        ]
+    },
+    {
+        "name": "Slider",
+        "fields": [
+            {
+                "name": "sliderList",
+                "kind": "Block",
+                "block": "SliderList",
+                "nullable": false
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "sliderList",
+                "kind": "Block",
+                "block": "SliderList",
+                "nullable": false
+            }
+        ]
+    },
+    {
+        "name": "SliderItem",
+        "fields": [
+            {
+                "name": "media",
+                "kind": "Block",
+                "block": "Media",
+                "nullable": false
+            },
+            {
+                "name": "text",
+                "kind": "Block",
+                "block": "RichText",
+                "nullable": false
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "media",
+                "kind": "Block",
+                "block": "Media",
+                "nullable": false
+            },
+            {
+                "name": "text",
+                "kind": "Block",
+                "block": "RichText",
+                "nullable": false
+            }
+        ]
+    },
+    {
+        "name": "SliderList",
+        "fields": [
+            {
+                "name": "blocks",
+                "kind": "NestedObjectList",
+                "object": {
+                    "fields": [
+                        {
+                            "name": "key",
+                            "kind": "String",
+                            "nullable": false
+                        },
+                        {
+                            "name": "visible",
+                            "kind": "Boolean",
+                            "nullable": false
+                        },
+                        {
+                            "name": "props",
+                            "kind": "Block",
+                            "block": "SliderItem",
+                            "nullable": false
+                        }
+                    ]
+                },
+                "nullable": false
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "blocks",
+                "kind": "NestedObjectList",
+                "object": {
+                    "fields": [
+                        {
+                            "name": "key",
+                            "kind": "String",
+                            "nullable": false
+                        },
+                        {
+                            "name": "visible",
+                            "kind": "Boolean",
+                            "nullable": false
+                        },
+                        {
+                            "name": "props",
+                            "kind": "Block",
+                            "block": "SliderItem",
+                            "nullable": false
                         }
                     ]
                 },
