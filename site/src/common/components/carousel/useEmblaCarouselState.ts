@@ -10,7 +10,6 @@ export type EmblaCarouselState = {
     snapCount: number | null;
     goToPrev: () => void;
     goToNext: () => void;
-    goTo: (snapIndex: number) => void;
 };
 
 export const useEmblaCarouselState = ({ emblaApi }: UseEmblaCarouselStateOptions): EmblaCarouselState => {
@@ -33,7 +32,6 @@ export const useEmblaCarouselState = ({ emblaApi }: UseEmblaCarouselStateOptions
 
     const goToPrev = useCallback(() => emblaApi?.goToPrev(), [emblaApi]);
     const goToNext = useCallback(() => emblaApi?.goToNext(), [emblaApi]);
-    const goTo = useCallback((snapIndex: number) => emblaApi?.goTo(snapIndex), [emblaApi]);
 
-    return useMemo(() => ({ snapCount, goToPrev, goToNext, goTo }), [snapCount, goToPrev, goToNext, goTo]);
+    return useMemo(() => ({ snapCount, goToPrev, goToNext }), [snapCount, goToPrev, goToNext]);
 };
