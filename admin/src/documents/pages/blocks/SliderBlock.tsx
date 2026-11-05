@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 const SliderItemBlock = createCompositeBlock({
     name: "SliderItem",
     displayName: <FormattedMessage id="sliderItemBlock.displayName" defaultMessage="Slider Item" />,
+    category: BlockCategory.Teaser,
     blocks: {
         media: {
             block: MediaBlock,
@@ -19,16 +20,10 @@ const SliderItemBlock = createCompositeBlock({
     },
 });
 
-export const SliderBlock = createListBlock(
-    {
-        name: "Slider",
-        displayName: <FormattedMessage id="sliderBlock.displayName" defaultMessage="Slider" />,
-        block: SliderItemBlock,
-        itemName: <FormattedMessage id="sliderBlock.itemName" defaultMessage="Item" />,
-        itemsName: <FormattedMessage id="sliderBlock.itemsName" defaultMessage="Items" />,
-    },
-    (block) => {
-        block.category = BlockCategory.Layout;
-        return block;
-    },
-);
+export const SliderBlock = createListBlock({
+    name: "Slider",
+    displayName: <FormattedMessage id="sliderBlock.displayName" defaultMessage="Slider" />,
+    block: SliderItemBlock,
+    itemName: <FormattedMessage id="sliderBlock.itemName" defaultMessage="Item" />,
+    itemsName: <FormattedMessage id="sliderBlock.itemsName" defaultMessage="Items" />,
+});
