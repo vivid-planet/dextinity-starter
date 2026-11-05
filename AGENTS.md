@@ -219,9 +219,9 @@ Next.js App Router conventions with pages in `app/`
 
 ## References
 
-This project is derived from the [Dextinity Starter](https://github.com/vivid-planet/dextinity-starter) repo and may have diverged over time. When implementing or refactoring features, consult the starter for current best-practice patterns. The repo follows the same `api/`, `admin/`, `site/` structure, so equivalent files can be found at matching paths.
+This project is derived from the [Dextinity template repository](https://github.com/vivid-planet/dextinity-starter) and may have diverged over time. When implementing or refactoring features, consult the template for current best-practice patterns. The repo follows the same `api/`, `admin/`, `site/` structure, so equivalent files can be found at matching paths.
 
-To browse the starter repo, use the GitHub API:
+To browse the template repository, use the GitHub API:
 
 - List a directory: `https://api.github.com/repos/vivid-planet/dextinity-starter/contents/{path}`
 - Fetch a file: `https://raw.githubusercontent.com/vivid-planet/dextinity-starter/main/{path}`
