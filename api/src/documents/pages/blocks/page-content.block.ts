@@ -11,6 +11,7 @@ import { BillboardTeaserBlock } from "@src/documents/pages/blocks/billboard-teas
 import { ColumnsBlock } from "@src/documents/pages/blocks/columns.block";
 import { ContentGroupBlock } from "@src/documents/pages/blocks/content-group.block";
 import { KeyFactsBlock } from "@src/documents/pages/blocks/key-facts.block";
+import { SliderBlock } from "@src/documents/pages/blocks/slider.block";
 import { TeaserBlock } from "@src/documents/pages/blocks/teaser.block";
 
 export const PageContentBlock = createBlocksBlock(
@@ -30,6 +31,7 @@ export const PageContentBlock = createBlocksBlock(
             contentGroup: ContentGroupBlock,
             mediaGallery: MediaGalleryBlock,
             pageTreeIndex: PageTreeIndexBlock,
+            slider: SliderBlock,
         },
     },
     "PageContent",

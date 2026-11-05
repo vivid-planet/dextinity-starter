@@ -9,6 +9,7 @@ import { ColumnsBlockFixtureService } from "./blocks/layout/columns-block-fixtur
 import { ContentGroupBlockFixtureService } from "./blocks/layout/content-group-block-fixture.service";
 import { SpaceBlockFixtureService } from "./blocks/layout/space-block-fixture.service";
 import { MediaGalleryBlockFixtureService } from "./blocks/media/media-gallery-block-fixture.service";
+import { SliderBlockFixtureService } from "./blocks/media/slider-block-fixture.service";
 import { StandaloneMediaBlockFixtureService } from "./blocks/media/standalone-media-block-fixture.service";
 import { AnchorBlockFixtureService } from "./blocks/navigation/anchor-block-fixture.service";
 import { PageTreeIndexBlockFixtureService } from "./blocks/navigation/page-tree-index-block-fixture.service";
@@ -38,6 +39,7 @@ export class PageContentBlockFixtureService {
         private readonly mediaBlockFixtureService: StandaloneMediaBlockFixtureService,
         private readonly teaserBlockFixtureService: TeaserBlockFixtureService,
         private readonly pageTreeIndexBlockFixtureService: PageTreeIndexBlockFixtureService,
+        private readonly sliderBlockFixtureService: SliderBlockFixtureService,
     ) {}
 
     async generateBlockInput(blockCategory?: BlockCategory): Promise<ExtractBlockInputFactoryProps<typeof PageContentBlock>> {
@@ -52,6 +54,7 @@ export class PageContentBlockFixtureService {
             space: ["layout", this.spaceBlockFixtureService],
             media: ["media", this.mediaBlockFixtureService],
             mediaGallery: ["media", this.mediaGalleryBlockFixtureService],
+            slider: ["media", this.sliderBlockFixtureService],
             anchor: ["navigation", this.anchorBlockFixtureService],
             callToActionList: ["navigation", this.callToActionListBlockFixtureService],
             billboardTeaser: ["teaser", this.billboardTeaserBlockFixtureService],
