@@ -6,7 +6,6 @@ import { FormattedMessage } from "react-intl";
 const SliderItemBlock = createCompositeBlock({
     name: "SliderItem",
     displayName: <FormattedMessage id="sliderItemBlock.displayName" defaultMessage="Slider Item" />,
-    category: BlockCategory.Teaser,
     blocks: {
         media: {
             block: MediaBlock,
@@ -20,21 +19,16 @@ const SliderItemBlock = createCompositeBlock({
     },
 });
 
-const SliderListBlock = createListBlock({
-    name: "SliderList",
-    block: SliderItemBlock,
-    itemName: <FormattedMessage id="sliderListBlock.itemName" defaultMessage="Item" />,
-    itemsName: <FormattedMessage id="sliderListBlock.itemsName" defaultMessage="Items" />,
-});
-
-export const SliderBlock = createCompositeBlock({
-    name: "Slider",
-    displayName: <FormattedMessage id="sliderBlock.displayName" defaultMessage="Slider" />,
-    category: BlockCategory.Layout,
-    blocks: {
-        sliderList: {
-            title: <FormattedMessage id="sliderBlock.sliderListBlock.title" defaultMessage="Slider List" />,
-            block: SliderListBlock,
-        },
+export const SliderBlock = createListBlock(
+    {
+        name: "Slider",
+        displayName: <FormattedMessage id="sliderBlock.displayName" defaultMessage="Slider" />,
+        block: SliderItemBlock,
+        itemName: <FormattedMessage id="sliderBlock.itemName" defaultMessage="Item" />,
+        itemsName: <FormattedMessage id="sliderBlock.itemsName" defaultMessage="Items" />,
     },
-});
+    (block) => {
+        block.category = BlockCategory.Layout;
+        return block;
+    },
+);

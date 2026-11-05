@@ -34,20 +34,4 @@ class SliderItemBlockInput extends BlockInput {
 
 const SliderItemBlock = createBlock(SliderItemBlockData, SliderItemBlockInput, "SliderItem");
 
-const SliderListBlock = createListBlock({ block: SliderItemBlock }, "SliderList");
-
-class SliderBlockData extends BlockData {
-    @ChildBlock(SliderListBlock)
-    sliderList: BlockDataInterface;
-}
-
-class SliderBlockInput extends BlockInput {
-    @ChildBlockInput(SliderListBlock)
-    sliderList: ExtractBlockInput<typeof SliderListBlock>;
-
-    transformToBlockData(): SliderBlockData {
-        return blockInputToData(SliderBlockData, this);
-    }
-}
-
-export const SliderBlock = createBlock(SliderBlockData, SliderBlockInput, "Slider");
+export const SliderBlock = createListBlock({ block: SliderItemBlock }, "Slider");
