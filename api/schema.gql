@@ -665,6 +665,7 @@ type Redirect {
   dependencies(filter: DependencyFilter, forceRefresh: Boolean! = false, limit: Int! = 25, offset: Int! = 0, sort: [DependencySort!]): PaginatedDependencies!
   generationType: RedirectGenerationType!
   id: ID!
+  redirectType: RedirectType!
   scope: RedirectScope!
   source: String!
   sourceType: RedirectSourceType!
@@ -679,6 +680,7 @@ input RedirectFilter {
   createdAt: DateTimeFilter
   generationType: StringFilter
   or: [RedirectFilter!]
+  redirectType: RedirectTypeEnumFilter
   source: StringFilter
   sourceType: RedirectSourceTypeEnumFilter
   target: StringFilter
@@ -694,6 +696,7 @@ input RedirectInput {
   active: Boolean
   comment: String
   generationType: RedirectGenerationType!
+  redirectType: RedirectType
   source: String!
   sourceType: RedirectSourceType!
   target: JSONObject!
@@ -727,6 +730,17 @@ input RedirectSourceTypeEnumFilter {
   equal: RedirectSourceType
   isAnyOf: [RedirectSourceType!]
   notEqual: RedirectSourceType
+}
+
+enum RedirectType {
+  permanent
+  temporary
+}
+
+input RedirectTypeEnumFilter {
+  equal: RedirectType
+  isAnyOf: [RedirectType!]
+  notEqual: RedirectType
 }
 
 input RedirectUpdateActivenessInput {
