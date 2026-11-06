@@ -41,9 +41,9 @@
     },
     "dependencies": {
         "@apollo/client": "^3.14.1",
-        "@dextinity/admin": "10.13.1",
-        "@dextinity/admin-icons": "10.13.1",
-        "@dextinity/cms-admin": "10.13.1",
+        "@dextinity/admin": "10.14.0",
+        "@dextinity/admin-icons": "10.14.0",
+        "@dextinity/cms-admin": "10.14.0",
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.1",
         "@fontsource-variable/roboto-flex": "^5.3.0",
@@ -69,9 +69,9 @@
         "react-router-dom": "^5.3.4"
     },
     "devDependencies": {
-        "@dextinity/admin-generator": "10.13.1",
-        "@dextinity/cli": "10.13.1",
-        "@dextinity/eslint-config": "10.13.1",
+        "@dextinity/admin-generator": "10.14.0",
+        "@dextinity/cli": "10.14.0",
+        "@dextinity/eslint-config": "10.14.0",
         "@formatjs/cli": "^6.18.0",
         "@graphql-codegen/add": "^7.1.1",
         "@graphql-codegen/cli": "^7.4.6",
