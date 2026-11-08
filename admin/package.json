@@ -54,7 +54,7 @@
         "change-case": "^5.4.4",
         "date-fns": "^4.4.0",
         "final-form": "^4.20.10",
-        "graphql": "^16.14.2",
+        "graphql": "^16.15.0",
         "history": "^4.10.1",
         "lodash.isequal": "^4.5.0",
         "rdndmb-html5-to-touch": "^9.0.0",
