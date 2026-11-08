@@ -78,7 +78,7 @@
         "@graphql-codegen/fragment-matcher": "^7.1.1",
         "@graphql-codegen/introspection": "^6.1.0",
         "@graphql-codegen/named-operations-object": "^4.0.1",
-        "@graphql-codegen/near-operation-file-preset": "^5.2.3",
+        "@graphql-codegen/near-operation-file-preset": "^5.2.4",
         "@graphql-codegen/typescript": "^6.1.2",
         "@graphql-codegen/typescript-operations": "^6.2.0",
         "@parcel/watcher": "^2.6.0",
