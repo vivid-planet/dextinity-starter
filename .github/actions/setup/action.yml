@@ -24,4 +24,4 @@ runs:
 
     - name: Setup project for CI run
       shell: bash
-      run: npm run setup:ci && npm --prefix admin run setup:ci && npm --prefix site run setup:ci
+      run: npm run setup:ci

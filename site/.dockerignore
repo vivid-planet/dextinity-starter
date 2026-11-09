@@ -4,3 +4,4 @@ Dockerfile
 .dockerignore
 .gitignore
 .git
+lang

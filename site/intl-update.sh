@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
+set -e
 
-cd "$(dirname "$0")" || exit
+cd "$(dirname "$0")"
 
-rm -rf ./lang/
 mkdir -p ./lang
 
-git clone https://github.com/vivid-planet/dextinity-starter-lang.git lang/starter-lang
+[ -d lang/starter-lang ] || git clone https://github.com/vivid-planet/dextinity-starter-lang.git lang/starter-lang
