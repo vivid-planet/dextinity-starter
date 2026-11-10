@@ -1,7 +1,6 @@
+import { Button, type ButtonVariant } from "@src/common/components/Button";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, fn, userEvent, within } from "storybook/test";
-
-import { Button, type ButtonVariant } from "../Button";
 
 const meta: Meta<typeof Button> = {
     title: "Components/Button",
@@ -46,8 +45,6 @@ export const Disabled: Story = {
     },
 };
 
-// The `play` function runs as a test in CI (via @storybook/addon-vitest): it drives the rendered story and asserts
-// on the result.
 export const Clickable: Story = {
     args: {
         variant: "contained",

@@ -1,6 +1,5 @@
+import { Typography, type TypographyVariant } from "@src/common/components/Typography";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-
-import { Typography, type TypographyVariant } from "../Typography";
 
 const variants = [
     "headline600",
