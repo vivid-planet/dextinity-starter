@@ -31,7 +31,7 @@ const config = defineConfig([
         },
     },
     {
-        files: [".storybook/**/*.{ts,tsx}", "vitest.config.ts"],
+        files: [".storybook/**/*.{ts,tsx}"],
         languageOptions: {
             parserOptions: {
                 projectService: false,
