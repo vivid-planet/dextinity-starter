@@ -84,13 +84,14 @@ npm --prefix site run lint:fix       # Auto-fix Site (includes stylelint)
 
 These commands auto-fix import sorting, remove unused imports, and apply Prettier formatting. The root `lint:fix` also formats config files outside the packages.
 
-### Testing (API only currently)
+### Testing (API and Site)
 
 ```bash
 npm --prefix api run test                              # Run all tests
 npm --prefix api run test -- src/path/to/file.spec.ts  # Run specific test file
 npm --prefix api run test -- --testNamePattern="name"  # Run tests matching pattern
 npm --prefix api run test:watch                        # Watch mode
+npm --prefix site run test:storybook                   # Run the Site story tests
 ```
 
 ### Database
@@ -143,6 +144,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Admin: 8000
 - API: 4000
 - Site: 3000
+- Site Storybook: 26648 (start with `npx dev-pm start site-storybook`; stories live in `__stories__` folders next to the component)
 
 ### Code Quality
 

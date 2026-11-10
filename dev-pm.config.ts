@@ -61,6 +61,11 @@ export default defineConfig({
             group: ["site"],
         },
         {
+            name: "site-storybook",
+            script: "npm --prefix site run storybook",
+            group: ["site"],
+        },
+        {
             name: "site-codegen",
             script: "npm --prefix site run gql:watch",
             group: "site",

@@ -32,6 +32,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Install Playwright Browsers
+        run: npm --prefix site exec playwright install chromium-headless-shell
+
       - name: Test
         run: npm run test:ci
 
@@ -40,4 +43,6 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: "**/junit.xml"
+          path: |
+            **/junit.xml
+            site/junit-storybook.xml
