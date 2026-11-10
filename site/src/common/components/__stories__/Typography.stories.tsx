@@ -15,8 +15,6 @@ const variants = [
     "eyebrow450",
     "paragraph300",
     "paragraph200",
-    "list300",
-    "list200",
 ] satisfies TypographyVariant[];
 
 const meta: Meta<typeof Typography> = {
