@@ -32,12 +32,24 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Install Playwright Browsers
+        run: npm --prefix site exec playwright install chromium-headless-shell
+
       - name: Test
         run: npm run test:ci
 
-      - name: Upload test results
+      - name: Upload test results (unit)
         uses: actions/upload-artifact@v7
         if: success() || failure()
         with:
-          name: test-results
+          name: test-results-unit
           path: "**/junit.xml"
+          overwrite: true
+
+      - name: Upload test results (storybook)
+        uses: actions/upload-artifact@v7
+        if: success() || failure()
+        with:
+          name: test-results-storybook
+          path: site/junit-storybook.xml
+          overwrite: true

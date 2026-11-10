@@ -51,8 +51,11 @@ src/**/*.scss.d.ts
 public/sitemap.xml
 public/robots.txt
 
-tsconfig.tsbuildinfo
+*.tsbuildinfo
 
 /dist
 .npmrc
 next-env.d.ts
+
+# storybook
+/storybook-static

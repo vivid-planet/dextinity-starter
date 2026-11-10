@@ -1,5 +1,5 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "entry": ["./src/app/**", "./cache-handler.ts", "./tracing.ts", "./src/proxy.ts"],
-    "project": ["./src/**/*.{ts,tsx}"]
+    "entry": ["./src/app/**", "./cache-handler.ts", "./tracing.ts", "./src/proxy.ts", "./.storybook/*.{ts,tsx}"],
+    "project": ["./src/**/*.{ts,tsx}", "./.storybook/**/*.{ts,tsx}"]
 }
