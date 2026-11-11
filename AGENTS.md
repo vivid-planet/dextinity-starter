@@ -152,6 +152,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Prettier: 150 print width, 4 tab width
 - Strict TypeScript enabled
 - Pre-commit hooks via husky/lint-staged
+- Site Storybook is published to Chromatic on every PR by `.github/workflows/chromatic.yml` (needs the `CHROMATIC_PROJECT_TOKEN_SITE` repository secret)
 - AI code review via Greptile on opened, non-draft PRs (configured in `.greptile/config.json`, incl. ignored files and auto-approval rules)
 
 ## Configuration
