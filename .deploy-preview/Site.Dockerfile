@@ -18,11 +18,8 @@ COPY --chown=node:node site ./
 COPY --chown=node:node api/schema.gql api/block-meta.json ./
 COPY --chown=node:node api/src/dextinity-config.json site-configs/site-configs.d.ts ./src/
 ENV NODE_OPTIONS=--max-old-space-size=4096
-# BuildKit creates the parent of a cache mount as root, and next writes .next/trace next to it.
-RUN mkdir -p .next
 # intl-update.sh clones the translations; the .git directories are only clone metadata.
-RUN --mount=type=cache,target=/app/site/.next/cache,uid=1000,gid=1000 \
-    ./intl-update.sh && rm -rf lang/*/.git && npm run build
+RUN ./intl-update.sh && rm -rf lang/*/.git && npm run build
 
 ENV NODE_ENV=production
 EXPOSE 3000
