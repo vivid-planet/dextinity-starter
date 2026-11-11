@@ -2184,6 +2184,23 @@
         ]
     },
     {
+        "name": "RedirectsExternalLink",
+        "fields": [
+            {
+                "name": "targetUrl",
+                "kind": "String",
+                "nullable": true
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "targetUrl",
+                "kind": "String",
+                "nullable": true
+            }
+        ]
+    },
+    {
         "name": "RedirectsLink",
         "description": "The target a redirect points to, for instance a page of the page tree or an external URL.",
         "fields": [
@@ -2202,7 +2219,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "internal": "InternalLink",
-                                "external": "ExternalLink"
+                                "external": "RedirectsExternalLink"
                             },
                             "nullable": false
                         }
@@ -2230,7 +2247,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "internal": "InternalLink",
-                                "external": "ExternalLink"
+                                "external": "RedirectsExternalLink"
                             },
                             "nullable": false
                         }
@@ -2255,7 +2272,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "internal": "InternalLink",
-                                "external": "ExternalLink"
+                                "external": "RedirectsExternalLink"
                             },
                             "nullable": false
                         }
