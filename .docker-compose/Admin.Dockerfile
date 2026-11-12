@@ -12,4 +12,4 @@ RUN ./intl-update.sh && \
     npm run build && \
     rm -rf ./node_modules
 
-CMD "node" "server"
+CMD "node" "server/index.ts"

@@ -10,7 +10,7 @@ import {
 } from "@dextinity/cms-api";
 import { BaseEntity, Entity, OptionalProps, PrimaryKey, Property } from "@mikro-orm/postgresql";
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { v4 as uuid } from "uuid";
+import { randomUUID } from "crypto";
 
 import { PageContentBlock } from "../blocks/page-content.block";
 import { SeoBlock } from "../blocks/seo.block";
@@ -27,7 +27,7 @@ export class Page extends BaseEntity implements DocumentInterface {
 
     @PrimaryKey({ type: "uuid" })
     @Field(() => ID)
-    id: string = uuid();
+    id: string = randomUUID();
 
     @RootBlock(PageContentBlock)
     @Property({ type: new RootBlockType(PageContentBlock) })

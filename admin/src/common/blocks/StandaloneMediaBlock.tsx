@@ -18,6 +18,7 @@ export const StandaloneMediaBlock = createCompositeBlock(
                     fullWidth: true,
                     defaultValue: "16x9",
                     options: mediaAspectRatioOptions,
+                    required: true,
                 }),
             },
         },

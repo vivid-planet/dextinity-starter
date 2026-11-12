@@ -4,7 +4,9 @@ export default defineConfig({
     scripts: [
         {
             name: "docker",
-            script: "docker compose up",
+            // Export the env files so Docker Compose binds the ports from `.env.local` (written by `npm run assign-ports`).
+            // dev-pm doesn't pass them to scripts, and Compose prefers real env vars over its own `.env` lookup.
+            script: "set -a; . .env; [ ! -f .env.local ] || . .env.local; set +a; docker compose up",
             group: "api",
         },
         {
@@ -56,6 +58,11 @@ export default defineConfig({
         {
             name: "site-css-types",
             script: "npm --prefix site run css:types:watch",
+            group: ["site"],
+        },
+        {
+            name: "site-storybook",
+            script: "npm --prefix site run storybook",
             group: ["site"],
         },
         {

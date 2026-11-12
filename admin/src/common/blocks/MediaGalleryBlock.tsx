@@ -26,6 +26,7 @@ export const MediaGalleryBlock = createCompositeBlock(
                     fullWidth: true,
                     defaultValue: "16x9",
                     options: mediaAspectRatioOptions,
+                    required: true,
                 }),
                 hiddenInSubroute: true,
             },

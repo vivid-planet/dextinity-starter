@@ -11,7 +11,7 @@ import { BaseEntity, Embedded, Entity, OptionalProps, PrimaryKey, Property } fro
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { FooterContentBlock } from "@src/footers/blocks/footer-content.block";
 import { FooterScope } from "@src/footers/dto/footer-scope";
-import { v4 as uuid } from "uuid";
+import { randomUUID } from "crypto";
 
 @Entity()
 @ObjectType({
@@ -24,7 +24,7 @@ export class Footer extends BaseEntity implements DocumentInterface {
 
     @PrimaryKey({ type: "uuid" })
     @Field(() => ID)
-    id: string = uuid();
+    id: string = randomUUID();
 
     @RootBlock(FooterContentBlock)
     @Property({ type: new RootBlockType(FooterContentBlock) })

@@ -1,6 +1,7 @@
 [
     {
         "name": "Accordion",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -58,6 +59,7 @@
     },
     {
         "name": "AccordionContent",
+        "description": "A list of blocks of several types. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site), a `type` and the `props` of the block that type names in the `blocks` of the `props` field. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -404,6 +406,7 @@
     },
     {
         "name": "CallToActionList",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -528,6 +531,7 @@
     },
     {
         "name": "ColumnsContent",
+        "description": "A list of blocks of several types. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site), a `type` and the `props` of the block that type names in the `blocks` of the `props` field. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -652,6 +656,7 @@
     },
     {
         "name": "ContentGroupContent",
+        "description": "A list of blocks of several types. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site), a `type` and the `props` of the block that type names in the `blocks` of the `props` field. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -822,6 +827,7 @@
     },
     {
         "name": "DamImage",
+        "description": "One of several blocks. `attachedBlocks` lists entries of a `type` and the `props` of the block that type names in the `blocks` of the `props` field. `activeType` names the entry in use, so an entry with that `type` must be in the list. Entries of other types may stay in the list and aren't shown. The block can't be empty, so `activeType` must be set.",
         "fields": [
             {
                 "name": "attachedBlocks",
@@ -1284,6 +1290,7 @@
     },
     {
         "name": "KeyFacts",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -1392,6 +1399,7 @@
     },
     {
         "name": "Link",
+        "description": "A link to one of several targets. `attachedBlocks` lists entries of a `type` and the `props` of the block that type names in the `blocks` of the `props` field. `activeType` names the entry in use, so an entry with that `type` must be in the list. Entries of other types may stay in the list and aren't shown. The block can't be empty, so `activeType` must be set.",
         "fields": [
             {
                 "name": "title",
@@ -1497,6 +1505,7 @@
     },
     {
         "name": "LinkList",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -1554,6 +1563,7 @@
     },
     {
         "name": "Media",
+        "description": "One of several blocks. `attachedBlocks` lists entries of a `type` and the `props` of the block that type names in the `blocks` of the `props` field. `activeType` names the entry in use, so an entry with that `type` must be in the list. Entries of other types may stay in the list and aren't shown. `activeType` `null` means the block is empty, e.g. `{\"attachedBlocks\":[],\"activeType\":null}`.",
         "fields": [
             {
                 "name": "attachedBlocks",
@@ -1730,6 +1740,7 @@
     },
     {
         "name": "MediaGalleryList",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -1787,6 +1798,7 @@
     },
     {
         "name": "OptionalPixelImage",
+        "description": "A block that can be turned off. `block` holds the props of the wrapped block, `visible` `false` hides it on the site. An empty block is `{\"visible\":false}` without `block`.",
         "fields": [
             {
                 "name": "block",
@@ -1816,6 +1828,7 @@
     },
     {
         "name": "PageContent",
+        "description": "A list of blocks of several types. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site), a `type` and the `props` of the block that type names in the `blocks` of the `props` field. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -1854,7 +1867,8 @@
                                 "media": "StandaloneMedia",
                                 "contentGroup": "ContentGroup",
                                 "mediaGallery": "MediaGallery",
-                                "pageTreeIndex": "PageTreeIndex"
+                                "pageTreeIndex": "PageTreeIndex",
+                                "slider": "Slider"
                             },
                             "nullable": false
                         }
@@ -1901,7 +1915,8 @@
                                 "media": "StandaloneMedia",
                                 "contentGroup": "ContentGroup",
                                 "mediaGallery": "MediaGallery",
-                                "pageTreeIndex": "PageTreeIndex"
+                                "pageTreeIndex": "PageTreeIndex",
+                                "slider": "Slider"
                             },
                             "nullable": false
                         }
@@ -2169,7 +2184,25 @@
         ]
     },
     {
+        "name": "RedirectsExternalLink",
+        "fields": [
+            {
+                "name": "targetUrl",
+                "kind": "String",
+                "nullable": true
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "targetUrl",
+                "kind": "String",
+                "nullable": true
+            }
+        ]
+    },
+    {
         "name": "RedirectsLink",
+        "description": "The target a redirect points to, for instance a page of the page tree or an external URL.",
         "fields": [
             {
                 "name": "attachedBlocks",
@@ -2186,7 +2219,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "internal": "InternalLink",
-                                "external": "ExternalLink"
+                                "external": "RedirectsExternalLink"
                             },
                             "nullable": false
                         }
@@ -2214,7 +2247,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "internal": "InternalLink",
-                                "external": "ExternalLink"
+                                "external": "RedirectsExternalLink"
                             },
                             "nullable": false
                         }
@@ -2239,7 +2272,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "internal": "InternalLink",
-                                "external": "ExternalLink"
+                                "external": "RedirectsExternalLink"
                             },
                             "nullable": false
                         }
@@ -2256,6 +2289,7 @@
     },
     {
         "name": "RichText",
+        "description": "Formatted text, edited in the Draft.js based rich text editor.",
         "fields": [
             {
                 "name": "draftContent",
@@ -2273,6 +2307,7 @@
     },
     {
         "name": "Seo",
+        "description": "The metadata of a page for search engines and social networks: title, description, preview image, sitemap settings and canonical URL.",
         "fields": [
             {
                 "name": "htmlTitle",
@@ -2458,6 +2493,95 @@
                         }
                     ]
                 },
+                "nullable": false
+            }
+        ]
+    },
+    {
+        "name": "Slider",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
+        "fields": [
+            {
+                "name": "blocks",
+                "kind": "NestedObjectList",
+                "object": {
+                    "fields": [
+                        {
+                            "name": "key",
+                            "kind": "String",
+                            "nullable": false
+                        },
+                        {
+                            "name": "visible",
+                            "kind": "Boolean",
+                            "nullable": false
+                        },
+                        {
+                            "name": "props",
+                            "kind": "Block",
+                            "block": "SliderItem",
+                            "nullable": false
+                        }
+                    ]
+                },
+                "nullable": false
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "blocks",
+                "kind": "NestedObjectList",
+                "object": {
+                    "fields": [
+                        {
+                            "name": "key",
+                            "kind": "String",
+                            "nullable": false
+                        },
+                        {
+                            "name": "visible",
+                            "kind": "Boolean",
+                            "nullable": false
+                        },
+                        {
+                            "name": "props",
+                            "kind": "Block",
+                            "block": "SliderItem",
+                            "nullable": false
+                        }
+                    ]
+                },
+                "nullable": false
+            }
+        ]
+    },
+    {
+        "name": "SliderItem",
+        "fields": [
+            {
+                "name": "media",
+                "kind": "Block",
+                "block": "Media",
+                "nullable": false
+            },
+            {
+                "name": "text",
+                "kind": "Block",
+                "block": "RichText",
+                "nullable": false
+            }
+        ],
+        "inputFields": [
+            {
+                "name": "media",
+                "kind": "Block",
+                "block": "Media",
+                "nullable": false
+            },
+            {
+                "name": "text",
+                "kind": "Block",
+                "block": "RichText",
                 "nullable": false
             }
         ]
@@ -2522,6 +2646,7 @@
     },
     {
         "name": "Stage",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",
@@ -2822,6 +2947,7 @@
     },
     {
         "name": "Teaser",
+        "description": "A list of blocks of one type. Each entry in `blocks` has a unique `key` (e.g. a UUID), `visible` (`false` hides the entry on the site) and the `props` of the block. The order of `blocks` is the display order. An empty block is `{\"blocks\":[]}`.",
         "fields": [
             {
                 "name": "blocks",

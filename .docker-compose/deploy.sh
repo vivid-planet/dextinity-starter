@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# All paths below are relative to the repository root, so make sure we run from there
+# regardless of the directory the script is called from (e.g. `./deploy.sh` inside .docker-compose/).
+cd "$(dirname "$0")/.."
+
 . ~/.nvm/nvm.sh
 
 echo "Starting deployment process..."
@@ -15,6 +19,7 @@ npm ci
 echo "Injecting site configs..."
 sed -i 's/dev\.dextinity\.com/docker.dextinity.com/g' site-configs/main.ts # TODO: Remove me in real project
 APP_ENV=dev npx -y @dextinity/cli inject-site-configs -f site-configs/site-configs.ts -i .docker-compose/docker-compose.tpl.yml -o .docker-compose/docker-compose.yml --base64
+git checkout -- site-configs/main.ts # Revert the domain replacement so it doesn't block the next git pull
 
 echo "Building and starting the Docker containers..."
 docker compose -f .docker-compose/docker-compose.yml up --build -d

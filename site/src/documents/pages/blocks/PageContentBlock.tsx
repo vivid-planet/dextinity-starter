@@ -14,6 +14,7 @@ import { BillboardTeaserBlock } from "@src/documents/pages/blocks/BillboardTease
 import { ColumnsBlock } from "@src/documents/pages/blocks/ColumnsBlock";
 import { ContentGroupBlock } from "@src/documents/pages/blocks/ContentGroupBlock";
 import { KeyFactsBlock } from "@src/documents/pages/blocks/KeyFactsBlock";
+import { SliderBlock } from "@src/documents/pages/blocks/SliderBlock";
 import { TeaserBlock } from "@src/documents/pages/blocks/TeaserBlock";
 
 const supportedBlocks: SupportedBlocks = {
@@ -31,6 +32,7 @@ const supportedBlocks: SupportedBlocks = {
     contentGroup: (props) => <ContentGroupBlock data={props} />,
     mediaGallery: (props) => <PageContentMediaGalleryBlock data={props} />,
     pageTreeIndex: (props) => <PageTreeIndexBlock data={props} />,
+    slider: (props) => <SliderBlock data={props} />,
 };
 
 export const PageContentBlock = ({ data }: PropsWithData<PageContentBlockData>) => {
