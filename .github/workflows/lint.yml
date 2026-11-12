@@ -34,3 +34,6 @@ jobs:
 
       - name: Lint
         run: npm run lint:ci && npm --prefix api run lint:ci && npm --prefix admin run lint:ci && npm --prefix site run lint:ci
+
+      - name: Build
+        run: npm run build
