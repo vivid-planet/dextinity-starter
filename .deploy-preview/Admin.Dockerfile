@@ -25,4 +25,4 @@ RUN ./intl-update.sh && rm -rf lang/*/.git && npm run build
 # admin/server injects the environment variables into index.html and serves ./build from here.
 ENV NODE_ENV=production
 EXPOSE 3000
-CMD ["node", "server"]
+CMD ["node", "server/index.ts"]
