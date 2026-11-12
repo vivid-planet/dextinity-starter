@@ -40,7 +40,7 @@ const files = [
     },
     {
         file: ".npmrc",
-        targetDir: ["admin", "site", "api", "create-app"],
+        targetDir: ["admin", "site", "api"],
     },
 ];
 

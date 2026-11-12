@@ -1,9 +1,5 @@
 # Dextinity Starter
 
-In use by `@dextinity/create-app` to create new Dextinity projects. Find more information in the [Dextinity documentation](https://cms-docs.dextinity.com).
-
-<!-- PROJECT_README_BEGIN Everything below this line will go into the Readme of projects created by @dextinity/create-app -->
-
 ## Development
 
 ### Requirements

@@ -1,4 +1,4 @@
 {
-    "eslint.workingDirectories": ["admin", "api", "site", "create-app"],
+    "eslint.workingDirectories": ["admin", "api", "site"],
     "stylelint.validate": ["css", "postcss", "scss"]
 }

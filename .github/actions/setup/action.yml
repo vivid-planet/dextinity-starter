@@ -14,7 +14,7 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: npm ci && npm --prefix api ci && npm --prefix admin ci && npm --prefix admin/server ci && npm --prefix site ci && npm --prefix create-app ci
+      run: npm ci && npm --prefix api ci && npm --prefix admin ci && npm --prefix admin/server ci && npm --prefix site ci
       env:
         NPM_CONFIG_STRICT_PEER_DEPS: true
 

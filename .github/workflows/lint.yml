@@ -33,7 +33,4 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Lint
-        run: npm run lint:ci && npm --prefix api run lint:ci && npm --prefix admin run lint:ci && npm --prefix site run lint:ci && npm --prefix create-app run lint
-
-      - name: Build
-        run: npm run build && npm --prefix create-app run build
+        run: npm run lint:ci && npm --prefix api run lint:ci && npm --prefix admin run lint:ci && npm --prefix site run lint:ci
