@@ -153,7 +153,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Strict TypeScript enabled
 - Pre-commit hooks via husky/lint-staged
 - Site Storybook is published to Chromatic on every PR by `.github/workflows/chromatic.yml` (needs the `CHROMATIC_PROJECT_TOKEN_SITE` repository secret)
-- AI code review via Greptile on opened, non-draft PRs (configured in `.greptile/config.json`, incl. ignored files and auto-approval rules)
+- AI code review via Greptile on opened, non-draft PRs (configured in `.greptile/config.json`, incl. ignored files and auto-approval rules); skipped for PRs labeled `skip-greptile-review`, which `.github/workflows/labeler.yml` sets for feature and merge branches (rules in `.github/labeler.yml`)
 
 ## Configuration
 
@@ -201,6 +201,10 @@ Next.js App Router conventions with pages in `app/`
 - Prefer descriptive identifiers over explanatory comments — comments drift out of sync with the code.
 - Never reference the current task, ticket, or PR in comments — that context belongs in the PR description and rots in code.
 
+## Branches
+
+- Name branches that merge one branch into another `merge-<source>-into-<target>`, replacing `/` with `-`, e.g. `merge-main-into-next` or `merge-next-into-feature-new-block`. The labeler workflow relies on the `merge-main-`/`merge-next-` prefix.
+
 ## Pull Request Descriptions
 
 - Fill in the pull request template (`.github/pull_request_template.md`) if the repository has one. Don't add sections beyond it, and delete the sections and instruction comments that don't apply.
@@ -213,6 +217,10 @@ Next.js App Router conventions with pages in `app/`
 - Keep the length proportional to the change. A one-line fix gets a paragraph, not a report.
 - The description becomes the message of the squashed commit.
 - After opening a pull request, always check its description and rewrite it to follow these rules, also when the pull request was created by a tool or UI that generated the description.
+
+## Pull Request Labels
+
+- When opening a pull request from a feature branch (`feature/…`) or a `merge-main-…`/`merge-next-…` branch, add the `skip-greptile-review` label when creating it. The labeler workflow sets it as well, but may run after Greptile has already started its review.
 
 ## Pull Request Comments
 

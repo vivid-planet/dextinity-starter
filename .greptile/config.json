@@ -9,6 +9,7 @@
         }
     },
     "ignoreKeywords": "Merge main\nMerge `main`\nMerge next\nMerge `next`",
+    "disabledLabels": ["skip-greptile-review"],
     "excludeAuthors": ["vivid-planet-bot", "github-actions[bot]", "renovate[bot]", "vivid-renovate[bot]"],
     "ignorePatterns": "**/package-lock.json\n**/schema.gql\n**/block-meta.json"
 }
