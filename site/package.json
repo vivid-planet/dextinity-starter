@@ -86,7 +86,7 @@
         "eslint": "^9.39.5",
         "eslint-plugin-storybook": "^10.6.7",
         "jsdom": "^31.0.0",
-        "knip": "^6.44.2",
+        "knip": "^6.45.1",
         "npm-run-all2": "^9.0.4",
         "playwright": "^1.65.0",
         "prettier": "^3.9.10",
