@@ -93,7 +93,7 @@
         "eslint": "^9.39.5",
         "knip": "^6.45.1",
         "npm-run-all2": "^9.0.4",
-        "prettier": "^3.9.10",
+        "prettier": "^3.10.0",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
         "vite-tsconfig-paths": "^6.1.1",
