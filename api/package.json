@@ -41,7 +41,7 @@
         }
     },
     "dependencies": {
-        "@apollo/server": "^5.5.1",
+        "@apollo/server": "^5.5.2",
         "@as-integrations/express5": "^1.1.2",
         "@dextinity/cms-api": "10.15.0",
         "@faker-js/faker": "10.6.0",
