@@ -58,12 +58,12 @@ const sizeStyles: TipTapTextBlockStyle[] = [
 ];
 
 const headingTextBlocks: Array<Pick<TipTapTextBlock, "name" | "label" | "tag">> = [
-    { name: "heading-1", label: <FormattedMessage id="headlineRichTextBlock.heading1" defaultMessage="Headline 1" />, tag: "h1" },
-    { name: "heading-2", label: <FormattedMessage id="headlineRichTextBlock.heading2" defaultMessage="Headline 2" />, tag: "h2" },
-    { name: "heading-3", label: <FormattedMessage id="headlineRichTextBlock.heading3" defaultMessage="Headline 3" />, tag: "h3" },
-    { name: "heading-4", label: <FormattedMessage id="headlineRichTextBlock.heading4" defaultMessage="Headline 4" />, tag: "h4" },
-    { name: "heading-5", label: <FormattedMessage id="headlineRichTextBlock.heading5" defaultMessage="Headline 5" />, tag: "h5" },
-    { name: "heading-6", label: <FormattedMessage id="headlineRichTextBlock.heading6" defaultMessage="Headline 6" />, tag: "h6" },
+    { name: "heading-1", label: <FormattedMessage id="headlineRichTextBlock.heading1" defaultMessage="Heading 1" />, tag: "h1" },
+    { name: "heading-2", label: <FormattedMessage id="headlineRichTextBlock.heading2" defaultMessage="Heading 2" />, tag: "h2" },
+    { name: "heading-3", label: <FormattedMessage id="headlineRichTextBlock.heading3" defaultMessage="Heading 3" />, tag: "h3" },
+    { name: "heading-4", label: <FormattedMessage id="headlineRichTextBlock.heading4" defaultMessage="Heading 4" />, tag: "h4" },
+    { name: "heading-5", label: <FormattedMessage id="headlineRichTextBlock.heading5" defaultMessage="Heading 5" />, tag: "h5" },
+    { name: "heading-6", label: <FormattedMessage id="headlineRichTextBlock.heading6" defaultMessage="Heading 6" />, tag: "h6" },
 ];
 
 const textBlocks: TipTapTextBlock[] = headingTextBlocks.map((textBlock) => ({ ...textBlock, styles: sizeStyles, defaultStyle: "size600" }));
