@@ -7,12 +7,10 @@ import {
     ChildBlockInput,
     createBlock,
     ExtractBlockInput,
-    typeSafeBlockMigrationPipe,
 } from "@dextinity/cms-api";
 
 import { EyebrowRichTextBlock } from "./eyebrow-rich-text.block";
 import { HeadlineRichTextBlock } from "./headline-rich-text.block";
-import { MoveHtmlTagIntoHeadlineMigration } from "./migrations/heading/1-move-html-tag-into-headline.migration";
 
 class HeadingBlockData extends BlockData {
     @ChildBlock(EyebrowRichTextBlock)
@@ -34,10 +32,4 @@ class HeadingBlockInput extends BlockInput {
     }
 }
 
-export const HeadingBlock = createBlock(HeadingBlockData, HeadingBlockInput, {
-    name: "Heading",
-    migrate: {
-        version: 1,
-        migrations: typeSafeBlockMigrationPipe([MoveHtmlTagIntoHeadlineMigration]),
-    },
-});
+export const HeadingBlock = createBlock(HeadingBlockData, HeadingBlockInput, "Heading");
