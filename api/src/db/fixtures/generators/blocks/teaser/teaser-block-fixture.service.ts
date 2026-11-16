@@ -1,12 +1,12 @@
 import { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
 import { Injectable } from "@nestjs/common";
 import { faker } from "@src/db/fixtures/faker";
+import { DescriptionRichTextBlockFixtureService } from "@src/db/fixtures/generators/blocks/text-and-content/description-rich-text-block-fixture.service";
 import { TeaserBlock } from "@src/documents/pages/blocks/teaser.block";
 import { TeaserItemBlock, TeaserItemTitleHtmlTag } from "@src/documents/pages/blocks/teaser-item.block";
 
 import { MediaBlockFixtureService } from "../media/media-block.fixture.service";
 import { TextLinkBlockFixtureService } from "../navigation/text-link-block-fixture.service";
-import { DescriptionRichTextBlockFixtureService } from "../text-and-content/description-rich-text-block-fixture.service";
 
 @Injectable()
 export class TeaserBlockFixtureService {
