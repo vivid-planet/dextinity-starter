@@ -6,13 +6,13 @@ import { TeaserItemBlock, TeaserItemTitleHtmlTag } from "@src/documents/pages/bl
 
 import { MediaBlockFixtureService } from "../media/media-block.fixture.service";
 import { TextLinkBlockFixtureService } from "../navigation/text-link-block-fixture.service";
-import { RichTextBlockFixtureService } from "../text-and-content/rich-text-block-fixture.service";
+import { DescriptionRichTextBlockFixtureService } from "../text-and-content/description-rich-text-block-fixture.service";
 
 @Injectable()
 export class TeaserBlockFixtureService {
     constructor(
         private readonly mediaBlockFixtureService: MediaBlockFixtureService,
-        private readonly richTextBlockFixtureService: RichTextBlockFixtureService,
+        private readonly descriptionRichTextBlockFixtureService: DescriptionRichTextBlockFixtureService,
         private readonly textLinkBlockFixtureService: TextLinkBlockFixtureService,
     ) {}
 
@@ -20,7 +20,7 @@ export class TeaserBlockFixtureService {
         return {
             media: await this.mediaBlockFixtureService.generateBlockInput(),
             title: faker.lorem.words({ min: 3, max: 9 }),
-            description: await this.richTextBlockFixtureService.generateBlockInput(),
+            description: await this.descriptionRichTextBlockFixtureService.generateBlockInput(),
             link: await this.textLinkBlockFixtureService.generateBlockInput(),
             titleHtmlTag: faker.helpers.arrayElement(Object.values(TeaserItemTitleHtmlTag)),
         };

@@ -9,8 +9,8 @@ import {
     createBlock,
     ExtractBlockInput,
 } from "@dextinity/cms-api";
+import { DescriptionRichTextBlock } from "@src/common/blocks/description-rich-text.block";
 import { MediaBlock } from "@src/common/blocks/media.block";
-import { RichTextBlock } from "@src/common/blocks/rich-text.block";
 import { TextLinkBlock } from "@src/common/blocks/text-link.block";
 import { IsEnum, IsString } from "class-validator";
 
@@ -30,7 +30,7 @@ class TeaserItemBlockData extends BlockData {
     @BlockField()
     title: string;
 
-    @ChildBlock(RichTextBlock)
+    @ChildBlock(DescriptionRichTextBlock)
     description: BlockDataInterface;
 
     @ChildBlock(TextLinkBlock)
@@ -48,8 +48,8 @@ class TeaserItemBlockInput extends BlockInput {
     @IsString()
     title: string;
 
-    @ChildBlockInput(RichTextBlock)
-    description: ExtractBlockInput<typeof RichTextBlock>;
+    @ChildBlockInput(DescriptionRichTextBlock)
+    description: ExtractBlockInput<typeof DescriptionRichTextBlock>;
 
     @ChildBlockInput(TextLinkBlock)
     link: ExtractBlockInput<typeof TextLinkBlock>;

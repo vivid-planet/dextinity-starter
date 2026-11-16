@@ -10,6 +10,7 @@ import {
 import type { HeadingBlockData } from "@src/blocks.generated";
 import { Typography, type TypographyVariant } from "@src/common/components/Typography";
 
+import { inlineRichTextNodeMapping } from "./inlineRichTextNodeMapping";
 import styles from "./RichTextBlock.module.scss";
 
 const tagByTextBlock: Record<string, keyof HTMLElementTagNameMap> = {
@@ -28,10 +29,6 @@ const variantByStyle: Record<string, TypographyVariant> = {
     size450: "headline450",
     size400: "headline400",
     size350: "headline350",
-};
-
-const eyebrowNodeMapping: Record<string, TipTapNodeHandler> = {
-    textBlock: ({ children }) => <>{children}</>,
 };
 
 const headlineNodeMapping: Record<string, TipTapNodeHandler> = {
@@ -54,7 +51,7 @@ export const HeadingBlock = withPreview(
         <>
             {hasTipTapRichTextContent(eyebrow.tipTapContent) && (
                 <Typography variant="headline400" as="p" bottomSpacing>
-                    {renderTipTapRichText({ content: eyebrow.tipTapContent, nodeMapping: eyebrowNodeMapping })}
+                    {renderTipTapRichText({ content: eyebrow.tipTapContent, nodeMapping: inlineRichTextNodeMapping })}
                 </Typography>
             )}
             <PreviewSkeleton

@@ -18,7 +18,7 @@ const createTextBlockRenderFn =
             </Typography>
         ));
 
-export const defaultRichTextInlineStyleMap: Renderers["inline"] = {
+const defaultRichTextInlineStyleMap: Renderers["inline"] = {
     // The key passed here is just an index based on rendering order inside a block
     BOLD: (children, { key }) => <strong key={key}>{children}</strong>,
     ITALIC: (children, { key }) => <em key={key}>{children}</em>,
