@@ -1,52 +1,43 @@
 import {
     BlockData,
     BlockDataInterface,
-    BlockField,
     BlockInput,
     blockInputToData,
     ChildBlock,
     ChildBlockInput,
     createBlock,
     ExtractBlockInput,
+    typeSafeBlockMigrationPipe,
 } from "@dextinity/cms-api";
-import { IsEnum } from "class-validator";
 
-import { RichTextBlock } from "./rich-text.block";
-
-export enum HeadlineTag {
-    h1 = "h1",
-    h2 = "h2",
-    h3 = "h3",
-    h4 = "h4",
-    h5 = "h5",
-    h6 = "h6",
-}
+import { EyebrowRichTextBlock } from "./eyebrow-rich-text.block";
+import { HeadlineRichTextBlock } from "./headline-rich-text.block";
+import { MoveHtmlTagIntoHeadlineMigration } from "./migrations/heading/1-move-html-tag-into-headline.migration";
 
 class HeadingBlockData extends BlockData {
-    @ChildBlock(RichTextBlock)
+    @ChildBlock(EyebrowRichTextBlock)
     eyebrow: BlockDataInterface;
 
-    @ChildBlock(RichTextBlock)
+    @ChildBlock(HeadlineRichTextBlock)
     headline: BlockDataInterface;
-
-    @BlockField({ type: "enum", enum: HeadlineTag })
-    htmlTag: HeadlineTag;
 }
 
 class HeadingBlockInput extends BlockInput {
-    @ChildBlockInput(RichTextBlock)
-    eyebrow: ExtractBlockInput<typeof RichTextBlock>;
+    @ChildBlockInput(EyebrowRichTextBlock)
+    eyebrow: ExtractBlockInput<typeof EyebrowRichTextBlock>;
 
-    @ChildBlockInput(RichTextBlock)
-    headline: ExtractBlockInput<typeof RichTextBlock>;
-
-    @IsEnum(HeadlineTag)
-    @BlockField({ type: "enum", enum: HeadlineTag })
-    htmlTag: HeadlineTag;
+    @ChildBlockInput(HeadlineRichTextBlock)
+    headline: ExtractBlockInput<typeof HeadlineRichTextBlock>;
 
     transformToBlockData(): HeadingBlockData {
         return blockInputToData(HeadingBlockData, this);
     }
 }
 
-export const HeadingBlock = createBlock(HeadingBlockData, HeadingBlockInput, "Heading");
+export const HeadingBlock = createBlock(HeadingBlockData, HeadingBlockInput, {
+    name: "Heading",
+    migrate: {
+        version: 1,
+        migrations: typeSafeBlockMigrationPipe([MoveHtmlTagIntoHeadlineMigration]),
+    },
+});

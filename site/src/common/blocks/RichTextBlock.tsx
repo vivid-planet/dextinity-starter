@@ -9,7 +9,7 @@ import redraft, { type Renderers, type TextBlockRenderFn } from "redraft";
 import { LinkBlock } from "./LinkBlock";
 import styles from "./RichTextBlock.module.scss";
 
-export const createTextBlockRenderFn =
+const createTextBlockRenderFn =
     (props: TypographyProps<keyof HTMLElementTagNameMap>): TextBlockRenderFn =>
     (children, { keys }) =>
         children.map((child, index) => (
