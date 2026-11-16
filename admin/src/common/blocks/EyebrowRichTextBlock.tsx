@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 export const EyebrowRichTextBlock = {
     ...createTipTapRichTextBlock({
+        undoRedoButtons: false,
         strike: false,
         orderedList: false,
         unorderedList: false,

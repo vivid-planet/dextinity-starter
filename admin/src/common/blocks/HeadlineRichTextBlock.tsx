@@ -48,6 +48,7 @@ const textBlocks: TipTapTextBlock[] = headingTextBlocks.map((textBlock) => ({ ..
 
 export const HeadlineRichTextBlock = {
     ...createTipTapRichTextBlock({
+        undoRedoButtons: false,
         strike: false,
         orderedList: false,
         unorderedList: false,
