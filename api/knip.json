@@ -2,7 +2,7 @@
     "$schema": "https://unpkg.com/knip@5/schema.json",
     "entry": ["./src/main.ts", "./src/console.ts", "./src/repl.ts", "./src/db/ormconfig.cli.ts", "./src/site-configs.d.ts"],
     "ignore": ["./src/db/migrations/**/*.ts", "./src/**/generated/**/*.ts", "src/auth/permission.interface.ts"],
-    "ignoreDependencies": ["@mikro-orm/cli", "jest-junit", "@as-integrations/express5"],
+    "ignoreDependencies": ["@mikro-orm/cli", "jest-junit", "@as-integrations/express5", "@dextinity/cli"],
     "project": ["./src/**/*.{ts,tsx}"],
     "rules": {
         "enumMembers": "off"
