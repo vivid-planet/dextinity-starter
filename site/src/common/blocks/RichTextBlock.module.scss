@@ -30,14 +30,23 @@
     }
 }
 
-.orderedListLevel0 {
+.listItemText {
+    display: block;
+}
+
+// The nesting level counts both list types, so an ordered list inside a bullet list continues with letters
+.orderedList {
     list-style-type: decimal;
-}
 
-.orderedListLevel1 {
-    list-style-type: lower-alpha;
-}
+    :is(ul, ol) & {
+        list-style-type: lower-alpha;
+    }
 
-.orderedListLevel2 {
-    list-style-type: lower-roman;
+    :is(ul, ol) :is(ul, ol) & {
+        list-style-type: lower-roman;
+    }
+
+    :is(ul, ol) :is(ul, ol) :is(ul, ol) & {
+        list-style-type: decimal;
+    }
 }
