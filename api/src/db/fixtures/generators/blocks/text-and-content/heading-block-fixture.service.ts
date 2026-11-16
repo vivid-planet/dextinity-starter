@@ -10,6 +10,8 @@ const headlineSizes = ["size600", "size550", "size500", "size450", "size400", "s
 @Injectable()
 export class HeadingBlockFixtureService {
     async generateBlockInput(): Promise<ExtractBlockInputFactoryProps<typeof HeadingBlock>> {
+        const textAlign = faker.helpers.arrayElement(["left", "center"]);
+
         return {
             eyebrow: {
                 tipTapContent: {
@@ -17,7 +19,7 @@ export class HeadingBlockFixtureService {
                     content: [
                         {
                             type: "textBlock",
-                            attrs: { textBlock: "paragraph" },
+                            attrs: { textBlock: "paragraph", textAlign },
                             content: [{ type: "text", text: faker.lorem.words({ min: 3, max: 9 }) }],
                         },
                     ],
@@ -32,6 +34,7 @@ export class HeadingBlockFixtureService {
                             attrs: {
                                 textBlock: faker.helpers.arrayElement(headlineTextBlocks),
                                 textBlockStyle: faker.helpers.arrayElement(headlineSizes),
+                                textAlign,
                             },
                             content: [{ type: "text", text: faker.lorem.words({ min: 3, max: 9 }) }],
                         },

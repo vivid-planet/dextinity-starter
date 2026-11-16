@@ -86,7 +86,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "richtext": "RichText",
-                                "heading": "StandaloneHeading",
+                                "heading": "Heading",
                                 "space": "Space",
                                 "callToActionList": "StandaloneCallToActionList"
                             },
@@ -123,7 +123,7 @@
                             "kind": "OneOfBlocks",
                             "blocks": {
                                 "richtext": "RichText",
-                                "heading": "StandaloneHeading",
+                                "heading": "Heading",
                                 "space": "Space",
                                 "callToActionList": "StandaloneCallToActionList"
                             },
@@ -559,9 +559,9 @@
                             "blocks": {
                                 "accordion": "Accordion",
                                 "anchor": "Anchor",
-                                "richtext": "StandaloneRichText",
+                                "richtext": "RichText",
                                 "space": "Space",
-                                "heading": "StandaloneHeading",
+                                "heading": "Heading",
                                 "callToActionList": "StandaloneCallToActionList",
                                 "media": "StandaloneMedia",
                                 "mediaGallery": "MediaGallery"
@@ -600,9 +600,9 @@
                             "blocks": {
                                 "accordion": "Accordion",
                                 "anchor": "Anchor",
-                                "richtext": "StandaloneRichText",
+                                "richtext": "RichText",
                                 "space": "Space",
-                                "heading": "StandaloneHeading",
+                                "heading": "Heading",
                                 "callToActionList": "StandaloneCallToActionList",
                                 "media": "StandaloneMedia",
                                 "mediaGallery": "MediaGallery"
@@ -686,8 +686,8 @@
                                 "anchor": "Anchor",
                                 "space": "Space",
                                 "teaser": "Teaser",
-                                "richtext": "StandaloneRichText",
-                                "heading": "StandaloneHeading",
+                                "richtext": "RichText",
+                                "heading": "Heading",
                                 "columns": "Columns",
                                 "callToActionList": "StandaloneCallToActionList",
                                 "keyFacts": "KeyFacts",
@@ -730,8 +730,8 @@
                                 "anchor": "Anchor",
                                 "space": "Space",
                                 "teaser": "Teaser",
-                                "richtext": "StandaloneRichText",
-                                "heading": "StandaloneHeading",
+                                "richtext": "RichText",
+                                "heading": "Heading",
                                 "columns": "Columns",
                                 "callToActionList": "StandaloneCallToActionList",
                                 "keyFacts": "KeyFacts",
@@ -2233,8 +2233,8 @@
                                 "billboardTeaser": "BillboardTeaser",
                                 "space": "Space",
                                 "teaser": "Teaser",
-                                "richtext": "StandaloneRichText",
-                                "heading": "StandaloneHeading",
+                                "richtext": "RichText",
+                                "heading": "Heading",
                                 "columns": "Columns",
                                 "callToActionList": "StandaloneCallToActionList",
                                 "keyFacts": "KeyFacts",
@@ -2281,8 +2281,8 @@
                                 "billboardTeaser": "BillboardTeaser",
                                 "space": "Space",
                                 "teaser": "Teaser",
-                                "richtext": "StandaloneRichText",
-                                "heading": "StandaloneHeading",
+                                "richtext": "RichText",
+                                "heading": "Heading",
                                 "columns": "Columns",
                                 "callToActionList": "StandaloneCallToActionList",
                                 "keyFacts": "KeyFacts",
@@ -3282,43 +3282,6 @@
         ]
     },
     {
-        "name": "StandaloneHeading",
-        "fields": [
-            {
-                "name": "heading",
-                "kind": "Block",
-                "block": "Heading",
-                "nullable": false
-            },
-            {
-                "name": "textAlignment",
-                "kind": "Enum",
-                "enum": [
-                    "left",
-                    "center"
-                ],
-                "nullable": false
-            }
-        ],
-        "inputFields": [
-            {
-                "name": "heading",
-                "kind": "Block",
-                "block": "Heading",
-                "nullable": false
-            },
-            {
-                "name": "textAlignment",
-                "kind": "Enum",
-                "enum": [
-                    "left",
-                    "center"
-                ],
-                "nullable": false
-            }
-        ]
-    },
-    {
         "name": "StandaloneMedia",
         "fields": [
             {
@@ -3368,47 +3331,6 @@
                     "2x3",
                     "3x4",
                     "9x16"
-                ],
-                "nullable": false
-            }
-        ]
-    },
-    {
-        "name": "StandaloneRichText",
-        "fields": [
-            {
-                "name": "richText",
-                "kind": "Block",
-                "block": "RichText",
-                "nullable": false
-            },
-            {
-                "name": "textAlignment",
-                "kind": "Enum",
-                "enum": [
-                    "left",
-                    "center",
-                    "right",
-                    "justify"
-                ],
-                "nullable": false
-            }
-        ],
-        "inputFields": [
-            {
-                "name": "richText",
-                "kind": "Block",
-                "block": "RichText",
-                "nullable": false
-            },
-            {
-                "name": "textAlignment",
-                "kind": "Enum",
-                "enum": [
-                    "left",
-                    "center",
-                    "right",
-                    "justify"
                 ],
                 "nullable": false
             }

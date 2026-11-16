@@ -11,10 +11,10 @@ import {
     ExtractBlockInput,
     IsUndefinable,
 } from "@dextinity/cms-api";
+import { HeadingBlock } from "@src/common/blocks/heading.block";
 import { RichTextBlock } from "@src/common/blocks/rich-text.block";
 import { SpaceBlock } from "@src/common/blocks/space.block";
 import { StandaloneCallToActionListBlock } from "@src/common/blocks/standalone-call-to-action-list.block";
-import { StandaloneHeadingBlock } from "@src/common/blocks/standalone-heading.block";
 import { IsBoolean, IsEnum, IsString } from "class-validator";
 
 export enum AccordionItemTitleHtmlTag {
@@ -30,7 +30,7 @@ export const AccordionContentBlock = createBlocksBlock(
     {
         supportedBlocks: {
             richtext: RichTextBlock,
-            heading: StandaloneHeadingBlock,
+            heading: HeadingBlock,
             space: SpaceBlock,
             callToActionList: StandaloneCallToActionListBlock,
         },

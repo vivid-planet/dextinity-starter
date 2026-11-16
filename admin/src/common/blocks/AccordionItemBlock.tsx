@@ -9,10 +9,10 @@ import {
     createCompositeBlockTextField,
 } from "@dextinity/cms-admin";
 import type { AccordionItemBlockData } from "@src/blocks.generated";
+import { HeadingBlock } from "@src/common/blocks/HeadingBlock";
 import { RichTextBlock } from "@src/common/blocks/RichTextBlock";
 import { SpaceBlock } from "@src/common/blocks/SpaceBlock";
 import { StandaloneCallToActionListBlock } from "@src/common/blocks/StandaloneCallToActionListBlock";
-import { StandaloneHeadingBlock } from "@src/common/blocks/StandaloneHeadingBlock";
 import { FormattedMessage } from "react-intl";
 
 const AccordionContentBlock = createBlocksBlock({
@@ -20,7 +20,7 @@ const AccordionContentBlock = createBlocksBlock({
     supportedBlocks: {
         richtext: RichTextBlock,
         space: SpaceBlock,
-        heading: StandaloneHeadingBlock,
+        heading: HeadingBlock,
         callToActionList: StandaloneCallToActionListBlock,
     },
 });

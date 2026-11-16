@@ -6,15 +6,15 @@ import { faker } from "@src/db/fixtures/faker";
 
 import { BlockFixture } from "../block-fixture";
 import { StandaloneCallToActionListBlockFixtureService } from "../navigation/standalone-call-to-action-list-block-fixture.service";
+import { HeadingBlockFixtureService } from "../text-and-content/heading-block-fixture.service";
 import { RichTextBlockFixtureService } from "../text-and-content/rich-text-block-fixture.service";
-import { StandaloneHeadingBlockFixtureService } from "../text-and-content/standalone-heading-block-fixture.service";
 import { SpaceBlockFixtureService } from "./space-block-fixture.service";
 
 @Injectable()
 export class AccordionBlockFixtureService {
     constructor(
         private readonly richTextBlockFixtureService: RichTextBlockFixtureService,
-        private readonly headingBlockFixtureService: StandaloneHeadingBlockFixtureService,
+        private readonly headingBlockFixtureService: HeadingBlockFixtureService,
         private readonly spaceBlockFixtureService: SpaceBlockFixtureService,
         private readonly callToActionListBlockFixtureService: StandaloneCallToActionListBlockFixtureService,
     ) {}

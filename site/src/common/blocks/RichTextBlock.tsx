@@ -14,6 +14,7 @@ import { isValidLink } from "@src/common/helpers/HiddenIfInvalidLink";
 
 import { LinkBlock } from "./LinkBlock";
 import styles from "./RichTextBlock.module.scss";
+import { textAlignClassName } from "./textAlignClassName";
 
 const typographyPropsByTextBlock: Record<string, TypographyProps<keyof HTMLElementTagNameMap>> = {
     paragraph: { as: "p" },
@@ -33,7 +34,7 @@ const nodeMapping: Record<string, TipTapNodeHandler> = {
         const typographyProps = typographyPropsByTextBlock[node.attrs?.textBlock as string] ?? typographyPropsByTextBlock.paragraph;
         const variant = node.attrs?.textBlockStyle === "small" ? "paragraph200" : typographyProps.variant;
         return (
-            <Typography {...typographyProps} variant={variant} bottomSpacing className={styles.text}>
+            <Typography {...typographyProps} variant={variant} bottomSpacing className={textAlignClassName(node.attrs?.textAlign, styles.text)}>
                 {children}
             </Typography>
         );

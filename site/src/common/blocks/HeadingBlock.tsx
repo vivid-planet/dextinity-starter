@@ -10,8 +10,8 @@ import {
 import type { HeadingBlockData } from "@src/blocks.generated";
 import { Typography, type TypographyVariant } from "@src/common/components/Typography";
 
-import { inlineRichTextNodeMapping } from "./inlineRichTextNodeMapping";
 import styles from "./RichTextBlock.module.scss";
+import { textAlignClassName } from "./textAlignClassName";
 
 const tagByTextBlock: Record<string, keyof HTMLElementTagNameMap> = {
     "heading-1": "h1",
@@ -37,8 +37,16 @@ const headlineNodeMapping: Record<string, TipTapNodeHandler> = {
             as={tagByTextBlock[node.attrs?.textBlock as string] ?? "h2"}
             variant={variantByStyle[node.attrs?.textBlockStyle as string] ?? "headline600"}
             bottomSpacing
-            className={styles.text}
+            className={textAlignClassName(node.attrs?.textAlign, styles.text)}
         >
+            {children}
+        </Typography>
+    ),
+};
+
+const eyebrowNodeMapping: Record<string, TipTapNodeHandler> = {
+    textBlock: ({ node, children }) => (
+        <Typography variant="headline400" as="p" bottomSpacing className={textAlignClassName(node.attrs?.textAlign)}>
             {children}
         </Typography>
     ),
@@ -49,11 +57,8 @@ type HeadingBlockProps = PropsWithData<HeadingBlockData>;
 export const HeadingBlock = withPreview(
     ({ data: { eyebrow, headline } }: HeadingBlockProps) => (
         <>
-            {hasTipTapRichTextContent(eyebrow.tipTapContent) && (
-                <Typography variant="headline400" as="p" bottomSpacing>
-                    {renderTipTapRichText({ content: eyebrow.tipTapContent, nodeMapping: inlineRichTextNodeMapping })}
-                </Typography>
-            )}
+            {hasTipTapRichTextContent(eyebrow.tipTapContent) &&
+                renderTipTapRichText({ content: eyebrow.tipTapContent, nodeMapping: eyebrowNodeMapping })}
             <PreviewSkeleton
                 hasContent={hasTipTapRichTextContent(headline.tipTapContent)}
                 title={
