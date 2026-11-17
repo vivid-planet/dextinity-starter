@@ -32,6 +32,12 @@ docker compose -f .deploy-preview/docker-compose.yml --project-directory . down 
 
 To start, restart, or pick up a change in `site-configs/`, run the script again.
 
+## Pull requests
+
+Every pull request gets a "Deploy preview" check. Its link starts the branch's preview on the
+preview controller, or opens it when it is already running. Pull requests from forks get no check,
+because the controller runs the branch's start script on its host.
+
 ## Several environments at the same time
 
 Only caddy publishes a port, so a second environment needs its own port and project name:
