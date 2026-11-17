@@ -1,8 +1,8 @@
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { Module } from "@nestjs/common";
 
-import { Page } from "./entities/page.entity";
-import { PagesResolver } from "./pages.resolver";
+import { Page } from "./entities/page.entity.js";
+import { PagesResolver } from "./pages.resolver.js";
 
 @Module({
     imports: [MikroOrmModule.forFeature([Page])],

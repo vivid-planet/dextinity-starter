@@ -6,12 +6,12 @@ set -e
 FIXTURES_MARKER="uploads/.fixtures-loaded"
 
 if [ ! -f "$FIXTURES_MARKER" ]; then
-    node dist/console.js fixtures
+    node --import ./dist/tracing.js dist/console.js fixtures
     touch "$FIXTURES_MARKER"
 else
-    node dist/console.js migrate
+    node --import ./dist/tracing.js dist/console.js migrate
 fi
 
-node dist/console.js createBlockIndexViews
+node --import ./dist/tracing.js dist/console.js createBlockIndexViews
 
-exec node dist/main
+exec node --import ./dist/tracing.js dist/main.js

@@ -1,24 +1,24 @@
-import { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
+import type { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
 import { Injectable } from "@nestjs/common";
-import { faker } from "@src/db/fixtures/faker";
-import { PageContentBlock } from "@src/documents/pages/blocks/page-content.block";
+import { faker } from "@src/db/fixtures/faker.js";
+import { PageContentBlock } from "@src/documents/pages/blocks/page-content.block.js";
 
-import { BlockFixture } from "./blocks/block-fixture";
-import { AccordionBlockFixtureService } from "./blocks/layout/accordion-block-fixture.service";
-import { ColumnsBlockFixtureService } from "./blocks/layout/columns-block-fixture.service";
-import { ContentGroupBlockFixtureService } from "./blocks/layout/content-group-block-fixture.service";
-import { SpaceBlockFixtureService } from "./blocks/layout/space-block-fixture.service";
-import { MediaGalleryBlockFixtureService } from "./blocks/media/media-gallery-block-fixture.service";
-import { SliderBlockFixtureService } from "./blocks/media/slider-block-fixture.service";
-import { StandaloneMediaBlockFixtureService } from "./blocks/media/standalone-media-block-fixture.service";
-import { AnchorBlockFixtureService } from "./blocks/navigation/anchor-block-fixture.service";
-import { PageTreeIndexBlockFixtureService } from "./blocks/navigation/page-tree-index-block-fixture.service";
-import { StandaloneCallToActionListBlockFixtureService } from "./blocks/navigation/standalone-call-to-action-list-block-fixture.service";
-import { BillboardTeaserBlockFixtureService } from "./blocks/teaser/billboard-teaser-block-fixture.service";
-import { TeaserBlockFixtureService } from "./blocks/teaser/teaser-block-fixture.service";
-import { KeyFactsBlockFixtureService } from "./blocks/text-and-content/key-facts-block-fixture.service";
-import { StandaloneHeadingBlockFixtureService } from "./blocks/text-and-content/standalone-heading-block-fixture.service";
-import { StandaloneRichTextBlockFixtureService } from "./blocks/text-and-content/standalone-rich-text-block-fixture.service";
+import type { BlockFixture } from "./blocks/block-fixture.js";
+import { AccordionBlockFixtureService } from "./blocks/layout/accordion-block-fixture.service.js";
+import { ColumnsBlockFixtureService } from "./blocks/layout/columns-block-fixture.service.js";
+import { ContentGroupBlockFixtureService } from "./blocks/layout/content-group-block-fixture.service.js";
+import { SpaceBlockFixtureService } from "./blocks/layout/space-block-fixture.service.js";
+import { MediaGalleryBlockFixtureService } from "./blocks/media/media-gallery-block-fixture.service.js";
+import { SliderBlockFixtureService } from "./blocks/media/slider-block-fixture.service.js";
+import { StandaloneMediaBlockFixtureService } from "./blocks/media/standalone-media-block-fixture.service.js";
+import { AnchorBlockFixtureService } from "./blocks/navigation/anchor-block-fixture.service.js";
+import { PageTreeIndexBlockFixtureService } from "./blocks/navigation/page-tree-index-block-fixture.service.js";
+import { StandaloneCallToActionListBlockFixtureService } from "./blocks/navigation/standalone-call-to-action-list-block-fixture.service.js";
+import { BillboardTeaserBlockFixtureService } from "./blocks/teaser/billboard-teaser-block-fixture.service.js";
+import { TeaserBlockFixtureService } from "./blocks/teaser/teaser-block-fixture.service.js";
+import { KeyFactsBlockFixtureService } from "./blocks/text-and-content/key-facts-block-fixture.service.js";
+import { StandaloneHeadingBlockFixtureService } from "./blocks/text-and-content/standalone-heading-block-fixture.service.js";
+import { StandaloneRichTextBlockFixtureService } from "./blocks/text-and-content/standalone-rich-text-block-fixture.service.js";
 
 export type BlockCategory = "layout" | "media" | "navigation" | "teaser" | "textAndContent";
 

@@ -1,7 +1,7 @@
-import { AbstractAccessControlService, ContentScopesForUser, PermissionsForUser, User, UserPermissions } from "@dextinity/cms-api";
+import { AbstractAccessControlService, type ContentScopesForUser, type PermissionsForUser, type User, UserPermissions } from "@dextinity/cms-api";
 import { Inject, Injectable } from "@nestjs/common";
-import { Config } from "@src/config/config";
-import { CONFIG } from "@src/config/config.module";
+import type { Config } from "@src/config/config.js";
+import { CONFIG } from "@src/config/config.module.js";
 
 @Injectable()
 export class AccessControlService extends AbstractAccessControlService {

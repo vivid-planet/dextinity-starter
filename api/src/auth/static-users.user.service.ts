@@ -1,7 +1,7 @@
-import { FindUsersArgs, User, UserPermissionsUserServiceInterface, Users } from "@dextinity/cms-api";
+import { FindUsersArgs, type User, type UserPermissionsUserServiceInterface, type Users } from "@dextinity/cms-api";
 import { Injectable } from "@nestjs/common";
 
-import { staticUsers } from "./static-users";
+import { staticUsers } from "./static-users.js";
 
 @Injectable()
 export class StaticUsersUserService implements UserPermissionsUserServiceInterface {

@@ -1,15 +1,16 @@
 import { DependenciesService } from "@dextinity/cms-api";
-import { CreateRequestContext, MikroORM } from "@mikro-orm/core";
+import { MikroORM } from "@mikro-orm/core";
+import { CreateRequestContext } from "@mikro-orm/decorators/legacy";
 import { Inject, Logger } from "@nestjs/common";
-import { Config } from "@src/config/config";
-import { CONFIG } from "@src/config/config.module";
-import { faker } from "@src/db/fixtures/faker";
-import { MultiBar, Options, Presets } from "cli-progress";
+import type { Config } from "@src/config/config.js";
+import { CONFIG } from "@src/config/config.module.js";
+import { faker } from "@src/db/fixtures/faker.js";
+import { MultiBar, type Options, Presets } from "cli-progress";
 import { Command, CommandRunner } from "nest-commander";
 
-import { DocumentGeneratorService } from "./generators/document-generator.service";
-import { ImageFixtureService } from "./generators/image-fixture.service";
-import { VideoFixtureService } from "./generators/video-fixture.service";
+import { DocumentGeneratorService } from "./generators/document-generator.service.js";
+import { ImageFixtureService } from "./generators/image-fixture.service.js";
+import { VideoFixtureService } from "./generators/video-fixture.service.js";
 
 @Command({
     name: "fixtures",
@@ -47,7 +48,7 @@ export class FixturesCommand extends CommandRunner {
         }
 
         this.logger.log(`Run migrations...`);
-        const migrator = this.orm.getMigrator();
+        const migrator = this.orm.migrator;
         await migrator.up();
 
         const multiBar = new MultiBar(this.barOptions, Presets.shades_classic);

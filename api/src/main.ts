@@ -1,12 +1,12 @@
 if (process.env.TRACING_ENABLED === "1") {
-    import("./tracing");
+    import("./tracing.js");
 }
 
 import { CdnGuard, ExceptionFilter, ValidationExceptionFactory } from "@dextinity/cms-api";
 import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";
-import { AppModule } from "@src/app.module";
+import { AppModule } from "@src/app.module.js";
 import { useContainer } from "class-validator";
 import compression from "compression";
 import cookieParser from "cookie-parser";
@@ -14,7 +14,7 @@ import { json } from "express";
 import helmet from "helmet";
 import { resolve } from "path";
 
-import { createConfig } from "./config/config";
+import { createConfig } from "./config/config.js";
 
 async function bootstrap(): Promise<void> {
     const logger = new Logger("bootstrap");
@@ -88,7 +88,7 @@ async function bootstrap(): Promise<void> {
         app.useGlobalGuards(new CdnGuard({ headerName: "x-cdn-origin-check", headerValue: config.cdn.originCheckSecret }));
     }
 
-    app.useStaticAssets(resolve(__dirname, "../public"));
+    app.useStaticAssets(resolve(import.meta.dirname, "../public"));
 
     // https://mikro-orm.io/docs/usage-with-nestjs#app-shutdown-and-cleanup
     app.enableShutdownHooks();

@@ -7,4 +7,4 @@ RUN npm ci && \
     npm run build && \
     npm prune --omit=dev
 
-CMD node dist/console.js migrate && node dist/main
+CMD node --import ./dist/tracing.js dist/console.js migrate && node --import ./dist/tracing.js dist/main.js

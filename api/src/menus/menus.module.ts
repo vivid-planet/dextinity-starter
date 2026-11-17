@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 
-import { MenusResolver } from "./menus.resolver";
+import { MenusResolver } from "./menus.resolver.js";
 
 @Module({
     providers: [MenusResolver],

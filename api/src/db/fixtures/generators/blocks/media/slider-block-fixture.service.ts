@@ -1,10 +1,10 @@
-import { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
+import type { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
 import { Injectable } from "@nestjs/common";
-import { faker } from "@src/db/fixtures/faker";
-import { RichTextBlockFixtureService } from "@src/db/fixtures/generators/blocks/text-and-content/rich-text-block-fixture.service";
-import { SliderBlock } from "@src/documents/pages/blocks/slider.block";
+import { faker } from "@src/db/fixtures/faker.js";
+import { RichTextBlockFixtureService } from "@src/db/fixtures/generators/blocks/text-and-content/rich-text-block-fixture.service.js";
+import { SliderBlock } from "@src/documents/pages/blocks/slider.block.js";
 
-import { MediaBlockFixtureService } from "./media-block.fixture.service";
+import { MediaBlockFixtureService } from "./media-block.fixture.service.js";
 
 @Injectable()
 export class SliderBlockFixtureService {

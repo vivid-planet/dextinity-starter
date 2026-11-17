@@ -1,7 +1,7 @@
 import {
     AnchorBlock,
     BlockData,
-    BlockDataInterface,
+    type BlockDataInterface,
     BlockField,
     BlockInput,
     blockInputToData,
@@ -9,18 +9,18 @@ import {
     ChildBlockInput,
     createBlock,
     createBlocksBlock,
-    ExtractBlockInput,
+    type ExtractBlockInput,
 } from "@dextinity/cms-api";
-import { AccordionBlock } from "@src/common/blocks/accordion.block";
-import { MediaGalleryBlock } from "@src/common/blocks/media-gallery.block";
-import { SpaceBlock } from "@src/common/blocks/space.block";
-import { StandaloneCallToActionListBlock } from "@src/common/blocks/standalone-call-to-action-list.block";
-import { StandaloneHeadingBlock } from "@src/common/blocks/standalone-heading.block";
-import { StandaloneMediaBlock } from "@src/common/blocks/standalone-media.block";
-import { StandaloneRichTextBlock } from "@src/common/blocks/standalone-rich-text.block";
-import { ColumnsBlock } from "@src/documents/pages/blocks/columns.block";
-import { KeyFactsBlock } from "@src/documents/pages/blocks/key-facts.block";
-import { TeaserBlock } from "@src/documents/pages/blocks/teaser.block";
+import { AccordionBlock } from "@src/common/blocks/accordion.block.js";
+import { MediaGalleryBlock } from "@src/common/blocks/media-gallery.block.js";
+import { SpaceBlock } from "@src/common/blocks/space.block.js";
+import { StandaloneCallToActionListBlock } from "@src/common/blocks/standalone-call-to-action-list.block.js";
+import { StandaloneHeadingBlock } from "@src/common/blocks/standalone-heading.block.js";
+import { StandaloneMediaBlock } from "@src/common/blocks/standalone-media.block.js";
+import { StandaloneRichTextBlock } from "@src/common/blocks/standalone-rich-text.block.js";
+import { ColumnsBlock } from "@src/documents/pages/blocks/columns.block.js";
+import { KeyFactsBlock } from "@src/documents/pages/blocks/key-facts.block.js";
+import { TeaserBlock } from "@src/documents/pages/blocks/teaser.block.js";
 import { IsEnum } from "class-validator";
 
 export const ContentBlock = createBlocksBlock(

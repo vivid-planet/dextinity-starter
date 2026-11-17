@@ -1,14 +1,14 @@
-import { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
+import type { ExtractBlockInputFactoryProps } from "@dextinity/cms-api";
 import { Injectable } from "@nestjs/common";
-import { AccordionBlock } from "@src/common/blocks/accordion.block";
-import { AccordionContentBlock, AccordionItemBlock, AccordionItemTitleHtmlTag } from "@src/common/blocks/accordion-item.block";
-import { faker } from "@src/db/fixtures/faker";
+import { AccordionBlock } from "@src/common/blocks/accordion.block.js";
+import { AccordionContentBlock, AccordionItemBlock, AccordionItemTitleHtmlTag } from "@src/common/blocks/accordion-item.block.js";
+import { faker } from "@src/db/fixtures/faker.js";
 
-import { BlockFixture } from "../block-fixture";
-import { StandaloneCallToActionListBlockFixtureService } from "../navigation/standalone-call-to-action-list-block-fixture.service";
-import { RichTextBlockFixtureService } from "../text-and-content/rich-text-block-fixture.service";
-import { StandaloneHeadingBlockFixtureService } from "../text-and-content/standalone-heading-block-fixture.service";
-import { SpaceBlockFixtureService } from "./space-block-fixture.service";
+import type { BlockFixture } from "../block-fixture.js";
+import { StandaloneCallToActionListBlockFixtureService } from "../navigation/standalone-call-to-action-list-block-fixture.service.js";
+import { RichTextBlockFixtureService } from "../text-and-content/rich-text-block-fixture.service.js";
+import { StandaloneHeadingBlockFixtureService } from "../text-and-content/standalone-heading-block-fixture.service.js";
+import { SpaceBlockFixtureService } from "./space-block-fixture.service.js";
 
 @Injectable()
 export class AccordionBlockFixtureService {

@@ -11,33 +11,33 @@ import {
     UserPermissionsModule,
     WarningsModule,
 } from "@dextinity/cms-api";
-import { ApolloDriver, ApolloDriverConfig, ValidationError } from "@nestjs/apollo";
-import { DynamicModule, Module } from "@nestjs/common";
+import { ApolloDriver, type ApolloDriverConfig, ValidationError } from "@nestjs/apollo";
+import { type DynamicModule, Module } from "@nestjs/common";
 import { ModuleRef } from "@nestjs/core";
-import { Enhancer, GraphQLModule } from "@nestjs/graphql";
-import { AppPermission } from "@src/auth/app-permission.enum";
-import { DbModule } from "@src/db/db.module";
-import { Link } from "@src/documents/links/entities/link.entity";
-import { LinksModule } from "@src/documents/links/links.module";
-import { Page } from "@src/documents/pages/entities/page.entity";
-import { PagesModule } from "@src/documents/pages/pages.module";
-import { FootersModule } from "@src/footers/footers.module";
-import { HealthcheckModule } from "@src/healthcheck/healthcheck.module";
-import { PageTreeNodeScope } from "@src/page-tree/dto/page-tree-node-scope";
-import { PageTreeNode } from "@src/page-tree/entities/page-tree-node.entity";
-import { RedirectScope } from "@src/redirects/dto/redirect-scope";
-import { ContentScope as BaseContentScope } from "@src/site-configs";
-import { Request } from "express";
+import { type Enhancer, GraphQLModule } from "@nestjs/graphql";
+import { AppPermission } from "@src/auth/app-permission.enum.js";
+import { DbModule } from "@src/db/db.module.js";
+import { Link } from "@src/documents/links/entities/link.entity.js";
+import { LinksModule } from "@src/documents/links/links.module.js";
+import { Page } from "@src/documents/pages/entities/page.entity.js";
+import { PagesModule } from "@src/documents/pages/pages.module.js";
+import { FootersModule } from "@src/footers/footers.module.js";
+import { HealthcheckModule } from "@src/healthcheck/healthcheck.module.js";
+import { PageTreeNodeScope } from "@src/page-tree/dto/page-tree-node-scope.js";
+import { PageTreeNode } from "@src/page-tree/entities/page-tree-node.entity.js";
+import { RedirectScope } from "@src/redirects/dto/redirect-scope.js";
+import type { ContentScope as BaseContentScope } from "@src/site-configs.js";
+import type { Request } from "express";
 
-import { AccessControlService } from "./auth/access-control.service";
-import { AuthModule } from "./auth/auth.module";
-import { SYSTEM_USER_NAME } from "./auth/constants";
-import { StaticUsersUserService } from "./auth/static-users.user.service";
-import { Config } from "./config/config";
-import { ConfigModule } from "./config/config.module";
-import { DamFile } from "./dam/entities/dam-file.entity";
-import { DamFolder } from "./dam/entities/dam-folder.entity";
-import { MenusModule } from "./menus/menus.module";
+import { AccessControlService } from "./auth/access-control.service.js";
+import { AuthModule } from "./auth/auth.module.js";
+import { SYSTEM_USER_NAME } from "./auth/constants.js";
+import { StaticUsersUserService } from "./auth/static-users.user.service.js";
+import type { Config } from "./config/config.js";
+import { ConfigModule } from "./config/config.module.js";
+import { DamFile } from "./dam/entities/dam-file.entity.js";
+import { DamFolder } from "./dam/entities/dam-folder.entity.js";
+import { MenusModule } from "./menus/menus.module.js";
 
 @Module({})
 export class AppModule {

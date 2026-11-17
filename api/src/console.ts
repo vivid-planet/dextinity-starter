@@ -1,16 +1,10 @@
-import { useContainer } from "class-validator";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let tracing: any;
-if (process.env.TRACING_ENABLED === "1") {
-    tracing = import("./tracing");
-}
-
 import opentelemetry from "@opentelemetry/api";
-import { AppModule } from "@src/app.module";
+import { AppModule } from "@src/app.module.js";
+import { useContainer } from "class-validator";
 import { CommandFactory } from "nest-commander";
 
-import { createConfig } from "./config/config";
+import { createConfig } from "./config/config.js";
+import { sdk } from "./tracing.js";
 
 const tracer = opentelemetry.trace.getTracer("console");
 const config = createConfig(process.env);
@@ -23,7 +17,7 @@ async function bootstrap() {
             serviceErrorHandler: async (error) => {
                 console.error(error);
                 span.end();
-                await (await tracing)?.sdk?.shutdown();
+                await sdk?.shutdown();
                 process.exit(1);
             },
         });
@@ -39,14 +33,14 @@ async function bootstrap() {
             await CommandFactory.runApplication(app);
 
             span.end();
-            await tracing?.sdk?.shutdown();
+            await sdk?.shutdown();
             await app.close();
             process.exit(0);
         } catch (e) {
             console.error(e);
 
             span.end();
-            await tracing?.sdk?.shutdown();
+            await sdk?.shutdown();
             await app.close();
             process.exit(1);
         }

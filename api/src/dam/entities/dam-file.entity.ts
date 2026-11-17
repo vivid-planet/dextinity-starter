@@ -1,6 +1,6 @@
 import { createFileEntity } from "@dextinity/cms-api";
 
-import { DamFolder } from "./dam-folder.entity";
+import { DamFolder } from "./dam-folder.entity.js";
 
 const DamFile = createFileEntity({ Folder: DamFolder });
 

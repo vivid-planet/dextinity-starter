@@ -2,20 +2,21 @@
     "name": "starter-api",
     "version": "1.0.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "api-generator": "rimraf --glob 'src/**/generated' && dextinity-api-generator generate",
         "api-generator:watch": "rimraf --glob 'src/**/generated' && dextinity-api-generator generate --watch",
         "prebuild": "rimraf dist && npm run api-generator",
         "build": "nest build",
         "check-node-version": "check-node-version --node $(cat ../.nvmrc)",
-        "console": "NODE_OPTIONS='--max-old-space-size=256' dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- ts-node --transpile-only -r tsconfig-paths/register src/console.ts",
-        "console:prod": "node dist/console.js",
+        "console": "NODE_OPTIONS='--max-old-space-size=256' dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- node --import @swc-node/register/esm-register --import ./src/tracing.ts src/console.ts",
+        "console:prod": "node --import ./dist/tracing.js dist/console.js",
         "db:migrate": "npm run console migrate --",
         "db:migrate:prod": "npm run console:prod migrate --",
         "fixtures": "npm run console fixtures --",
         "fixtures:prod": "npm run console:prod fixtures --",
         "lint": "npm run api-generator && run-p -l lint:{eslint,knip,prettier,tsc,api-can-start}",
-        "lint:api-can-start": "MIKRO_ORM_NO_CONNECT=true PRIVATE_SITE_CONFIGS=$(echo '[]' | base64) dotenv -e ../.env -- ts-node --transpile-only -r tsconfig-paths/register src/console.ts --help",
+        "lint:api-can-start": "PRIVATE_SITE_CONFIGS=$(echo '[]' | base64) dotenv -e ../.env -- node --import @swc-node/register/esm-register src/console.ts --help",
         "lint:ci": "npm run lint && npm run lint:generated-files-not-modified",
         "lint:eslint": "eslint --max-warnings 0 src/ '**/*.json' --no-warn-ignored",
         "lint:fix": "run-p lint:fix:{eslint,prettier}",
@@ -27,10 +28,10 @@
         "lint:tsc": "tsc --project ./tsconfig.lint.json",
         "mikro-orm": "dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- mikro-orm",
         "repl": "npm run start -- --watch --entryFile repl",
-        "start": "npm run prebuild && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- nest start",
-        "start:debug": "npm run prebuild && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- nest start --debug --watch --preserveWatchOutput",
-        "start:dev": "npm run check-node-version && npm run prebuild && npm run db:migrate && npm run console createBlockIndexViews && NODE_OPTIONS='--max-old-space-size=512' dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- nest start --watch --preserveWatchOutput",
-        "start:prod": "node dist/main",
+        "start": "npm run prebuild && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- nest start --exec \"node --import ./dist/tracing.js\"",
+        "start:debug": "npm run prebuild && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- nest start --debug --watch --preserveWatchOutput --exec \"node --import ./dist/tracing.js\"",
+        "start:dev": "npm run check-node-version && npm run prebuild && npm run db:migrate && npm run console createBlockIndexViews && NODE_OPTIONS='--max-old-space-size=512' dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- nest start --watch --preserveWatchOutput --exec \"node --import ./dist/tracing.js\"",
+        "start:prod": "node --import ./dist/tracing.js dist/main.js",
         "test": "vitest --run",
         "test:ci": "npm run test",
         "test:watch": "vitest --watch"
@@ -38,24 +39,28 @@
     "overrides": {
         "@apollo/server-plugin-landing-page-graphql-playground": {
             "@apollo/server": "^5.0.0"
+        },
+        "nest-commander": {
+            "@golevelup/nestjs-discovery": "^7.1.0"
         }
     },
     "dependencies": {
         "@apollo/server": "^5.5.2",
         "@as-integrations/express5": "^1.1.2",
-        "@dextinity/cms-api": "10.15.0",
+        "@dextinity/cms-api": "11.0.0-canary-20261117164547",
         "@faker-js/faker": "10.6.0",
-        "@mikro-orm/cli": "^6.6.18",
-        "@mikro-orm/core": "^6.6.18",
-        "@mikro-orm/migrations": "^6.6.18",
-        "@mikro-orm/nestjs": "^6.1.2",
-        "@mikro-orm/postgresql": "^6.6.18",
-        "@nestjs/apollo": "^13.4.5",
-        "@nestjs/common": "^11.2.10",
-        "@nestjs/core": "^11.2.10",
-        "@nestjs/graphql": "^13.4.5",
-        "@nestjs/jwt": "^11.0.2",
-        "@nestjs/platform-express": "^11.2.10",
+        "@mikro-orm/cli": "^7.2.0",
+        "@mikro-orm/core": "^7.2.0",
+        "@mikro-orm/decorators": "^7.2.0",
+        "@mikro-orm/migrations": "^7.2.0",
+        "@mikro-orm/nestjs": "^7.1.0",
+        "@mikro-orm/postgresql": "^7.2.0",
+        "@nestjs/apollo": "^14.0.1",
+        "@nestjs/common": "^12.0.4",
+        "@nestjs/core": "^12.0.4",
+        "@nestjs/graphql": "^14.0.1",
+        "@nestjs/jwt": "^12.0.2",
+        "@nestjs/platform-express": "^12.0.4",
         "@opentelemetry/api": "^1.10.0",
         "@opentelemetry/auto-instrumentations-node": "^0.83.1",
         "@opentelemetry/exporter-trace-otlp-http": "^0.301.2",
@@ -67,21 +72,23 @@
         "cookie-parser": "^1.4.7",
         "express": "^5.3.0",
         "graphql": "^16.15.0",
+        "graphql-scalars": "^2.0.1",
         "helmet": "^8.3.0",
+        "import-in-the-middle": "^3.5.2",
         "nest-commander": "^3.21.0",
         "reflect-metadata": "^0.2.2",
         "rimraf": "^6.1.4",
         "rxjs": "^7.8.2",
-        "slugify": "^1.6.9",
-        "tsconfig-paths": "^4.2.0"
+        "slugify": "^1.6.9"
     },
     "devDependencies": {
-        "@dextinity/api-generator": "10.15.0",
-        "@dextinity/cli": "10.15.0",
-        "@dextinity/eslint-config": "10.15.0",
-        "@nestjs/cli": "^11.0.24",
-        "@nestjs/schematics": "^11.1.0",
-        "@nestjs/testing": "^11.2.10",
+        "@dextinity/api-generator": "11.0.0-canary-20261117164547",
+        "@dextinity/cli": "11.0.0-canary-20261117164547",
+        "@dextinity/eslint-config": "11.0.0-canary-20261117164547",
+        "@nestjs/cli": "^12.0.3",
+        "@nestjs/schematics": "^12.0.6",
+        "@nestjs/testing": "^12.0.4",
+        "@swc-node/register": "^1.12.1",
         "@types/cli-progress": "^3.11.6",
         "@types/compression": "^1.8.1",
         "@types/cookie-parser": "^1.4.10",
@@ -94,19 +101,18 @@
         "knip": "^6.45.1",
         "npm-run-all2": "^9.0.4",
         "prettier": "^3.10.1",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.9.3",
+        "typescript": "^6.0.3",
         "vite-tsconfig-paths": "^6.1.1",
         "vitest": "^5.1.0"
     },
     "engines": {
-        "node": "24"
+        "node": ">=24.15.0"
     },
     "mikro-orm": {
-        "useTsNode": true,
         "configPaths": [
             "./src/db/ormconfig.cli.ts",
             "./dist/db/ormconfig.cli.js"
-        ]
+        ],
+        "preferTs": true
     }
 }
