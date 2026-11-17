@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM mirror.gcr.io/library/node:24-bookworm
+FROM mirror.gcr.io/library/node:26-bookworm
 
 # WORKDIR would create the directory as root, so it is created and handed over first.
 RUN mkdir -p /app/site && chown node:node /app/site

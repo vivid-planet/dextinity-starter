@@ -4,7 +4,7 @@
 # locally. It is a dev dependency of the root package, so the root manifests are installed here.
 # The config and the static users keep the same layout as in the repository, so that
 # dev-oidc-provider.config.mts resolves them.
-FROM mirror.gcr.io/library/node:24-bookworm
+FROM mirror.gcr.io/library/node:26-bookworm
 
 # WORKDIR would create the directory as root, so it is created and handed over first.
 RUN mkdir -p /app && chown node:node /app
