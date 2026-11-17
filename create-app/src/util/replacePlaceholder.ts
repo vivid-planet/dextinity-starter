@@ -10,7 +10,7 @@ export function replacePlaceholder(projectName: string, verbose: boolean): void 
         exclude: [".git", "**/node_modules", "**/package-lock.json"],
     });
     // URLs pointing to the upstream starter repositories (e.g. the references in AGENTS.md or the
-    // dextinity-starter-lang repository in intl-update.sh) must keep referring to them.
+    // dextinity-starter-lang repository in intl-clone) must keep referring to them.
     const placeholder = /(?<!https:\/\/\S*vivid-planet\/dextinity-)[Ss]tarter/g;
     let changedFiles = 0;
 

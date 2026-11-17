@@ -264,7 +264,6 @@ services:
     instance_size_slug: apps-s-1vcpu-0.5gb
     name: oauth2-proxy
   - build_command: |-
-      ./intl-update.sh &&
       cp ../api/schema.gql schema.gql &&
       cp ../api/block-meta.json block-meta.json &&
       cp ../api/src/dextinity-config.json src/dextinity-config.json &&

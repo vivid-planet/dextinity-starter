@@ -7,8 +7,7 @@ COPY --from=api ./block-meta.json ./block-meta.json
 COPY --from=api ./schema.gql ./schema.gql
 COPY --from=api ./src/dextinity-config.json ./src/dextinity-config.json
 
-RUN ./intl-update.sh && \
-    npm ci && \
+RUN npm ci && \
     npm run build && \
     rm -rf ./node_modules
 

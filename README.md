@@ -19,6 +19,10 @@ In use by `@dextinity/create-app` to create new Dextinity projects. Find more in
     // Execute following script
     ./install.sh
 
+The translations (`admin/lang/`, `site/lang/`) are cloned automatically when they're missing. To pull the latest translations, run:
+
+    npm --prefix admin run intl:update // (admin|site)
+
 ### Run Services
 
     // use correct npm version https://github.com/nvm-sh/nvm#deeper-shell-integration

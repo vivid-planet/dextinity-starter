@@ -21,7 +21,7 @@
 admin/build
 api/uploads
 
-# Downloaded at build time by intl-update.sh
+# Downloaded at build time by intl-clone
 **/lang
 **/lang-compiled
 **/lang-extracted

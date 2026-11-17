@@ -19,8 +19,8 @@ COPY --chown=node:node admin ./
 # Files that setup-project-files.js symlinks during a local installation.
 COPY --chown=node:node api/schema.gql api/block-meta.json ./
 COPY --chown=node:node api/src/dextinity-config.json site-configs/site-configs.d.ts ./src/
-# intl-update.sh clones the translations; the .git directories are only clone metadata.
-RUN ./intl-update.sh && rm -rf lang/*/.git && npm run build
+# The build clones the translations; the .git directories are only clone metadata.
+RUN npm run build && rm -rf lang/*/.git
 
 # admin/server injects the environment variables into index.html and serves ./build from here.
 ENV NODE_ENV=production
