@@ -130,7 +130,7 @@ npm --prefix api run api-generator       # Execute api generator. Generates reso
 - `api/src/` - NestJS modules (auth/, documents/, page-tree/, menus/, content-generation/)
 - `api/db/migrations/` - Database migrations
 - `site/src/app/` - Next.js app router
-- `site/src/middleware.ts` - Domain routing, CSP headers
+- `site/src/proxy.ts` - Domain routing, CSP headers (Next.js proxy, formerly middleware)
 - `site-configs/site-configs.ts` - Multi-tenant site configuration
 
 ### Package Independence
@@ -171,7 +171,8 @@ The `site-configs/` directory manages site configurations, compiled into environ
 
 ### TypeScript
 
-- API targets ES2017
+- API targets ES2017 and is an ES module (`"type": "module"`, `nodenext` resolution): relative and `@src/` imports need a `.js` extension, and type-only imports must use `import type` (`verbatimModuleSyntax`)
+- The API scripts run TypeScript through `@swc-node/register`, and the built API is started with `node --import ./dist/tracing.js` so that tracing is set up before the application loads
 - Admin uses ESNext with @emotion/react JSX transform
 - Site targets ES5 for browser compatibility
 
