@@ -55,6 +55,14 @@ npm run dev
 
 Each script loads `.env.local` itself: the packages and the `dev:*` scripts run through `dotenv -e .env.local -e .env` (or with `.env.secrets`), and the `docker` script in `dev-pm.config.ts` sources `.env` and `.env.local` before `docker compose up`. Docker needs this because dev-pm doesn't pass the env files to its scripts, and Compose prefers real env vars over its `.env` file, so without it the containers would bind the base ports.
 
+### Deploy Preview
+
+```bash
+./start-deploy-preview.sh        # Build and start the whole application in Docker
+```
+
+Runs api, admin and site production-style in containers behind a single published port, for example to look at a pull request before it is merged. It is not a development environment - no hot reloading. See [`.deploy-preview/README.md`](.deploy-preview/README.md).
+
 ### Building
 
 ```bash

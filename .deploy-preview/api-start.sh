@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+# The fixtures command drops all tables, so it must only run once per database.
+# The marker lives in the uploads volume, which has the same lifetime as the database volume.
+FIXTURES_MARKER="uploads/.fixtures-loaded"
+
+if [ ! -f "$FIXTURES_MARKER" ]; then
+    node dist/console.js fixtures
+    touch "$FIXTURES_MARKER"
+else
+    node dist/console.js migrate
+fi
+
+node dist/console.js createBlockIndexViews
+
+exec node dist/main

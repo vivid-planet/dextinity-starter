@@ -1,0 +1,32 @@
+# Reverse proxy for the deploy preview environment, see docker-compose.yml.
+#
+# Everything is served through a single port, so that multiple preview environments can run on the
+# same host without port conflicts. Requests are routed by how the host name starts, so the proxy
+# does not need to know the preview host:
+#
+#   admin--<host>     -> auth proxy, which serves the admin and the api under /api
+#   idp--<host>       -> identity provider (the browser is redirected here to log in)
+#   everything else   -> site (the preview host itself and <domain>--<host> of every site config)
+
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+# 8080 and not 80, because caddy runs unprivileged and may not bind a port below 1024.
+:8080 {
+	@admin header_regexp Host ^admin--
+	handle @admin {
+		reverse_proxy authproxy:4180
+	}
+
+	@idp header_regexp Host ^idp--
+	handle @idp {
+		reverse_proxy idp:8080
+	}
+
+	handle {
+		reverse_proxy site:3000
+	}
+}
