@@ -1,6 +1,6 @@
 import "@fontsource-variable/roboto-flex/full.css";
 
-import { ApolloProvider } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client/react";
 import { ErrorDialogHandler, MasterLayout, MuiThemeProvider, RouterBrowserRouter, SnackbarProvider } from "@dextinity/admin";
 import {
     ContentScopeProvider,
@@ -22,7 +22,7 @@ import { HTML5toTouch } from "rdndmb-html5-to-touch";
 import { useMemo } from "react";
 import { DndProvider } from "react-dnd-multi-backend";
 import { IntlProvider } from "react-intl";
-import { Route, Switch } from "react-router";
+import { Route, Routes } from "react-router";
 
 import { createApolloClient } from "./common/apollo/createApolloClient";
 import { MasterHeader } from "./common/MasterHeader";
@@ -95,27 +95,27 @@ export function App() {
                                         <RouterBrowserRouter>
                                             <GlobalStyle />
                                             <ContentScopeProvider>
-                                                {({ match }) => (
-                                                    <Switch>
+                                                {() => (
+                                                    <Routes>
                                                         <Route
-                                                            path={`${match.path}/preview`}
-                                                            render={(props) => (
+                                                            path="preview/*"
+                                                            element={
                                                                 <SitePreview
                                                                     resolvePath={(path: string, scope) => {
                                                                         return `/${scope.language}${path}`;
                                                                     }}
-                                                                    {...props}
                                                                 />
-                                                            )}
+                                                            }
                                                         />
                                                         <Route
-                                                            render={() => (
+                                                            path="*"
+                                                            element={
                                                                 <MasterLayout headerComponent={MasterHeader} menuComponent={AppMasterMenu}>
                                                                     <MasterMenuRoutes menu={masterMenuData} />
                                                                 </MasterLayout>
-                                                            )}
+                                                            }
                                                         />
-                                                    </Switch>
+                                                    </Routes>
                                                 )}
                                             </ContentScopeProvider>
                                         </RouterBrowserRouter>

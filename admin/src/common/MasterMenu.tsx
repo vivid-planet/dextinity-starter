@@ -30,7 +30,7 @@ export const masterMenuData: MasterMenuData = [
         icon: <Dashboard />,
         route: {
             path: "/dashboard",
-            component: DashboardPage,
+            element: <DashboardPage />,
         },
     },
     {
@@ -39,7 +39,7 @@ export const masterMenuData: MasterMenuData = [
         icon: <PageTree />,
         route: {
             path: "/pages/pagetree/main-navigation",
-            render: () => (
+            element: (
                 <PagesPage
                     path="/pages/pagetree/main-navigation"
                     documentTypes={pageTreeDocumentTypes}
@@ -56,7 +56,7 @@ export const masterMenuData: MasterMenuData = [
         icon: <Assets />,
         route: {
             path: "/assets",
-            component: DamPage,
+            element: <DamPage />,
         },
         requiredPermission: "dam",
     },
@@ -70,7 +70,7 @@ export const masterMenuData: MasterMenuData = [
                 primary: <FormattedMessage id="menu.project-snips.footer" defaultMessage="Footer" />,
                 route: {
                     path: "/project-snips/footer",
-                    component: EditFooterPage,
+                    element: <EditFooterPage />,
                 },
                 requiredPermission: "pageTree",
             },
@@ -83,7 +83,7 @@ export const masterMenuData: MasterMenuData = [
         icon: <Snips />,
         route: {
             path: "/user-permissions",
-            component: UserPermissionsPage,
+            element: <UserPermissionsPage />,
         },
         requiredPermission: ["userPermissions", "impersonation"],
     },
@@ -97,7 +97,7 @@ export const masterMenuData: MasterMenuData = [
                 primary: <FormattedMessage id="menu.redirects" defaultMessage="Redirects" />,
                 route: {
                     path: "/system/redirects",
-                    component: RedirectsPage,
+                    element: <RedirectsPage />,
                 },
                 requiredPermission: "pageTree",
             },
@@ -106,7 +106,7 @@ export const masterMenuData: MasterMenuData = [
                 primary: <FormattedMessage id="menu.warnings" defaultMessage="Warnings" />,
                 route: {
                     path: "/system/warnings",
-                    component: WarningsPage,
+                    element: <WarningsPage />,
                 },
                 requiredPermission: "warnings",
             },

@@ -9,7 +9,7 @@
         "http-proxy-middleware": "^4.2.1"
     },
     "engines": {
-        "node": "24"
+        "node": ">=24.15.0"
     },
     "devDependencies": {
         "@types/express": "^5.0.6",

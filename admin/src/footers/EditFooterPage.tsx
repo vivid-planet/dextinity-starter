@@ -1,5 +1,16 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { FillSpace, MainContent, messages, SaveButton, Stack, StackToolbar, ToolbarActions, ToolbarTitleItem } from "@dextinity/admin";
+import { gql } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client/react";
+import {
+    FillSpace,
+    MainContent,
+    messages,
+    SaveButton,
+    Stack,
+    StackToolbar,
+    ToolbarActions,
+    ToolbarTitleItem,
+    useCurrentRouteMatch,
+} from "@dextinity/admin";
 import { Save } from "@dextinity/admin-icons";
 import {
     BlockAdminComponentRoot,
@@ -17,7 +28,6 @@ import type { FooterContentBlockInput } from "@src/blocks.generated";
 import isEqual from "lodash.isequal";
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { useRouteMatch } from "react-router";
 
 import { FooterContentBlock } from "./blocks/FooterContentBlock";
 import {
@@ -36,7 +46,7 @@ export function EditFooterPage() {
     const [footerState, setFooterState] = useState<BlockState<typeof FooterContentBlock>>(FooterContentBlock.defaultValues());
     const [hasChanges, setHasChanges] = useState(false);
     const [referenceContent, setReferenceContent] = useState<FooterContentBlockInput | null>(null);
-    const match = useRouteMatch();
+    const routeUrl = useCurrentRouteMatch()?.url ?? "";
     const previewApi = useBlockPreview();
     const blockContext = useBlockContext();
 
@@ -44,6 +54,7 @@ export function EditFooterPage() {
         variables: {
             scope,
         },
+        notifyOnNetworkStatusChange: false,
     });
 
     const saveConflict = useSaveConflictQuery<GQLCheckForChangesFooterQuery, GQLCheckForChangesFooterQueryVariables>(
@@ -121,7 +132,7 @@ export function EditFooterPage() {
 
     const previewState = FooterContentBlock.createPreviewState(footerState, {
         ...blockContext,
-        parentUrl: match.url,
+        parentUrl: routeUrl,
         showVisibleOnly: previewApi.showOnlyVisible,
     });
 
