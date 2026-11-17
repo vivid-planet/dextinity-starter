@@ -42,8 +42,8 @@
         "setup:download-oauth2-proxy": "dotenv -- sh -c 'npx @dextinity/cli download-oauth2-proxy -v $OAUTH2_PROXY_VERSION'"
     },
     "devDependencies": {
-        "@dextinity/agent-features": "10.15.0",
-        "@dextinity/cli": "10.15.0",
+        "@dextinity/agent-features": "11.0.0-canary-20261117164547",
+        "@dextinity/cli": "11.0.0-canary-20261117164547",
         "dev-oidc-provider": "^2.2.0",
         "dev-process-manager": "^4.1.0",
         "dotenv-cli": "^11.1.0",
@@ -57,6 +57,6 @@
         "typescript": "^5.9.3"
     },
     "engines": {
-        "node": "24"
+        "node": ">=24.15.0"
     }
 }
