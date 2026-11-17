@@ -22,9 +22,8 @@ jobs:
           BRANCH: ${{ github.head_ref }}
           SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          ENCODED_BRANCH=$(jq -rn --arg branch "$BRANCH" '$branch | @uri | gsub("%2F"; "/")')
           gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
             -f state=success \
             -f context="Deploy preview" \
             -f description="Start or open deploy preview" \
-            -f target_url="$CONTROLLER_URL/open/$GITHUB_REPOSITORY/$ENCODED_BRANCH"
+            -f target_url="$CONTROLLER_URL/open/$GITHUB_REPOSITORY/$BRANCH"
