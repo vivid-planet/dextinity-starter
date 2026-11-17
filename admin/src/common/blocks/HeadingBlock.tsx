@@ -21,7 +21,6 @@ const EyebrowRichTextBlock = {
     name: "EyebrowRichText",
 };
 
-// Font weight and line height of the Draft.js editor this editor replaced
 const sizeStyleSx: SxProps = { fontWeight: 500, lineHeight: 1.2 };
 
 const sizeStyles: TipTapTextBlockStyle[] = [
