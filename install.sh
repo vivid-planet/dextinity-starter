@@ -21,9 +21,6 @@ npm install
 echo -e "\033[34m\nSetup project files\033[0m"
 npm run setup-project-files
 
-# Lang install
-sh ./site/intl-update.sh
-sh ./admin/intl-update.sh
 npm run create-site-configs-env
 
 echo -e "\033[34m\nInstalling dependencies for admin\033[0m"

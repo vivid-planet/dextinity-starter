@@ -47,7 +47,7 @@ jobs:
           NPM_CONFIG_STRICT_PEER_DEPS: true
 
       - name: Setup project for CI run
-        run: npm run setup:ci && npm --prefix admin run setup:ci && npm --prefix site run setup:ci
+        run: npm run setup:ci
 
       - name: Install agent features
         run: npm run install-agent-features

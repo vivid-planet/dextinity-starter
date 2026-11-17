@@ -8,8 +8,7 @@ COPY --from=api ./schema.gql ./schema.gql
 COPY --from=api ./src/dextinity-config.json ./src/dextinity-config.json
 COPY --from=site-configs ./site-configs.d.ts ./src/site-configs.d.ts
 
-RUN ./intl-update.sh && \
-    npm ci && \
+RUN npm ci && \
     npm run build && \
     npm prune --omit=dev
 

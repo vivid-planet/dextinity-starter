@@ -12,10 +12,11 @@
         "gql:types": "graphql-codegen",
         "gql:watch": "graphql-codegen --watch",
         "postinstall": "cd server && npm install",
-        "intl:compile": "run-p intl:compile:starter-admin intl:compile:dextinity",
+        "intl:compile": "./intl-clone && run-p intl:compile:starter-admin intl:compile:dextinity",
         "intl:compile:dextinity": "formatjs compile-folder --format simple --ast lang/dextinity-lang lang-compiled/dextinity-lang",
         "intl:compile:starter-admin": "formatjs compile-folder --format simple --ast lang/starter-lang/admin lang-compiled/starter-admin",
         "intl:extract": "formatjs extract \"src/**/*.ts*\" --ignore ./**.d.ts --out-file lang-extracted/en.json --format simple --throws",
+        "intl:update": "rm -rf lang && ./intl-clone",
         "prelint": "npm run intl:compile && run-p gql:types generate-block-types",
         "lint": "npm run admin-generator && run-p -l lint:{eslint,knip,prettier,tsc} intl:extract",
         "lint:ci": "npm run lint",
@@ -28,7 +29,6 @@
         "lint:tsc": "tsc --project . && tsc --project server",
         "preview": "npm run build && vite preview",
         "serve": "node server/index.ts",
-        "setup:ci": "./intl-update.sh",
         "start": "npm run check-node-version && run-s admin-generator intl:compile && run-p gql:types generate-block-types && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- vite"
     },
     "overrides": {

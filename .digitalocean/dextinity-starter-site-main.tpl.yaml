@@ -19,7 +19,6 @@ name: dextinity-starter-site-main
 region: fra
 services:
   - build_command: |-
-      ./intl-update.sh &&
       cp ../api/schema.gql schema.gql &&
       cp ../api/block-meta.json block-meta.json &&
       cp ../api/src/dextinity-config.json src/dextinity-config.json &&

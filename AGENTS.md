@@ -32,6 +32,8 @@ This is a monorepo containing a Dextinity project. It contains three main packag
 
 Use `./install.sh` instead of `npm install` whenever you add, remove, or update dependencies in any `package.json` file.
 
+The translations (`admin/lang/`, `site/lang/`) are cloned by `intl:compile` when they're missing, which `build`, `lint` and starting the services run. To pull the latest translations, run `npm --prefix <admin|site> run intl:update`.
+
 ### Development
 
 ```bash
