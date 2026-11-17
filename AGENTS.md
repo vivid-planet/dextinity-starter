@@ -65,6 +65,8 @@ Each script loads `.env.local` itself: the packages and the `dev:*` scripts run 
 
 Runs api, admin and site production-style in containers behind a single published port, for example to look at a pull request before it is merged. It is not a development environment - no hot reloading. See [`.deploy-preview/README.md`](.deploy-preview/README.md).
 
+On every pull request, `.github/workflows/deploy-preview.yml` adds a "Deploy preview" check whose link starts or opens the branch's preview on the preview controller (https://preview.vivid-planet.cloud). It only runs in `vivid-planet/dextinity-starter`, not in projects created from the template, and never for forks.
+
 ### Building
 
 ```bash
