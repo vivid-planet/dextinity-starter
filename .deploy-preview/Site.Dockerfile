@@ -18,8 +18,8 @@ COPY --chown=node:node site ./
 COPY --chown=node:node api/schema.gql api/block-meta.json ./
 COPY --chown=node:node api/src/dextinity-config.json site-configs/site-configs.d.ts ./src/
 ENV NODE_OPTIONS=--max-old-space-size=4096
-# intl-update.sh clones the translations; the .git directories are only clone metadata.
-RUN ./intl-update.sh && rm -rf lang/*/.git && npm run build
+# The build clones the translations; the .git directories are only clone metadata.
+RUN npm run build && rm -rf lang/*/.git
 
 ENV NODE_ENV=production
 EXPOSE 3000
