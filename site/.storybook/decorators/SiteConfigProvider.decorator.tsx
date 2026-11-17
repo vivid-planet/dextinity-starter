@@ -18,7 +18,8 @@ function toPublicSiteConfig({ public: publicConfig, ...siteConfig }: SiteConfig)
 }
 
 export const loadPublicSiteConfigs: Loader = async () => ({
-    publicSiteConfigs: (await getSiteConfigs("local")).map(toPublicSiteConfig),
+    // Asserted because site-configs/ resolves @dextinity/cli from the root node_modules, which the Site lint doesn't install.
+    publicSiteConfigs: ((await getSiteConfigs("local")) as SiteConfig[]).map(toPublicSiteConfig),
 });
 
 // On the site this comes from the site config of the requested domain. Components such as Breadcrumbs and
