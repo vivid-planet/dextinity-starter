@@ -29,7 +29,7 @@ const typographyPropsByTextBlock: Record<string, TypographyProps<keyof HTMLEleme
 const nodeMapping: Record<string, TipTapNodeHandler> = {
     textBlock: ({ node, parent, children }) => {
         if (parent?.type === "listItem") {
-            return <span className={styles.listItemText}>{children}</span>;
+            return <span className={textAlignClassName(node.attrs?.textAlign, styles.listItemText)}>{children}</span>;
         }
         const typographyProps = typographyPropsByTextBlock[node.attrs?.textBlock as string] ?? typographyPropsByTextBlock.paragraph;
         const variant = node.attrs?.textBlockStyle === "small" ? "paragraph200" : typographyProps.variant;
