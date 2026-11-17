@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 
 import { LinkBlock } from "./LinkBlock";
 
-// Spacing and font weights of the Draft.js editor this editor replaced
 const headingSx: SxProps = { fontWeight: 500, lineHeight: 1.2, marginBottom: "10px" };
 
 const listItemSx: SxProps = { fontSize: 16, lineHeight: "20px", fontWeight: 300 };
