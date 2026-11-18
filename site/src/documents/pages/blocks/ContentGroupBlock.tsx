@@ -4,7 +4,7 @@ import { PageContentAccordionBlock } from "@src/common/blocks/AccordionBlock";
 import { AnchorBlock } from "@src/common/blocks/AnchorBlock";
 import { PageContentHeadingBlock } from "@src/common/blocks/HeadingBlock";
 import { PageContentMediaGalleryBlock } from "@src/common/blocks/MediaGalleryBlock";
-import { RichTextBlock } from "@src/common/blocks/RichTextBlock";
+import { PageContentRichTextBlock } from "@src/common/blocks/RichTextBlock";
 import { SpaceBlock } from "@src/common/blocks/SpaceBlock";
 import { PageContentStandaloneCallToActionListBlock } from "@src/common/blocks/StandaloneCallToActionListBlock";
 import { StandaloneMediaBlock } from "@src/common/blocks/StandaloneMediaBlock";
@@ -12,7 +12,6 @@ import { ColumnsBlock } from "@src/documents/pages/blocks/ColumnsBlock";
 import { KeyFactsBlock } from "@src/documents/pages/blocks/KeyFactsBlock";
 import { TeaserBlock } from "@src/documents/pages/blocks/TeaserBlock";
 import { PageLayout } from "@src/layout/PageLayout";
-import { AnimateBoxInOnScroll } from "@src/util/animations/AnimateBoxInOnScroll";
 import clsx from "clsx";
 
 import styles from "./ContentGroupBlock.module.scss";
@@ -22,11 +21,7 @@ const supportedBlocks: SupportedBlocks = {
     anchor: (props) => <AnchorBlock data={props} />,
     space: (props) => <SpaceBlock data={props} />,
     teaser: (props) => <TeaserBlock data={props} />,
-    richtext: (props) => (
-        <AnimateBoxInOnScroll direction="bottom" offset={300}>
-            <RichTextBlock data={props} disableLastBottomSpacing />
-        </AnimateBoxInOnScroll>
-    ),
+    richtext: (props) => <PageContentRichTextBlock data={props} />,
     heading: (props) => <PageContentHeadingBlock data={props} />,
     columns: (props) => <ColumnsBlock data={props} />,
     callToActionList: (props) => <PageContentStandaloneCallToActionListBlock data={props} />,
