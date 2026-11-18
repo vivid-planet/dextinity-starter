@@ -34,6 +34,7 @@ import { TextLinkBlockFixtureService } from "./generators/blocks/navigation/text
 import { BasicStageBlockFixtureService } from "./generators/blocks/stage/basic-stage-block-fixture.service";
 import { BillboardTeaserBlockFixtureService } from "./generators/blocks/teaser/billboard-teaser-block-fixture.service";
 import { TeaserBlockFixtureService } from "./generators/blocks/teaser/teaser-block-fixture.service";
+import { DescriptionRichTextBlockFixtureService } from "./generators/blocks/text-and-content/description-rich-text-block-fixture.service";
 import { HeadingBlockFixtureService } from "./generators/blocks/text-and-content/heading-block-fixture.service";
 import { KeyFactsBlockFixtureService } from "./generators/blocks/text-and-content/key-facts-block-fixture.service";
 import { RichTextBlockFixtureService } from "./generators/blocks/text-and-content/rich-text-block-fixture.service";
@@ -61,6 +62,7 @@ import { VideoFixtureService } from "./generators/video-fixture.service";
         DamVideoBlockFixtureService,
         DocumentGeneratorService,
         FixturesCommand,
+        DescriptionRichTextBlockFixtureService,
         HeadingBlockFixtureService,
         ImageFixtureService,
         KeyFactsBlockFixtureService,
