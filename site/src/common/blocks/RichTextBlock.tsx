@@ -11,6 +11,8 @@ import {
 import type { LinkBlockData, RichTextBlockData } from "@src/blocks.generated";
 import { Typography, type TypographyProps } from "@src/common/components/Typography";
 import { isValidLink } from "@src/common/helpers/HiddenIfInvalidLink";
+import { PageLayout } from "@src/layout/PageLayout";
+import { AnimateBoxInOnScroll } from "@src/util/animations/AnimateBoxInOnScroll";
 
 import { LinkBlock } from "./LinkBlock";
 import styles from "./RichTextBlock.module.scss";
@@ -76,4 +78,14 @@ export const RichTextBlock = withPreview(
         );
     },
     { label: "Rich Text" },
+);
+
+export const PageContentRichTextBlock = ({ data }: PropsWithData<RichTextBlockData>) => (
+    <PageLayout grid>
+        <div className={styles.pageLayoutContent}>
+            <AnimateBoxInOnScroll direction="bottom" offset={300}>
+                <RichTextBlock data={data} disableLastBottomSpacing />
+            </AnimateBoxInOnScroll>
+        </div>
+    </PageLayout>
 );

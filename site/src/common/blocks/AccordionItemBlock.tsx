@@ -1,6 +1,6 @@
 import { BlocksBlock, type PropsWithData, type SupportedBlocks, usePreview, withPreview } from "@dextinity/site-nextjs";
 import type { AccordionContentBlockData, AccordionItemBlockData } from "@src/blocks.generated";
-import { AnimatedHeadingBlock } from "@src/common/blocks/AnimatedHeadingBlock";
+import { HeadingBlock } from "@src/common/blocks/HeadingBlock";
 import { RichTextBlock } from "@src/common/blocks/RichTextBlock";
 import { SpaceBlock } from "@src/common/blocks/SpaceBlock";
 import { StandaloneCallToActionListBlock } from "@src/common/blocks/StandaloneCallToActionListBlock";
@@ -13,7 +13,7 @@ import styles from "./AccordionItemBlock.module.scss";
 
 const supportedBlocks: SupportedBlocks = {
     richtext: (props) => <RichTextBlock data={props} />,
-    heading: (props) => <AnimatedHeadingBlock data={props} />,
+    heading: (props) => <HeadingBlock data={props} />,
     space: (props) => <SpaceBlock data={props} />,
     callToActionList: (props) => <StandaloneCallToActionListBlock data={props} />,
 };

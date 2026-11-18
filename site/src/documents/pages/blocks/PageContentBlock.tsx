@@ -3,10 +3,10 @@ import { BlocksBlock, type PropsWithData, type SupportedBlocks } from "@dextinit
 import type { PageContentBlockData } from "@src/blocks.generated";
 import { PageContentAccordionBlock } from "@src/common/blocks/AccordionBlock";
 import { AnchorBlock } from "@src/common/blocks/AnchorBlock";
-import { PageContentHeadingBlock } from "@src/common/blocks/AnimatedHeadingBlock";
-import { PageContentRichTextBlock } from "@src/common/blocks/AnimatedRichTextBlock";
+import { PageContentHeadingBlock } from "@src/common/blocks/HeadingBlock";
 import { PageContentMediaGalleryBlock } from "@src/common/blocks/MediaGalleryBlock";
 import { PageTreeIndexBlock } from "@src/common/blocks/PageTreeIndexBlock";
+import { PageContentRichTextBlock } from "@src/common/blocks/RichTextBlock";
 import { SpaceBlock } from "@src/common/blocks/SpaceBlock";
 import { PageContentStandaloneCallToActionListBlock } from "@src/common/blocks/StandaloneCallToActionListBlock";
 import { StandaloneMediaBlock } from "@src/common/blocks/StandaloneMediaBlock";

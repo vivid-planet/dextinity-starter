@@ -9,6 +9,8 @@ import {
 } from "@dextinity/site-nextjs";
 import type { HeadingBlockData } from "@src/blocks.generated";
 import { Typography, type TypographyVariant } from "@src/common/components/Typography";
+import { PageLayout } from "@src/layout/PageLayout";
+import { AnimateBoxInOnScroll } from "@src/util/animations/AnimateBoxInOnScroll";
 
 import styles from "./RichTextBlock.module.scss";
 import { textAlignClassName } from "./textAlignClassName";
@@ -72,4 +74,14 @@ export const HeadingBlock = withPreview(
         </>
     ),
     { label: "Heading" },
+);
+
+export const PageContentHeadingBlock = (props: HeadingBlockProps) => (
+    <PageLayout grid>
+        <div className={styles.pageLayoutContent}>
+            <AnimateBoxInOnScroll direction="bottom">
+                <HeadingBlock {...props} />
+            </AnimateBoxInOnScroll>
+        </div>
+    </PageLayout>
 );
