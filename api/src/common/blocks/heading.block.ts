@@ -1,48 +1,64 @@
 import {
     BlockData,
     BlockDataInterface,
-    BlockField,
     BlockInput,
     blockInputToData,
     ChildBlock,
     ChildBlockInput,
     createBlock,
+    createTipTapRichTextBlock,
     ExtractBlockInput,
+    type TipTapTextBlock,
 } from "@dextinity/cms-api";
-import { IsEnum } from "class-validator";
 
-import { RichTextBlock } from "./rich-text.block";
+const EyebrowRichTextBlock = createTipTapRichTextBlock(
+    {
+        strike: false,
+        orderedList: false,
+        unorderedList: false,
+        textBlocks: [{ name: "paragraph", tag: "p" }],
+        maxTextBlocks: 1,
+    },
+    "EyebrowRichText",
+);
 
-export enum HeadlineTag {
-    h1 = "h1",
-    h2 = "h2",
-    h3 = "h3",
-    h4 = "h4",
-    h5 = "h5",
-    h6 = "h6",
-}
+const headlineTags = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+
+const sizes = ["size600", "size550", "size500", "size450", "size400", "size350"];
+
+const textBlocks: TipTapTextBlock[] = headlineTags.map((tag) => ({
+    name: `heading-${tag.slice(1)}`,
+    tag,
+    styles: sizes.map((name) => ({ name })),
+    defaultStyle: "size600",
+}));
+
+const HeadlineRichTextBlock = createTipTapRichTextBlock(
+    {
+        strike: false,
+        orderedList: false,
+        unorderedList: false,
+        textBlocks,
+        defaultTextBlock: "heading-2",
+        maxTextBlocks: 1,
+    },
+    "HeadlineRichText",
+);
 
 class HeadingBlockData extends BlockData {
-    @ChildBlock(RichTextBlock)
+    @ChildBlock(EyebrowRichTextBlock)
     eyebrow: BlockDataInterface;
 
-    @ChildBlock(RichTextBlock)
+    @ChildBlock(HeadlineRichTextBlock)
     headline: BlockDataInterface;
-
-    @BlockField({ type: "enum", enum: HeadlineTag })
-    htmlTag: HeadlineTag;
 }
 
 class HeadingBlockInput extends BlockInput {
-    @ChildBlockInput(RichTextBlock)
-    eyebrow: ExtractBlockInput<typeof RichTextBlock>;
+    @ChildBlockInput(EyebrowRichTextBlock)
+    eyebrow: ExtractBlockInput<typeof EyebrowRichTextBlock>;
 
-    @ChildBlockInput(RichTextBlock)
-    headline: ExtractBlockInput<typeof RichTextBlock>;
-
-    @IsEnum(HeadlineTag)
-    @BlockField({ type: "enum", enum: HeadlineTag })
-    htmlTag: HeadlineTag;
+    @ChildBlockInput(HeadlineRichTextBlock)
+    headline: ExtractBlockInput<typeof HeadlineRichTextBlock>;
 
     transformToBlockData(): HeadingBlockData {
         return blockInputToData(HeadingBlockData, this);
