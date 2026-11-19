@@ -1,3 +1,9 @@
+# Dextinity Starter
+
+This repository is the starting point for new projects. A new project has no old database to update, so it needs no migration history: the starter has exactly one migration. Change it instead of adding a new one, and change the fixtures instead of migrating data.
+
+<!-- PROJECT_AGENTS_BEGIN Everything below this line will go into the AGENTS.md of projects created by @dextinity/create-app -->
+
 # AGENTS.md
 
 This file provides guidance to AI agents (Copilot, Cursor, Claude) when working with code in this repository.
