@@ -18,7 +18,7 @@
         "strict": true,
         "target": "ESNext"
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "vitest.setup.ts"],
     "ts-node": {
         "compilerOptions": {
             "module": "commonjs"

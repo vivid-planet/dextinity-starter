@@ -33,6 +33,7 @@
         "pretest": "npm run intl:compile",
         "test": "vitest --run",
         "test:ci": "npm run test",
+        "pretest:watch": "npm run intl:compile",
         "test:watch": "vitest --watch"
     },
     "overrides": {
