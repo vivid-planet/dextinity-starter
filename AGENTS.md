@@ -96,15 +96,18 @@ npm --prefix site run lint:fix       # Auto-fix Site (includes stylelint)
 
 These commands auto-fix import sorting, remove unused imports, and apply Prettier formatting. The root `lint:fix` also formats config files outside the packages.
 
-### Testing (API and Site)
+### Testing (API, Admin and Site)
 
 ```bash
 npm --prefix api run test                              # Run all tests
 npm --prefix api run test -- src/path/to/file.spec.ts  # Run specific test file
 npm --prefix api run test -- --testNamePattern="name"  # Run tests matching pattern
 npm --prefix api run test:watch                        # Watch mode
+npm --prefix admin run test                            # Run the Admin unit tests
 npm --prefix site run test:storybook                   # Run the Site story tests
 ```
+
+All packages use Vitest. The Admin tests run in jsdom with Testing Library. Put specs next to the code they test as `*.spec.ts(x)`.
 
 ### Database
 
