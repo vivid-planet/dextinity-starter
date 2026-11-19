@@ -16,9 +16,9 @@ import { PageTreeIndexBlockFixtureService } from "./blocks/navigation/page-tree-
 import { StandaloneCallToActionListBlockFixtureService } from "./blocks/navigation/standalone-call-to-action-list-block-fixture.service";
 import { BillboardTeaserBlockFixtureService } from "./blocks/teaser/billboard-teaser-block-fixture.service";
 import { TeaserBlockFixtureService } from "./blocks/teaser/teaser-block-fixture.service";
+import { HeadingBlockFixtureService } from "./blocks/text-and-content/heading-block-fixture.service";
 import { KeyFactsBlockFixtureService } from "./blocks/text-and-content/key-facts-block-fixture.service";
-import { StandaloneHeadingBlockFixtureService } from "./blocks/text-and-content/standalone-heading-block-fixture.service";
-import { StandaloneRichTextBlockFixtureService } from "./blocks/text-and-content/standalone-rich-text-block-fixture.service";
+import { RichTextBlockFixtureService } from "./blocks/text-and-content/rich-text-block-fixture.service";
 
 export type BlockCategory = "layout" | "media" | "navigation" | "teaser" | "textAndContent";
 
@@ -31,10 +31,10 @@ export class PageContentBlockFixtureService {
         private readonly callToActionListBlockFixtureService: StandaloneCallToActionListBlockFixtureService,
         private readonly columnsBlockFixtureService: ColumnsBlockFixtureService,
         private readonly contentGroupBlockFixtureService: ContentGroupBlockFixtureService,
-        private readonly headingBlockFixtureService: StandaloneHeadingBlockFixtureService,
+        private readonly headingBlockFixtureService: HeadingBlockFixtureService,
         private readonly keyFactsBlockFixtureService: KeyFactsBlockFixtureService,
         private readonly mediaGalleryBlockFixtureService: MediaGalleryBlockFixtureService,
-        private readonly standaloneRichTextBlockFixtureService: StandaloneRichTextBlockFixtureService,
+        private readonly richTextBlockFixtureService: RichTextBlockFixtureService,
         private readonly spaceBlockFixtureService: SpaceBlockFixtureService,
         private readonly mediaBlockFixtureService: StandaloneMediaBlockFixtureService,
         private readonly teaserBlockFixtureService: TeaserBlockFixtureService,
@@ -61,7 +61,7 @@ export class PageContentBlockFixtureService {
             teaser: ["teaser", this.teaserBlockFixtureService],
             heading: ["textAndContent", this.headingBlockFixtureService],
             keyFacts: ["textAndContent", this.keyFactsBlockFixtureService],
-            richtext: ["textAndContent", this.standaloneRichTextBlockFixtureService],
+            richtext: ["textAndContent", this.richTextBlockFixtureService],
             pageTreeIndex: ["navigation", this.pageTreeIndexBlockFixtureService],
         };
 
