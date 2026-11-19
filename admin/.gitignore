@@ -7,6 +7,8 @@
 
 /build
 
+junit.xml
+
 /lang/
 /lang-compiled/
 /lang-extracted/

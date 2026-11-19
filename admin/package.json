@@ -29,7 +29,10 @@
         "lint:tsc": "tsc --project . && tsc --project server",
         "preview": "npm run build && vite preview",
         "serve": "node server/index.ts",
-        "start": "npm run check-node-version && run-s admin-generator intl:compile && run-p gql:types generate-block-types && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- vite"
+        "start": "npm run check-node-version && run-s admin-generator intl:compile && run-p gql:types generate-block-types && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- vite",
+        "test": "vitest --run",
+        "test:ci": "npm run test",
+        "test:watch": "vitest --watch"
     },
     "overrides": {
         "react-final-form": {
@@ -83,6 +86,9 @@
         "@graphql-codegen/typescript-operations": "^7.0.1",
         "@parcel/watcher": "^2.6.0",
         "@swc/plugin-emotion": "^20.0.2",
+        "@testing-library/dom": "^10.4.2",
+        "@testing-library/jest-dom": "^7.0.1",
+        "@testing-library/react": "^16.3.3",
         "@types/lodash.isequal": "^4.5.8",
         "@types/node": "^24.19.2",
         "@types/react": "^19.3.0",
@@ -94,13 +100,15 @@
         "chokidar-cli": "^3.0.0",
         "dotenv-cli": "^11.1.0",
         "eslint": "^9.39.5",
+        "jsdom": "^31.0.1",
         "knip": "^6.45.1",
         "npm-run-all2": "^9.0.4",
         "prettier": "^3.10.1",
         "rimraf": "^6.1.4",
         "typescript": "^5.9.3",
         "vite": "^8.3.8",
-        "vite-plugin-compression2": "^2.5.4"
+        "vite-plugin-compression2": "^2.5.4",
+        "vitest": "^5.1.0"
     },
     "engines": {
         "node": "24"
