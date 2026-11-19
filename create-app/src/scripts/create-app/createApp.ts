@@ -6,7 +6,7 @@ import process from "process";
 import { replacePlaceholder } from "../../util/replacePlaceholder";
 import { runEslintFix } from "../../util/runEslintFix";
 import { amendCommitChanges } from "./amendCommitChanges";
-import { cleanupReadme } from "./cleanupReadme";
+import { cleanupMarkdownFile } from "./cleanupMarkdownFile";
 import { cleanupWorkingDirectory } from "./cleanupWorkingDirectory";
 import { createInitialGitCommit } from "./createInitialGitCommit";
 import { createWorkingDirectoryCopy } from "./createWorkingDirectoryCopy";
@@ -22,7 +22,8 @@ export interface CreateAppCommandOptions {
 export async function createApp(commandOptions: CreateAppCommandOptions) {
     console.log(`Creating a new Dextinity app in ${kleur.blue(`${process.cwd()}\n`)}`);
     createWorkingDirectoryCopy(commandOptions);
-    cleanupReadme(commandOptions.verbose);
+    cleanupMarkdownFile("README.md", commandOptions.verbose);
+    cleanupMarkdownFile("AGENTS.md", commandOptions.verbose);
     cleanupWorkingDirectory(commandOptions.verbose);
     replacePlaceholder(commandOptions.projectName, commandOptions.verbose);
     createInitialGitCommit(commandOptions.verbose);
