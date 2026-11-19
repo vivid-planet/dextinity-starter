@@ -21,7 +21,7 @@ export const LatestContentUpdates = () => {
     return <LatestContentUpdatesDashboardWidget rows={rows} loading={loading} />;
 };
 
-export const latestContentUpdatesQuery = gql`
+const latestContentUpdatesQuery = gql`
     query LatestContentUpdates($scope: PageTreeNodeScopeInput!) {
         paginatedPageTreeNodes(offset: 0, limit: 5, scope: $scope, sort: [{ field: updatedAt, direction: DESC }]) {
             nodes {

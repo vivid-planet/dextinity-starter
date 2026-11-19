@@ -107,7 +107,7 @@ npm --prefix admin run test                            # Run the Admin unit test
 npm --prefix site run test:storybook                   # Run the Site story tests
 ```
 
-All packages use Vitest. The Admin tests run in jsdom with Testing Library; render a component with `renderAdmin` from `admin/src/testing/`, which provides the intl context, the theme, the router and the Dextinity config. Put specs next to the code they test as `*.spec.ts(x)`.
+All packages use Vitest. The Admin tests run in jsdom with Testing Library. Put specs next to the code they test as `*.spec.ts(x)`.
 
 ### Database
 

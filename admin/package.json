@@ -30,6 +30,7 @@
         "preview": "npm run build && vite preview",
         "serve": "node server/index.ts",
         "start": "npm run check-node-version && run-s admin-generator intl:compile && run-p gql:types generate-block-types && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- vite",
+        "pretest": "npm run intl:compile",
         "test": "vitest --run",
         "test:ci": "npm run test",
         "test:watch": "vitest --watch"
