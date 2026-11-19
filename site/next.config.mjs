@@ -24,6 +24,9 @@ const nextConfig = {
         optimizePackageImports: ["@dextinity/site-nextjs"],
     },
     poweredByHeader: false,
+    // Results in "s-maxage=450, stale-while-revalidate=450" for ISR pages (revalidate is set in graphQLClient.ts).
+    // The Next.js default of one year allows CDNs to serve outdated pages, e.g. pages that have since been hidden or deleted, for up to a year.
+    expireTime: 900,
     // https://nextjs.org/docs/advanced-features/security-headers (Content-Security-Policy and CORS are set in middleware/cspHeaders.ts)
     headers: async () => [
         {
