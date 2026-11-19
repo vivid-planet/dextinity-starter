@@ -80,6 +80,7 @@ export const RichTextBlock = {
         orderedList: { element: (props, tag) => <Typography component={tag} sx={listItemSx} {...props} /> },
         unorderedList: { element: (props, tag) => <Typography component={tag} sx={listItemSx} {...props} /> },
         listLevelMax: 4,
+        textAlign: true,
     }),
     name: "RichText",
     displayName: <FormattedMessage id="richTextBlock.displayName" defaultMessage="Rich Text" />,

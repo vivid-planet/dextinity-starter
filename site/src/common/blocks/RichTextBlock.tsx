@@ -11,9 +11,12 @@ import {
 import type { LinkBlockData, RichTextBlockData } from "@src/blocks.generated";
 import { Typography, type TypographyProps } from "@src/common/components/Typography";
 import { isValidLink } from "@src/common/helpers/HiddenIfInvalidLink";
+import { PageLayout } from "@src/layout/PageLayout";
+import { AnimateBoxInOnScroll } from "@src/util/animations/AnimateBoxInOnScroll";
 
 import { LinkBlock } from "./LinkBlock";
 import styles from "./RichTextBlock.module.scss";
+import { textAlignClassName } from "./textAlignClassName";
 
 const typographyPropsByTextBlock: Record<string, TypographyProps<keyof HTMLElementTagNameMap>> = {
     paragraph: { as: "p" },
@@ -28,12 +31,12 @@ const typographyPropsByTextBlock: Record<string, TypographyProps<keyof HTMLEleme
 const nodeMapping: Record<string, TipTapNodeHandler> = {
     textBlock: ({ node, parent, children }) => {
         if (parent?.type === "listItem") {
-            return <span className={styles.listItemText}>{children}</span>;
+            return <span className={textAlignClassName(node.attrs?.textAlign, styles.listItemText)}>{children}</span>;
         }
         const typographyProps = typographyPropsByTextBlock[node.attrs?.textBlock as string] ?? typographyPropsByTextBlock.paragraph;
         const variant = node.attrs?.textBlockStyle === "small" ? "paragraph200" : typographyProps.variant;
         return (
-            <Typography {...typographyProps} variant={variant} bottomSpacing className={styles.text}>
+            <Typography {...typographyProps} variant={variant} bottomSpacing className={textAlignClassName(node.attrs?.textAlign, styles.text)}>
                 {children}
             </Typography>
         );
@@ -75,4 +78,14 @@ export const RichTextBlock = withPreview(
         );
     },
     { label: "Rich Text" },
+);
+
+export const PageContentRichTextBlock = ({ data }: PropsWithData<RichTextBlockData>) => (
+    <PageLayout grid>
+        <div className={styles.pageLayoutContent}>
+            <AnimateBoxInOnScroll direction="bottom" offset={300}>
+                <RichTextBlock data={data} disableLastBottomSpacing />
+            </AnimateBoxInOnScroll>
+        </div>
+    </PageLayout>
 );

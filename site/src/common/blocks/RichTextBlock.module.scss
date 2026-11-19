@@ -50,3 +50,7 @@
         list-style-type: decimal;
     }
 }
+
+.pageLayoutContent {
+    grid-column: 3 / -3;
+}

@@ -8,4 +8,4 @@ const textBlocks: TipTapTextBlock[] = [
     ...headingTags.map((tag) => ({ name: `heading-${tag.slice(1)}`, tag })),
 ];
 
-export const RichTextBlock = createTipTapRichTextBlock({ link: LinkBlock, textBlocks, listLevelMax: 4 }, "RichText");
+export const RichTextBlock = createTipTapRichTextBlock({ link: LinkBlock, textBlocks, listLevelMax: 4, textAlign: true }, "RichText");
