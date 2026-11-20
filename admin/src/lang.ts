@@ -12,18 +12,20 @@ import project_messages_en from "../lang-compiled/starter-admin/en.json";
 
 // Add additional languages here. The structure below resolves messages, date-fns and MUI locales for every supported language,
 // so adding a language is a matter of adding its code and the corresponding imports.
-const supportedLanguages = ["en", "de"] as const;
+export const supportedLanguages = ["en", "de"] as const;
 
-type SupportedLanguage = (typeof supportedLanguages)[number];
+export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 const fallbackLanguage: SupportedLanguage = "en";
 
-function getClosestSupportedLanguageFromBrowserLanguages(): SupportedLanguage {
+export function isSupportedLanguage(language: string | null): language is SupportedLanguage {
+    return supportedLanguages.includes(language as SupportedLanguage);
+}
+
+export function getClosestSupportedLanguageFromBrowserLanguages(): SupportedLanguage {
     const browserLanguages = typeof navigator !== "undefined" ? (navigator.languages ?? [navigator.language]) : [];
 
-    const language = browserLanguages
-        .map((browserLanguage) => browserLanguage.split("-")[0].toLowerCase())
-        .find((language): language is SupportedLanguage => supportedLanguages.includes(language as SupportedLanguage));
+    const language = browserLanguages.map((browserLanguage) => browserLanguage.split("-")[0].toLowerCase()).find(isSupportedLanguage);
 
     return language ?? fallbackLanguage;
 }
@@ -55,16 +57,12 @@ const muiLocales: Record<SupportedLanguage, object[]> = {
     de: [coreDe, dataGridDe, datePickersDe],
 };
 
-export function getLanguageConfig(): {
-    language: SupportedLanguage;
+export function getLanguageConfig(language: SupportedLanguage): {
     messages: ResolvedIntlConfig["messages"];
     dateFnsLocale: Locale;
     muiLocale: object[];
 } {
-    const language = getClosestSupportedLanguageFromBrowserLanguages();
-
     return {
-        language,
         messages: getMessages(language),
         dateFnsLocale: dateFnsLocales[language],
         muiLocale: muiLocales[language],
