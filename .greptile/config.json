@@ -5,7 +5,8 @@
         "enabled": true,
         "riskCeiling": "medium",
         "filters": {
-            "includeAuthors": ["VPS-Obi", "VPS-thodax", "nsams", "fraxachun", "VPS-Ricky", "vps-manuel-blum", "kaufmo"]
+            "includeAuthors": ["VPS-Obi", "VPS-thodax", "nsams", "fraxachun", "VPS-Ricky", "vps-manuel-blum", "kaufmo"],
+            "excludePaths": [".greptile/**"]
         }
     },
     "ignoreKeywords": "Merge main\nMerge `main`\nMerge next\nMerge `next`",
