@@ -1,60 +1,41 @@
-import { Check } from "@dextinity/admin-icons";
-import { List, ListItemButton, ListItemText, Typography } from "@mui/material";
-import { css, styled } from "@mui/material/styles";
-import { useId } from "react";
+import { SelectField } from "@dextinity/admin";
+import { Form, FormSpy } from "react-final-form";
 import { FormattedMessage } from "react-intl";
 
-interface AdminLanguageSwitchProps<Language extends string> {
-    languages: readonly Language[];
-    value: Language;
-    onChange: (language: Language) => void;
-}
+import { useAdminLanguage } from "./AdminLanguageContext";
 
-export function AdminLanguageSwitch<Language extends string>({ languages, value, onChange }: AdminLanguageSwitchProps<Language>) {
-    const labelId = useId();
+export function AdminLanguageSwitch() {
+    const { language, languages, setLanguage } = useAdminLanguage();
+
+    if (languages.length < 2) {
+        return null;
+    }
 
     return (
-        <>
-            <Label id={labelId} variant="caption">
-                <FormattedMessage id="adminLanguageSwitch.label" defaultMessage="Admin language" />
-            </Label>
-            <LanguageList role="group" aria-labelledby={labelId} dense disablePadding>
-                {languages.map((language) => {
-                    const isSelected = language === value;
-                    return (
-                        <LanguageListItemButton key={language} aria-pressed={isSelected} selected={isSelected} onClick={() => onChange(language)}>
-                            <ListItemText primary={getNativeLanguageName(language)} lang={language} />
-                            {isSelected && <Check color="primary" />}
-                        </LanguageListItemButton>
-                    );
-                })}
-            </LanguageList>
-        </>
+        <Form initialValues={{ language }} onSubmit={() => {}} subscription={{}}>
+            {() => (
+                <>
+                    <SelectField
+                        name="language"
+                        label={<FormattedMessage id="adminLanguageSwitch.label" defaultMessage="Admin language" />}
+                        // Each language is named in itself, so users who switched to a language they can't read still find their own
+                        options={languages.map((language) => ({
+                            value: language,
+                            label: new Intl.DisplayNames([language], { type: "language" }).of(language) ?? language,
+                        }))}
+                        required
+                        fullWidth
+                    />
+                    <FormSpy
+                        subscription={{ values: true }}
+                        onChange={({ values }) => {
+                            if (values.language !== language) {
+                                setLanguage(values.language);
+                            }
+                        }}
+                    />
+                </>
+            )}
+        </Form>
     );
 }
-
-// Each language is named in itself, so users who switched to a language they can't read still find their own
-function getNativeLanguageName(language: string): string {
-    return new Intl.DisplayNames([language], { type: "language" }).of(language) ?? language;
-}
-
-const Label = styled(Typography)(
-    ({ theme }) => css`
-        display: block;
-        padding-bottom: ${theme.spacing(2)};
-        color: ${theme.palette.grey[400]};
-    `,
-);
-
-// The negative margin lets the selected background span the full width of the padded section in UserHeaderItem
-const LanguageList = styled(List)(
-    ({ theme }) => css`
-        margin-inline: ${theme.spacing(-4)};
-    `,
-);
-
-const LanguageListItemButton = styled(ListItemButton)(
-    ({ theme }) => css`
-        padding-inline: ${theme.spacing(4)};
-    `,
-);
