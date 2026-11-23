@@ -1,6 +1,14 @@
 import type { AccordionContentBlockData } from "@src/blocks.generated";
 import { AccordionItemBlock } from "@src/common/blocks/AccordionItemBlock";
-import { createBlocksItems, createCallToActionList, createHeading, createRichText, createSpace, loremIpsum } from "@src/storybook/blockFixtures";
+import {
+    createBlocksItems,
+    createCallToActionList,
+    createHeading,
+    createParagraph,
+    createRichText,
+    createSpace,
+    loremIpsum,
+} from "@src/storybook/blockFixtures";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { fn } from "storybook/test";
 
@@ -16,8 +24,8 @@ const meta: Meta<typeof AccordionItemBlock> = {
             openByDefault: false,
             content: {
                 blocks: createBlocksItems<AccordionContentBlockData["blocks"][number]["props"]>([
-                    { type: "heading", props: { heading: createHeading({ headline: "Heading inside an accordion" }), textAlignment: "left" } },
-                    { type: "richtext", props: createRichText(loremIpsum) },
+                    { type: "heading", props: createHeading({ headline: "Heading inside an accordion" }) },
+                    { type: "richtext", props: createRichText(createParagraph(loremIpsum)) },
                     { type: "space", props: createSpace("s300") },
                     {
                         type: "callToActionList",

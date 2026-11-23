@@ -1,6 +1,6 @@
 import type { AccordionItemBlockData } from "@src/blocks.generated";
 import { AccordionBlock, PageContentAccordionBlock } from "@src/common/blocks/AccordionBlock";
-import { createBlocksItems, createListItems, createRichText, loremIpsum } from "@src/storybook/blockFixtures";
+import { createBlocksItems, createListItems, createParagraph, createRichText, loremIpsum } from "@src/storybook/blockFixtures";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, userEvent, within } from "storybook/test";
 
@@ -9,7 +9,9 @@ function createAccordionItem(title: string, { openByDefault = false }: { openByD
         title,
         titleHtmlTag: "h3",
         openByDefault,
-        content: { blocks: createBlocksItems([{ type: "richtext", props: createRichText(loremIpsum, loremIpsum) }]) },
+        content: {
+            blocks: createBlocksItems([{ type: "richtext", props: createRichText(createParagraph(loremIpsum), createParagraph(loremIpsum)) }]),
+        },
     };
 }
 
