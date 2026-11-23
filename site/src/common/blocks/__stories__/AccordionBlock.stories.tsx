@@ -4,7 +4,7 @@ import { createBlocksItems, createListItems, createRichText, loremIpsum } from "
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, userEvent, within } from "storybook/test";
 
-function createAccordionItem(title: string, openByDefault = false): AccordionItemBlockData {
+function createAccordionItem(title: string, { openByDefault = false }: { openByDefault?: boolean } = {}): AccordionItemBlockData {
     return {
         title,
         titleHtmlTag: "h3",
@@ -19,7 +19,7 @@ const meta: Meta<typeof AccordionBlock> = {
     args: {
         data: {
             blocks: createListItems([
-                createAccordionItem("What is Dextinity?", true),
+                createAccordionItem("What is Dextinity?", { openByDefault: true }),
                 createAccordionItem("How do I create a page?"),
                 createAccordionItem("Can I add my own blocks?"),
             ]),
