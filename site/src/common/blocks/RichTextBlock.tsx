@@ -1,108 +1,91 @@
 "use client";
-import { hasRichTextBlockContent, PreviewSkeleton, type PropsWithData, withPreview } from "@dextinity/site-nextjs";
+import {
+    hasTipTapRichTextContent,
+    PreviewSkeleton,
+    type PropsWithData,
+    renderTipTapRichText,
+    type TipTapMarkHandler,
+    type TipTapNodeHandler,
+    withPreview,
+} from "@dextinity/site-nextjs";
 import type { LinkBlockData, RichTextBlockData } from "@src/blocks.generated";
 import { Typography, type TypographyProps } from "@src/common/components/Typography";
 import { isValidLink } from "@src/common/helpers/HiddenIfInvalidLink";
-import clsx from "clsx";
-import redraft, { type Renderers, type TextBlockRenderFn } from "redraft";
+import { PageLayout } from "@src/layout/PageLayout";
+import { AnimateBoxInOnScroll } from "@src/util/animations/AnimateBoxInOnScroll";
 
 import { LinkBlock } from "./LinkBlock";
 import styles from "./RichTextBlock.module.scss";
+import { textAlignClassName } from "./textAlignClassName";
 
-export const createTextBlockRenderFn =
-    (props: TypographyProps<keyof HTMLElementTagNameMap>): TextBlockRenderFn =>
-    (children, { keys }) =>
-        children.map((child, index) => (
-            <Typography key={keys[index]} {...props} className={clsx(styles.text, props.className)}>
-                {child}
-            </Typography>
-        ));
-
-export const defaultRichTextInlineStyleMap: Renderers["inline"] = {
-    // The key passed here is just an index based on rendering order inside a block
-    BOLD: (children, { key }) => <strong key={key}>{children}</strong>,
-    ITALIC: (children, { key }) => <em key={key}>{children}</em>,
-    SUB: (children, { key }) => <sub key={key}>{children}</sub>,
-    SUP: (children, { key }) => <sup key={key}>{children}</sup>,
-    STRIKETHROUGH: (children, { key }) => <s key={key}>{children}</s>,
+const typographyPropsByTextBlock: Record<string, TypographyProps<keyof HTMLElementTagNameMap>> = {
+    paragraph: { as: "p" },
+    "heading-1": { as: "h1", variant: "headline600" },
+    "heading-2": { as: "h2", variant: "headline550" },
+    "heading-3": { as: "h3", variant: "headline500" },
+    "heading-4": { as: "h4", variant: "headline450" },
+    "heading-5": { as: "h5", variant: "headline400" },
+    "heading-6": { as: "h6", variant: "headline350" },
 };
 
-/**
- * Define the renderers
- */
-const defaultRichTextRenderers: Renderers = {
-    /**
-     * Those callbacks will be called recursively to render a nested structure
-     */
-    inline: defaultRichTextInlineStyleMap,
-    /**
-     * Blocks receive children and depth
-     * Note that children are an array of blocks with same styling,
-     */
-    blocks: {
-        unstyled: createTextBlockRenderFn({ bottomSpacing: true }),
-        "paragraph-standard": createTextBlockRenderFn({ bottomSpacing: true }),
-        "paragraph-small": createTextBlockRenderFn({ variant: "paragraph200", bottomSpacing: true }),
-        "header-one": createTextBlockRenderFn({ variant: "headline600", bottomSpacing: true }),
-        "header-two": createTextBlockRenderFn({ variant: "headline550", bottomSpacing: true }),
-        "header-three": createTextBlockRenderFn({ variant: "headline500", bottomSpacing: true }),
-        "header-four": createTextBlockRenderFn({ variant: "headline450", bottomSpacing: true }),
-        "header-five": createTextBlockRenderFn({ variant: "headline400", bottomSpacing: true }),
-        "header-six": createTextBlockRenderFn({ variant: "headline350", bottomSpacing: true }),
-        // List
-        // or depth for nested lists
-        "unordered-list-item": (children, { keys }) => (
-            <ul key={keys[keys.length - 1]}>
-                {children.map((child, index) => (
-                    <Typography as="li" key={keys[index]} className={styles.text}>
-                        {child}
-                    </Typography>
-                ))}
-            </ul>
-        ),
-        "ordered-list-item": (children, { depth, keys }) => (
-            <ol
-                key={keys.join("|")}
-                className={depth % 3 === 0 ? styles.orderedListLevel0 : depth % 3 === 1 ? styles.orderedListLevel1 : styles.orderedListLevel2}
-            >
-                {children.map((child, index) => (
-                    <Typography as="li" key={keys[index]} className={styles.text}>
-                        {child}
-                    </Typography>
-                ))}
-            </ol>
-        ),
+const nodeMapping: Record<string, TipTapNodeHandler> = {
+    textBlock: ({ node, parent, children }) => {
+        if (parent?.type === "listItem") {
+            return <span className={textAlignClassName(node.attrs?.textAlign, styles.listItemText)}>{children}</span>;
+        }
+        const typographyProps = typographyPropsByTextBlock[node.attrs?.textBlock as string] ?? typographyPropsByTextBlock.paragraph;
+        const variant = node.attrs?.textBlockStyle === "small" ? "paragraph200" : typographyProps.variant;
+        return (
+            <Typography {...typographyProps} variant={variant} bottomSpacing className={textAlignClassName(node.attrs?.textAlign, styles.text)}>
+                {children}
+            </Typography>
+        );
     },
-    /**
-     * Entities receive children and the entity data
-     */
-    entities: {
-        // key is the entity key value from raw
-        LINK: (children, data: LinkBlockData, { key }) =>
-            isValidLink(data) ? (
-                <LinkBlock key={key} data={data} className={styles.inlineLink}>
-                    {children}
-                </LinkBlock>
-            ) : (
-                <span>{children}</span>
-            ),
+    bulletList: ({ children }) => <ul>{children}</ul>,
+    orderedList: ({ children }) => <ol className={styles.orderedList}>{children}</ol>,
+    listItem: ({ children }) => (
+        <Typography as="li" className={styles.text}>
+            {children}
+        </Typography>
+    ),
+};
+
+const markMapping: Record<string, TipTapMarkHandler> = {
+    link: ({ mark, children }) => {
+        const data = mark.attrs?.data as LinkBlockData;
+        return isValidLink(data) ? (
+            <LinkBlock data={data} className={styles.inlineLink}>
+                {children}
+            </LinkBlock>
+        ) : (
+            <span>{children}</span>
+        );
     },
 };
 
 interface RichTextBlockProps extends PropsWithData<RichTextBlockData> {
-    renderers?: Renderers;
     disableLastBottomSpacing?: boolean;
 }
 
 export const RichTextBlock = withPreview(
-    ({ data, renderers = defaultRichTextRenderers, disableLastBottomSpacing }: RichTextBlockProps) => {
-        const rendered = redraft(data.draftContent, renderers);
+    ({ data, disableLastBottomSpacing }: RichTextBlockProps) => {
+        const rendered = renderTipTapRichText({ content: data.tipTapContent, nodeMapping, markMapping });
 
         return (
-            <PreviewSkeleton title="RichText" type="rows" hasContent={hasRichTextBlockContent(data)}>
+            <PreviewSkeleton title="RichText" type="rows" hasContent={hasTipTapRichTextContent(data.tipTapContent)}>
                 {disableLastBottomSpacing ? <div className={styles.disableLastBottomSpacing}>{rendered}</div> : rendered}
             </PreviewSkeleton>
         );
     },
     { label: "Rich Text" },
+);
+
+export const PageContentRichTextBlock = ({ data }: PropsWithData<RichTextBlockData>) => (
+    <PageLayout grid>
+        <div className={styles.pageLayoutContent}>
+            <AnimateBoxInOnScroll direction="bottom" offset={300}>
+                <RichTextBlock data={data} disableLastBottomSpacing />
+            </AnimateBoxInOnScroll>
+        </div>
+    </PageLayout>
 );
