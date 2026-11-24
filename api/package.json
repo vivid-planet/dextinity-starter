@@ -92,7 +92,7 @@
         "dotenv-cli": "^11.1.0",
         "eslint": "^9.39.5",
         "knip": "^6.46.1",
-        "npm-run-all2": "^9.0.4",
+        "npm-run-all2": "^9.1.0",
         "prettier": "^3.10.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
