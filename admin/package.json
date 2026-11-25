@@ -32,10 +32,10 @@
         "serve": "node server/index.ts",
         "start": "npm run check-node-version && run-s admin-generator intl:compile && run-p gql:types generate-block-types && dotenv -e .env.secrets -e .env.local -e .env -e .env.site-configs -- vite",
         "storybook": "storybook dev -p 26649 --no-open --disable-telemetry",
-        "pretest": "npm run intl:compile",
         "test": "npm run test:unit && npm run test:storybook",
         "test:ci": "npm run test",
         "test:storybook": "vitest --run --project storybook --outputFile.junit=./junit-storybook.xml",
+        "pretest:unit": "npm run intl:compile",
         "test:unit": "vitest --run --project unit --outputFile.junit=./junit.xml",
         "pretest:watch": "npm run intl:compile",
         "test:watch": "vitest --watch"
