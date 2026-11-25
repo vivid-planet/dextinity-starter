@@ -99,7 +99,7 @@ export function createDamImage(options?: Parameters<typeof createPixelImage>[0])
 
 export const emptyDamImage: DamImageBlockData = { attachedBlocks: [] };
 
-function createSvgImage(fileUrl = "/assets/dextinity-logo.svg"): SvgImageBlockData {
+export function createSvgImage(fileUrl = "/assets/dextinity-logo.svg"): SvgImageBlockData {
     return {
         damFile: {
             id: "storybook-svg",
