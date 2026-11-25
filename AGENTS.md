@@ -226,7 +226,9 @@ Next.js App Router conventions with pages in `app/`
 
 - Name branches that merge one branch into another `merge-<source>-into-<target>`, replacing `/` with `-`, e.g. `merge-main-into-next` or `merge-next-into-feature-new-block`. The labeler workflow relies on the `merge-main-`/`merge-next-` prefix.
 
-## Pull Request Descriptions
+## Pull Requests
+
+### Descriptions
 
 - Fill in the pull request template (`.github/pull_request_template.md`) if the repository has one. Don't add sections beyond it, and delete the sections and instruction comments that don't apply.
 - End the description with the task line as plain visible text, not as an HTML comment: `Task: …` (only when there is a task). Only the attribution may follow it.
@@ -239,11 +241,15 @@ Next.js App Router conventions with pages in `app/`
 - The description becomes the message of the squashed commit.
 - After opening a pull request, always check its description and rewrite it to follow these rules, also when the pull request was created by a tool or UI that generated the description.
 
-## Pull Request Labels
+### Labels
 
 - When opening a pull request from a feature branch (`feature/…`) or a `merge-main-…`/`merge-next-…` branch, add the `skip-greptile-review` label when creating it. The labeler workflow sets it as well, but may run after Greptile has already started its review.
 
-## Pull Request Comments
+### Watching
+
+- After opening a pull request, always start watching it without asking, unless the user explicitly said not to.
+
+### Comments
 
 - When watching or driving a pull request, reply on GitHub only to comments and reviews from bots (e.g. Greptile, Claude Code Review, lint bots). Bot accounts end in `[bot]` or are review/CI tools.
 - Never reply to comments or reviews from humans on GitHub. Report what you did, your proposals, and your questions to the user in the session instead of on the pull request.
