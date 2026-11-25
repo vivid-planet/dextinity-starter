@@ -28,6 +28,11 @@ export default defineConfig({
             waitOn: ["tcp:$ADMIN_PORT"],
         },
         {
+            name: "admin-storybook",
+            script: "npm --prefix admin run storybook",
+            group: ["admin"],
+        },
+        {
             name: "auth-provider",
             script: "npm run dev:auth-provider",
             group: "admin",

@@ -8,6 +8,7 @@
 /build
 
 junit.xml
+junit-storybook.xml
 
 /lang/
 /lang-compiled/
@@ -25,3 +26,6 @@ src/site-configs.d.ts
 
 generated/
 .npmrc
+
+# storybook
+/storybook-static
