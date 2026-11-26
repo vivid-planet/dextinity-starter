@@ -5,4 +5,12 @@ cd "$(dirname "$0")"
 
 mkdir -p ./lang
 
-[ -d lang/starter-lang ] || git clone https://github.com/vivid-planet/dextinity-starter-lang.git lang/starter-lang
+# A second run during the clone must not see a half-cloned repository and compile too early.
+clone() {
+    [ -d "$2" ] && return
+    tmp="$2.tmp.$$"
+    git clone "$1" "$tmp"
+    if [ -d "$2" ]; then rm -rf "$tmp"; else mv "$tmp" "$2"; fi
+}
+
+clone https://github.com/vivid-planet/dextinity-starter-lang.git lang/starter-lang
