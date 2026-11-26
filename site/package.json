@@ -51,7 +51,7 @@
         "embla-carousel-auto-height": "9.0.0-rc04",
         "embla-carousel-react": "9.0.0-rc04",
         "graphql": "^16.15.0",
-        "ioredis": "^6.0.0",
+        "ioredis": "^6.1.0",
         "lru-cache": "^11.5.3",
         "next": "^16.4.6",
         "react": "^19.3.1",
