@@ -1,7 +1,7 @@
 import "@fontsource-variable/roboto-flex/full.css";
 
 import { ApolloProvider } from "@apollo/client";
-import { ErrorDialogHandler, MasterLayout, MuiThemeProvider, RouterBrowserRouter, SnackbarProvider } from "@dextinity/admin";
+import { ErrorDialogHandler, MasterLayout, MuiThemeProvider, RouterBrowserRouter, SnackbarProvider, useStoredState } from "@dextinity/admin";
 import {
     ContentScopeProvider,
     createDamFileDependency,
@@ -14,16 +14,23 @@ import { css, Global } from "@emotion/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import type { GQLPermission } from "@src/graphql.generated";
-import { getLanguageConfig } from "@src/lang";
+import {
+    getClosestSupportedLanguageFromBrowserLanguages,
+    getLanguageConfig,
+    isSupportedLanguage,
+    type SupportedLanguage,
+    supportedLanguages,
+} from "@src/lang";
 import { pageTreeCategories } from "@src/pageTree/pageTreeCategories";
 import type { ContentScope as BaseContentScope } from "@src/site-configs";
 import { createTheme } from "@src/theme";
 import { HTML5toTouch } from "rdndmb-html5-to-touch";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { DndProvider } from "react-dnd-multi-backend";
 import { IntlProvider } from "react-intl";
 import { Route, Switch } from "react-router";
 
+import { AdminLanguageContext } from "./common/adminLanguage/AdminLanguageContext";
 import { createApolloClient } from "./common/apollo/createApolloClient";
 import { MasterHeader } from "./common/MasterHeader";
 import { AppMasterMenu, masterMenuData, pageTreeDocumentTypes } from "./common/MasterMenu";
@@ -44,8 +51,23 @@ const config = createConfig();
 const apolloClient = createApolloClient(config.apiUrl);
 
 export function App() {
-    const { language, messages, dateFnsLocale, muiLocale } = getLanguageConfig();
+    // Only an explicit choice is stored, so the browser language keeps applying until the user picks one
+    const [selectedLanguage, setSelectedLanguage] = useStoredState<SupportedLanguage | null>("adminLanguage", null);
+    const language = isSupportedLanguage(selectedLanguage) ? selectedLanguage : getClosestSupportedLanguageFromBrowserLanguages();
+    const { messages, dateFnsLocale, muiLocale } = useMemo(() => getLanguageConfig(language), [language]);
     const theme = useMemo(() => createTheme(muiLocale), [muiLocale]);
+    const adminLanguage = useMemo(
+        () => ({
+            language,
+            languages: supportedLanguages,
+            setLanguage: setSelectedLanguage,
+        }),
+        [language, setSelectedLanguage],
+    );
+
+    useEffect(() => {
+        document.documentElement.lang = language;
+    }, [language]);
 
     return (
         <DextinityConfigProvider
@@ -85,46 +107,48 @@ export function App() {
             redirects={{ scopeParts: ["domain"] }}
         >
             <ApolloProvider client={apolloClient}>
-                <IntlProvider locale={language} messages={messages}>
-                    <MuiThemeProvider theme={theme}>
-                        <LocalizationProvider adapterLocale={dateFnsLocale} dateAdapter={AdapterDateFns}>
-                            <DndProvider options={HTML5toTouch}>
-                                <SnackbarProvider>
-                                    <ErrorDialogHandler />
-                                    <CurrentUserProvider>
-                                        <RouterBrowserRouter>
-                                            <GlobalStyle />
-                                            <ContentScopeProvider>
-                                                {({ match }) => (
-                                                    <Switch>
-                                                        <Route
-                                                            path={`${match.path}/preview`}
-                                                            render={(props) => (
-                                                                <SitePreview
-                                                                    resolvePath={(path: string, scope) => {
-                                                                        return `/${scope.language}${path}`;
-                                                                    }}
-                                                                    {...props}
-                                                                />
-                                                            )}
-                                                        />
-                                                        <Route
-                                                            render={() => (
-                                                                <MasterLayout headerComponent={MasterHeader} menuComponent={AppMasterMenu}>
-                                                                    <MasterMenuRoutes menu={masterMenuData} />
-                                                                </MasterLayout>
-                                                            )}
-                                                        />
-                                                    </Switch>
-                                                )}
-                                            </ContentScopeProvider>
-                                        </RouterBrowserRouter>
-                                    </CurrentUserProvider>
-                                </SnackbarProvider>
-                            </DndProvider>
-                        </LocalizationProvider>
-                    </MuiThemeProvider>
-                </IntlProvider>
+                <AdminLanguageContext.Provider value={adminLanguage}>
+                    <IntlProvider locale={language} messages={messages}>
+                        <MuiThemeProvider theme={theme}>
+                            <LocalizationProvider adapterLocale={dateFnsLocale} dateAdapter={AdapterDateFns}>
+                                <DndProvider options={HTML5toTouch}>
+                                    <SnackbarProvider>
+                                        <ErrorDialogHandler />
+                                        <CurrentUserProvider>
+                                            <RouterBrowserRouter>
+                                                <GlobalStyle />
+                                                <ContentScopeProvider>
+                                                    {({ match }) => (
+                                                        <Switch>
+                                                            <Route
+                                                                path={`${match.path}/preview`}
+                                                                render={(props) => (
+                                                                    <SitePreview
+                                                                        resolvePath={(path: string, scope) => {
+                                                                            return `/${scope.language}${path}`;
+                                                                        }}
+                                                                        {...props}
+                                                                    />
+                                                                )}
+                                                            />
+                                                            <Route
+                                                                render={() => (
+                                                                    <MasterLayout headerComponent={MasterHeader} menuComponent={AppMasterMenu}>
+                                                                        <MasterMenuRoutes menu={masterMenuData} />
+                                                                    </MasterLayout>
+                                                                )}
+                                                            />
+                                                        </Switch>
+                                                    )}
+                                                </ContentScopeProvider>
+                                            </RouterBrowserRouter>
+                                        </CurrentUserProvider>
+                                    </SnackbarProvider>
+                                </DndProvider>
+                            </LocalizationProvider>
+                        </MuiThemeProvider>
+                    </IntlProvider>
+                </AdminLanguageContext.Provider>
             </ApolloProvider>
         </DextinityConfigProvider>
     );
