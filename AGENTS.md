@@ -109,7 +109,8 @@ npm --prefix api run test                              # Run all tests
 npm --prefix api run test -- src/path/to/file.spec.ts  # Run specific test file
 npm --prefix api run test -- --testNamePattern="name"  # Run tests matching pattern
 npm --prefix api run test:watch                        # Watch mode
-npm --prefix admin run test                            # Run the Admin unit tests
+npm --prefix admin run test:unit                       # Run the Admin unit tests
+npm --prefix admin run test:storybook                  # Run the Admin story tests
 npm --prefix site run test:storybook                   # Run the Site story tests
 ```
 
@@ -165,6 +166,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Admin: 8000
 - API: 4000
 - Site: 3000
+- Admin Storybook: 26649 (start with `npx dev-pm start admin-storybook`; stories live in `__stories__` folders next to the component)
 - Site Storybook: 26648 (start with `npx dev-pm start site-storybook`; stories live in `__stories__` folders next to the component)
 
 ### Code Quality
@@ -173,7 +175,7 @@ The `site-configs/` directory manages site configurations, compiled into environ
 - Prettier: 150 print width, 4 tab width
 - Strict TypeScript enabled
 - Pre-commit hooks via husky/lint-staged
-- Site Storybook is published to Chromatic on every PR by `.github/workflows/chromatic.yml` (needs the `CHROMATIC_PROJECT_TOKEN_SITE` repository secret)
+- Admin and Site Storybooks are published to Chromatic on every PR by `.github/workflows/chromatic.yml` (needs the `CHROMATIC_PROJECT_TOKEN_ADMIN` and `CHROMATIC_PROJECT_TOKEN_SITE` repository secrets)
 - AI code review via Greptile on opened, non-draft PRs (configured in `.greptile/config.json`, incl. ignored files and auto-approval rules); skipped for PRs labeled `skip-greptile-review`, which `.github/workflows/labeler.yml` sets for feature and merge branches (rules in `.github/labeler.yml`)
 
 ## Configuration

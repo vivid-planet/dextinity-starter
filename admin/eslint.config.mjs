@@ -1,9 +1,34 @@
 import eslintConfigReact from "@dextinity/eslint-config/react.js";
 import { defineConfig, globalIgnores } from "eslint/config";
+import storybook from "eslint-plugin-storybook";
 
 const config = defineConfig([
-    globalIgnores(["schema.json", "src/fragmentTypes.json", "dist/**", "src/**/*.generated.ts", "src/**/generated/**", "block-meta.json", "**/package-lock.json", "lang/**", "lang-compiled/**", "lang-extracted/**"]),
+    globalIgnores([
+        "schema.json",
+        "src/fragmentTypes.json",
+        "dist/**",
+        "storybook-static/**",
+        "src/**/*.generated.ts",
+        "src/**/generated/**",
+        "block-meta.json",
+        "**/package-lock.json",
+        "lang/**",
+        "lang-compiled/**",
+        "lang-extracted/**",
+    ]),
     ...eslintConfigReact,
+    ...storybook.configs["flat/recommended"],
+    {
+        // The storybook config files live outside tsconfig.json's `include`, in their own project.
+        files: [".storybook/**/*.{ts,tsx}", "vitest.config.ts"],
+        languageOptions: {
+            parserOptions: {
+                projectService: false,
+                project: ["./tsconfig.storybook.json"],
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
+    },
 ]);
 
 export default config;

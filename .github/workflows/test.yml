@@ -51,5 +51,5 @@ jobs:
         if: success() || failure()
         with:
           name: test-results-storybook
-          path: site/junit-storybook.xml
+          path: "**/junit-storybook.xml"
           overwrite: true

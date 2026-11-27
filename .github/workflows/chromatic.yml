@@ -30,3 +30,9 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SITE }}
           workingDir: site
+
+      - name: Publish admin Storybook to Chromatic
+        uses: chromaui/action@v18
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_ADMIN }}
+          workingDir: admin

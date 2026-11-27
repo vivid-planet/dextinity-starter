@@ -2,9 +2,10 @@
     "$schema": "https://unpkg.com/knip@5/schema.json",
     "workspaces": {
         ".": {
+            "entry": ["./.storybook/*.{ts,tsx}"],
             "ignore": ["./codegen.ts", "./schema.gql", "./src/**/generated/**/*.{ts,tsx}", "./src/**/*.dextinityGen.{ts,tsx}"],
             "ignoreDependencies": ["@swc/plugin-emotion"],
-            "project": ["./src/**/*.{ts,tsx}"]
+            "project": ["./src/**/*.{ts,tsx}", "./.storybook/**/*.{ts,tsx}"]
         },
         "server": {
             "project": ["**/*.ts"]
